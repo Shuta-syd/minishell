@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 17:30:11 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/14 21:29:15 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/25 16:09:25 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/25 16:09:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include <builtin.h>
 
-void	pwd(void)
+void	pwd(t_data *data)
 {
-	char	cwd[PATH_MAX];
 
-	getcwd(cwd, PATH_MAX);
-	printf("%s\n", cwd);
 }

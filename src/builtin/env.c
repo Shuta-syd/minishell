@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 17:45:19 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/14 21:29:13 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/25 16:08:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include <builtin.h>
 
 void	env(t_data *data)
 {
-	int i;
-
-	i = 0;
-	while (data->env[i])
-	{
-		printf("%s\n", data->env[i]);
-		i++;
-	}
+	
 }

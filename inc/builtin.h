@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:06:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 16:07:44 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/25 16:02:49 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/25 16:05:56 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <builtin.h>
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
-void	cd(t_data *data)
-{
+#include <minishell.h>
 
-}
+
+
+#endif

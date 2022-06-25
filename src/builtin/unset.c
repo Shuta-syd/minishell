@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.h                                         :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 17:30:29 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/12 01:41:36 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/25 16:10:00 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/25 16:10:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMANDS_H
-# define COMMANDS_H
+#include <builtin.h>
 
-# include <minishell.h>
-
-void	pwd(void);
-void	echo(t_data *data);
-void	env(t_data *data);
-void	cd(t_data *data);
-
-#endif
+void	unset(t_data *data)
+{
+	
+}

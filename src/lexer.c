@@ -6,14 +6,20 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 15:44:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:24:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 // 字句解析のための関数(メタ文字ごとに分割)
-void	lexer(t_data *data)
+void	lexer(t_token *lst, char **input)
 {
+	size_t	i;
 
+	i = 0;
+	//while (input[i])
+	//{
+	//	lst->token =
+	//}
 }

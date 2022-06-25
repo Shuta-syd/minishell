@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 16:28:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:30:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,22 @@ typedef struct s_env
 //字句解析 単方向リスト（循環でも可）
 typedef struct s_token
 {
-	int		meta; //メタ文字種類（先頭は0）
-	char	*lex; //一意の入力値
+	int		type;
+	char	*token;
 	struct s_token	*next;
 }	t_token;
 
 // 総合的なデータ群
 typedef struct s_data
 {
-	char	*input;
-	char	**envp;
+	char	**input;
 	t_token	lex;
 	t_env		env;
 } t_data;
 
 //prototype
 void	user_input(t_data *data);
-void	lexer(t_data *data);
+void	lexer(t_token *lst, char **input);
 #endif
 
 /*

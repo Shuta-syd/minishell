@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 16:32:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:00:46 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,25 @@ static void	destructor(void)
 */
 
 //環境変数のリスト構造化
-void	store_env_lst(t_data *data, char **envp)
+void	store_env_lst(t_env *lst, char **envp)
 {
+	t_env	*prev;
+	t_env	*tmp;
 	size_t	i;
 
-	i = 0;
+	i = 1;
+	lst->val = ft_strdup(envp[0]);
 	while (envp[i])
 	{
-		data->env.val = ft_calloc(ft_strlen(envp[i]), sizeof(char));
-		data->env.val = ft_strdup(envp[i]);
+		tmp = ft_calloc(1, sizeof(t_env *));
+		tmp->val = ft_strdup(envp[i]);
+		tmp->next = NULL;
+		if (i == 1)
+			lst->next = tmp;
+		else
+			prev->next = tmp;
+		prev = tmp;
+		tmp = tmp->next;
 		i++;
 	}
 }
@@ -39,11 +49,11 @@ int main(int argc, char *argv[], char **envp)
 {
 	t_data	data;
 
-	store_env_lst(&data, envp);
+	store_env_lst(&data.env, envp);
 	while (1)
 	{
 		user_input(&data);//入力受取
-		//lexer(&data); //字句解析
+		//lexer(&data.lex, data.input); //字句解析
 		// creat_abstract_syntax(&data) //抽象構文木の生成
 		//
 		free(data.input);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 14:35:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 15:30:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,31 @@
 # include <libft.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "../src/builtins/builtins.h"
 
 #define PROMPT "gosh$ "
 
 //字句解析 リスト 単方向（循環でも可）
-typedef struct s_lexical_lst
+typedef struct s_token
 {
 	char	*lex; //一意の入力値
-	struct s_lexcical_lst	*next;
-}	t_lexical_lst;
+	struct s_token	*next;
+}	t_token;
 
 // 総合的なデータ群
 typedef struct s_data
 {
 	char	*input;
 	char	**envp;
-	t_lexical_lst	lex;
+	t_token	lex;
 }	t_data;
 
 //prototype
 void	user_input(t_data *data);
 void	lexer(t_data *data);
 #endif
+
+/*
+	【メモ】
+	・環境変数envをリスト構造で保持するのもあり
+*/

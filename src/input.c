@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 14:42:04 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 14:44:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	user_input(t_data *data)
 		return ; // error
 	if (ft_strlen(data->input) > 0)
 		add_history(data->input); //コマンドがある場合historyに保存
-	free(data->input);
 }

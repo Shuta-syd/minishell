@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 18:50:34 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 19:17:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 
 # define PROMPT "gosh$ "
+# define META ";|&`\"'\\<>()[]{}"
 # define NOTYPE 0;
 
 //環境変数 単方向リスト （循環でも可）
@@ -48,6 +49,7 @@ typedef struct s_data
 //prototype
 void	user_input(t_data *data);
 void	lexer(t_data *data, char **input);
+void	excute_singul_command(t_data *data);
 #endif
 
 /*

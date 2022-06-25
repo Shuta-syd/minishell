@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 15:48:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 16:28:50 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,14 @@
 
 #define PROMPT "gosh$ "
 
-//字句解析 リスト 単方向（循環でも可）
+//環境変数 単方向リスト （循環でも可）
+typedef struct s_env
+{
+	char		*val;
+	struct	s_env *next;
+} t_env;
+
+//字句解析 単方向リスト（循環でも可）
 typedef struct s_token
 {
 	int		meta; //メタ文字種類（先頭は0）
@@ -35,7 +42,8 @@ typedef struct s_data
 	char	*input;
 	char	**envp;
 	t_token	lex;
-}	t_data;
+	t_env		env;
+} t_data;
 
 //prototype
 void	user_input(t_data *data);

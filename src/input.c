@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 14:41:26 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/25 14:42:04 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-/*
-__attribute__((destructor))
-static void	destructor(void)
+void	user_input(t_data *data)
 {
-	system("leaks -q minishell");
-}
-*/
-
-//envp → envコマンド結果を格納
-int main(int argc, char *argv[], char **envp)
-{
-	t_data	data;
-
-	data.envp = envp;
-	while (1)
-	{
-		user_input(&data);//入力受取
-		//lexer(&data); //字句解析
-	}
-	return 0;
+	data->input = readline(PROMPT); //入力値の受取
+	if (data->input == NULL)
+		return ; // error
+	if (ft_strlen(data->input) > 0)
+		add_history(data->input); //コマンドがある場合historyに保存
+	free(data->input);
 }

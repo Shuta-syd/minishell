@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 14:19:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 14:35:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,7 @@ typedef struct s_data
 	t_lexical_lst	lex;
 }	t_data;
 
+//prototype
+void	user_input(t_data *data);
+void	lexer(t_data *data);
 #endif

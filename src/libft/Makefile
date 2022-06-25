@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 15:22:14 by shogura           #+#    #+#              #
-#    Updated: 2022/06/24 20:54:08 by shogura          ###   ########.fr        #
+#    Updated: 2022/06/25 14:23:38 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,16 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -I $(INCDIR) -o $(@) -c $(<)
+	@$(CC) $(CFLAGS) -I $(INCDIR) -o $(@) -c $(<)
 
 $(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 clean:
-	$(RM)r $(OBJDIR)
+	@$(RM)r $(OBJDIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

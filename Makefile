@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 19:18:48 by shogura           #+#    #+#              #
-#    Updated: 2022/06/24 20:40:22 by shogura          ###   ########.fr        #
+#    Updated: 2022/06/25 14:23:06 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME): $(OBJS) $(LIB)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 libft:
-	make -C $(LIBDIR)
+	@make -C $(LIBDIR)
 
 clean:
 	$(RM) $(OBJS)

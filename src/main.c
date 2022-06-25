@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 18:17:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:25:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	destructor(void)
 */
 
 //環境変数のリスト構造化
-void	store_env_lst(t_env *lst, char **envp)
+static void	store_env_lst(t_env *lst, char **envp)
 {
 	t_env	*prev;
 	t_env	*tmp;

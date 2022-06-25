@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 17:30:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:03:26 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-#define PROMPT "gosh$ "
+# define PROMPT "gosh$ "
+# define NOTYPE 0;
 
 //環境変数 単方向リスト （循環でも可）
 typedef struct s_env

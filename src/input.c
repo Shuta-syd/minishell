@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 17:07:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:27:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	user_input(t_data *data)
 	data->input = ft_split(input, ' ');
 	if (data->input == NULL)
 		return ; //error
+	free(input);
 }

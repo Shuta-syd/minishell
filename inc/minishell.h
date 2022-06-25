@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 18:03:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:50:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ typedef struct s_token
 typedef struct s_data
 {
 	char	**input;
-	t_token	lex;
-	t_env		env;
+	t_token	*lex;
+	t_env		*env;
 } t_data;
 
 //prototype
 void	user_input(t_data *data);
-void	lexer(t_token *lst, char **input);
+void	lexer(t_data *data, char **input);
 #endif
 
 /*

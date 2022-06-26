@@ -6,11 +6,23 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 01:51:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/26 13:29:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	free_env_lst(t_env *env_lst)
+{
+	t_env	*tmp;
+
+	while (env_lst)
+	{
+		tmp = env_lst;
+		env_lst = env_lst->next;
+		free(tmp);
+	}
+}
 
 t_env	*get_env_last_node(t_env *env_lst)
 {
@@ -55,4 +67,24 @@ t_env	*env_node_new(char *env)
 	new_env_node->val = env;
 	new_env_node->next = NULL;
 	return (new_env_node);
+}
+
+//環境変数のリスト構造化
+void	store_env_lst(t_data *data, char **envp)
+{
+	t_env	*new_node;
+	size_t	i;
+
+	i = 1;
+	data->env_lst = env_node_new(envp[0]);
+	if (data->env_lst == NULL)
+		return; // error
+	while (envp[i])
+	{
+		new_node = env_node_new(envp[i]);
+		if (new_node == NULL)
+			return; // error
+		env_node_add_back(&data->env_lst, new_node);
+		i++;
+	}
 }

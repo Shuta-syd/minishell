@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 01:51:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/26 13:32:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,14 @@ void	lexer(t_data *data, char **input);
 t_env	*env_node_new(char *env);
 t_env	*get_env_last_node(t_env *env_lst);
 void	env_node_add_back(t_env **env_lst, t_env *new_node);
+void	store_env_lst(t_data *data, char **envp);
+void	free_env_lst(t_env *env_lst);
+
 t_token	*lex_node_new(char *token, int type);
 t_token	*get_lex_last_node(t_token *lex_lst);
 void	lex_node_add_back(t_token **lex_lst, t_token *new_node);
+void	store_lex_lst(t_data *data, char **input);
+void	free_lex_lst(t_token *lex_lst);
 #endif
 
 /*

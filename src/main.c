@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 13:33:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/26 13:49:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int main(int argc, char *argv[], char **envp)
 		user_input(&data);//入力受取
 		lexer(&data, data.input); //字句解析
 		// creat_abstract_syntax(&data) //抽象構文木の生成
+		//変数展開
+		//コマンド実行
 		free_all(&data);
 	}
 	return 0;

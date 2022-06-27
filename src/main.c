@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 15:26:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:09:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main(int argc, char *argv[], char **envp)
 	t_data	data;
 
 	store_env_lst(&data, envp);
+	// store_path_lst(&data);
 	while (1)
 	{
 		user_input(&data);//入力受取

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 17:10:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:26:31 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <libft.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
 
 # define PROMPT "gosh$ "
 # define META ";|&`\"'\\<>()[]{}"
@@ -50,6 +51,7 @@ typedef struct s_data
 	t_env		*env_lst;
 } t_data;
 
+# include <builtin.h>
 //
 void	user_input(t_data *data);
 void	lexer(t_data *data, char **input);
@@ -72,4 +74,5 @@ t_token	*get_lex_last_node(t_token *lex_lst);
 void	lex_node_add_back(t_token **lex_lst, t_token *new_node);
 void	store_lex_lst(t_data *data, char **input);
 void	free_lex_lst(t_token *lex_lst);
+
 #endif

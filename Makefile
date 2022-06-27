@@ -33,11 +33,11 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $(@))
 	$(CC) $(CFLAGS) $(INCS) -o $(@) -c -g $(<)
 
-$(NAME): $(OBJS) $(LIB)
+$(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 libft:
-	@make re -C $(LIBDIR)
+	@make -C $(LIBDIR)
 
 clean:
 	$(RM) $(OBJS)

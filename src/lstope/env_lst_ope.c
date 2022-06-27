@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst_ope.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 17:49:37 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 19:10:13 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	free_env_lst(t_env *env_lst)
 	{
 		tmp = env_lst;
 		env_lst = env_lst->next;
-		free(tmp);
+		if (tmp != NULL)
+			free(tmp);
 	}
 }
 

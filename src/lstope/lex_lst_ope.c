@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex_lst_ope.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 13:31:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 20:02:58 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ void	free_lex_lst(t_token *lex_lst)
 {
 	t_token	*tmp;
 
+	if (lex_lst == NULL)
+		return ;
 	while (lex_lst)
 	{
 		tmp = lex_lst;
-		free(lex_lst->token);
+		if (lex_lst->token != NULL)
+			free(lex_lst->token);
 		lex_lst = lex_lst->next;
-		free(tmp);
+		if (tmp != NULL)
+			free(tmp);
 	}
 }
 
@@ -80,6 +84,11 @@ void	store_lex_lst(t_data *data, char **input)
 	t_token	*new_node;
 
 	i = 1;
+	if (input[0] == NULL)//enter || space だけの時
+	{
+		data->lex_lst = NULL;
+		return ;
+	}
 	data->lex_lst = lex_node_new(input[0], NOTYPE);
 	if (data->lex_lst == NULL)
 		return; // error

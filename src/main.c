@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 19:54:59 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:20:00 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ void	free_all(t_data *data)
 		free(data->input);
 }
 
-
-//envp → envコマンド結果を格納
 int main(int argc, char *argv[], char **envp)
 {
 	t_data	data;
 
+	data.envp = envp;
 	store_env_lst(&data, envp);
 	while (1)
 	{
@@ -53,5 +52,5 @@ int main(int argc, char *argv[], char **envp)
 		//コマンド実行
 		free_all(&data);
 	}
-	return 0;
+	return (0);
 }

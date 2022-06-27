@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 19:58:24 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:17:25 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ void	user_input(t_data *data)
 void	ctrl_d(void)
 {
 	write(1, "\b\b", 2);
-	write(1, "exit\n", 5);
-	exit(EXIT_SUCCESS);
+	exit_(0);
 }

@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 18:56:41 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:58:53 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 //include library
 # include <stdio.h>
+# include <string.h>
 # include <stdbool.h>
-# include <libft.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <libft.h>
 # include "struct.h"
 # include "builtin.h"
 # include "lst_ope.h"

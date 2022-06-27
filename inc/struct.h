@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 18:44:00 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:02:22 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 {
 	char	**input;
 	char	*path;
+	char	**envp;
 	pid_t	*ch_pid; //コマンド実行の際子プロセスのpid
 	t_token	*lex_lst;
 	t_env	*env_lst;

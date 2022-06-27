@@ -6,11 +6,30 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 13:29:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:46:32 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	search_path_from_env(t_data *data)
+{
+	t_env	*env_lst;
+	bool	is_path;
+	char	*path_val;
+
+	env_lst = data->env_lst;
+	while (env_lst)
+	{
+		is_path = ft_strstr(env_lst->val, "PATH");
+		if (is_path)
+		{
+			path_val = env_lst->val;
+			return;
+		}
+		env_lst = env_lst->next;
+	}
+}
 
 void	free_env_lst(t_env *env_lst)
 {
@@ -87,4 +106,5 @@ void	store_env_lst(t_data *data, char **envp)
 		env_node_add_back(&data->env_lst, new_node);
 		i++;
 	}
+	search_path_from_env(data);
 }

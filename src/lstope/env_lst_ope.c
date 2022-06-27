@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 16:18:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:12:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	env_node_add_back(t_env **env_lst, t_env *new_node)
 t_env	*env_node_new(char *env)
 {
 	t_env	*new_env_node;
+	// char
 
 	new_env_node = ft_calloc(1, sizeof(t_env));
 	if (new_env_node == NULL)

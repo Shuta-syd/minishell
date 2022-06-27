@@ -6,19 +6,17 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 16:09:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:19:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-/*
 __attribute__((destructor))
 static void	destructor(void)
 {
 	system("leaks -q minishell");
 }
-*/
 
 void	free_all(t_data *data)
 {
@@ -41,9 +39,10 @@ int main(int argc, char *argv[], char **envp)
 	t_data	data;
 
 	store_env_lst(&data, envp);
-	// store_path_lst(&data);
 	while (1)
 	{
+		signal(SIGINT, SIG_IGN); // Ctl +C
+		signal(SIGQUIT, SIG_IGN);//??
 		user_input(&data);//入力受取
 		lexer(&data, data.input); //字句解析
 		// creat_abstract_syntax(&data) //抽象構文木の生成

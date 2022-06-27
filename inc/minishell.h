@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 16:05:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:10:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_token
 typedef struct s_data
 {
 	char		**input;
+	char		*path;
 	pid_t		*ch_pid; //コマンド実行の際子プロセスのpid
 	t_token		*lex_lst;
 	t_env		*env_lst;
-	t_env		*path_lst;
 } t_data;
 
 //

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:15:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 17:39:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:55:14 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ char	*search_path_from_env(t_env *env_lst)
 }
 
 //環境変数PATHから外部コマンドの実行ファイルを探索する
-void	search_command_from_path(t_data *data)
-{
+// void	search_command_from_path(t_data *data)
+// {
 	
-}
+// }
 
-void	do_single_command(t_data *data)
-{
-	search_command_from_path(data);
-}
+// void	do_single_command(t_data *data)
+// {
+// 	search_command_from_path(data);
+// }

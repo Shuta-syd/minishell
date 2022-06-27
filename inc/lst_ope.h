@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lst_ope.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:30:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 18:31:36 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:43:44 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LST_OPE_H
 # define LST_OPE_H
+
+# include <minishell.h>
+# include <struct.h>
 
 // lstope func
 t_env	*env_node_new(char *env);

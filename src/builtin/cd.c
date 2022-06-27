@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:06:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 12:43:09 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:21:00 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <builtin.h>
+#include <minishell.h>
 
 void	cd(t_data *data)
 {
-
-	
+	printf("%s\n", data->path);
 }

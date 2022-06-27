@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 15:29:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 18:57:50 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	lexer(t_data *data, char **input)
 {
 	store_lex_lst(data, input);
 	//if(メタ文字がなかった場合)
-	do_single_command(data);
+	// do_single_command(data);
 }
 /*
 	1. メタ文字なしのシングルコマンドの実装

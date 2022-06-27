@@ -3,3 +3,4 @@ obj
 minishell
 test
 test2
+*.a

@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 18:23:05 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:07:23 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,12 @@
 
 void	env(t_data *data)
 {
+	int i;
 	
+	i = 0;
+	while (data->envp[i])
+	{
+		ft_putendl(data->envp[i]);
+		i++;
+	}
 }

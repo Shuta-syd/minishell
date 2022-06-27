@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 20:52:31 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/27 21:07:59 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/27 21:08:48 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <builtin.h>
 
-// 字句解析のための関数
-void	lexer(t_data *data, char **input)
-{
-	store_lex_lst(data, input);
-	//if(メタ文字がなかった場合)
-	// do_single_command(data);
-}
-/*
-	1. メタ文字なしのシングルコマンドの実装
-*/
+// void	echo(t_data *data)
+// {
+// 	bool	opt_n;
+// 	char	**inputs;
+// 	int		i;
+
+// 	opt_n = false;
+// 	inputs = &data->inputs[1];
+// 	if (ft_strcmp(inputs[0], "-n") == 0)
+// 	{
+// 		opt_n = true;
+// 		inputs++;
+// 	}
+// 	i = 0;
+// 	while (inputs[i])
+// 	{
+// 		if (i != 0)
+// 			printf(" ");
+// 		printf("%s", inputs[i++]);
+// 	}
+// 	if (opt_n == false)
+// 		printf("\n");
+// }

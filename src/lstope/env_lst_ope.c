@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 17:12:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:49:37 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ void	env_node_add_back(t_env **env_lst, t_env *new_node)
 t_env	*env_node_new(char *env)
 {
 	t_env	*new_env_node;
-	// char
+	int		key_len;
 
 	new_env_node = ft_calloc(1, sizeof(t_env));
 	if (new_env_node == NULL)
 		return (NULL);
-	new_env_node->val = env;
+	key_len = ft_strchr(env, '=') - env;
+	new_env_node->key = ft_substr(env, 0, key_len);
+	new_env_node->val = ft_strdup(ft_strchr(env, '=') + 1);
 	new_env_node->next = NULL;
 	return (new_env_node);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 13:36:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:43:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 //include library
 # include <stdio.h>
+# include <stdbool.h>
 # include <libft.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -42,6 +43,8 @@ typedef struct s_token
 typedef struct s_data
 {
 	char		**input;
+	char		*path_val;
+	pid_t		*ch_pid; //コマンド実行の際子プロセスのpid
 	t_token		*lex_lst;
 	t_env		*env_lst;
 } t_data;
@@ -66,8 +69,3 @@ void	lex_node_add_back(t_token **lex_lst, t_token *new_node);
 void	store_lex_lst(t_data *data, char **input);
 void	free_lex_lst(t_token *lex_lst);
 #endif
-
-/*
-	【メモ】
-	・環境変数envをリスト構造で保持するのもあり
-*/

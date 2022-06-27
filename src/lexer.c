@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/26 13:26:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:29:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	lexer(t_data *data, char **input)
 {
 	store_lex_lst(data, input);
 	//if(メタ文字がなかった場合)
-	// excute_single_command(data);
+	do_single_command(data);
 }
 /*
 	1. メタ文字なしのシングルコマンドの実装

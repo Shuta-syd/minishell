@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 20:44:11 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/28 21:26:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ void	store_lex_lst(t_data *data, char **input)
 		lex_node_add_back(&data->lex_lst, new_node);
 		i++;
 	}
+	return ;
 }

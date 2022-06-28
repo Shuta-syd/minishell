@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 20:58:53 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:42:36 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "lst_ope.h"
 
 # define PROMPT "gosh$ "
-# define META ";|&`\"'\\<>()[]{}"
+# define METACHAR ";|&`\"'\\<>()[]{}"
 # define NOTYPE 0
 
 void	user_input(t_data *data);

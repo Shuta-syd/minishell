@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 21:20:00 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:34:18 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ void	free_all(t_data *data)
 		free(data->input);
 }
 
+void	ctrl_c(int signal)
+{
+	// ft_putstr_fd("\b\b  \b\b\n", 1);
+	ft_putstr_fd("\033[15C", 1);
+	ft_putstr_fd("\b\b  \b\b\n", 1);
+	// rl_replace_line("", 0);
+	// rl_on_new_line();
+	// rl_redisplay();
+}
+
+void	signal_handeler(void)
+{
+	signal(SIGINT, &ctrl_c);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+}
+
 int main(int argc, char *argv[], char **envp)
 {
 	t_data	data;
@@ -43,8 +60,7 @@ int main(int argc, char *argv[], char **envp)
 	store_env_lst(&data, envp);
 	while (1)
 	{
-		signal(SIGINT, SIG_IGN); // Ctl +C
-		signal(SIGQUIT, SIG_IGN);//??
+		signal_handeler();
 		user_input(&data);//入力受取
 		lexer(&data, data.input); //字句解析
 		// creat_abstract_syntax(&data) //抽象構文木の生成

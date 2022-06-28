@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 21:20:00 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:43:25 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ int main(int argc, char *argv[], char **envp)
 	store_env_lst(&data, envp);
 	while (1)
 	{
-		signal(SIGINT, SIG_IGN); // Ctl +C
-		signal(SIGQUIT, SIG_IGN);//??
-		user_input(&data);//入力受取
+		set_signal();
+		user_input(&data);		  //入力受取
 		lexer(&data, data.input); //字句解析
 		// creat_abstract_syntax(&data) //抽象構文木の生成
 		//変数展開

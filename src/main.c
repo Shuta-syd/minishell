@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 20:46:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/28 21:43:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ void	free_all(t_data *data)
 	size_t i;
 
 	i = 0;
-	// free_env_lst(data->env_lst);//いらなそう
-	free_lex_lst(data->lex_lst);
+	// free_env_lst(data->env_lst);
+	// free_lex_lst(data->lex_lst);
 	while (data->input[i])
 	{
-		if (data->input[i] != NULL)
-			free(data->input[i]);
+		free(data->input[i]);
 		i++;
 	}
 	if (data->input != NULL)

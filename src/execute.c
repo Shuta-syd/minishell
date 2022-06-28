@@ -3,40 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:15:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 18:55:14 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/28 21:03:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*search_path_from_env(t_env *env_lst)
+// /環境変数PATHから外部コマンドの実行ファイルを探索する
+char	*search_exe_from_path(t_data *data)
 {
-	bool	is_path;
-	char	*path_val;
+	size_t	i;
+	char	**paths;
+	char	*path;
+	char	*exe_file;
 
-	while (env_lst)
+	i = 0;
+	paths = ft_split(getenv("PATH"), ':');
+	if (paths == NULL)
+		return (NULL);//error
+	while (paths[i])
 	{
-		is_path = ft_strstr(env_lst->val, "PATH");
-		if (is_path)
-		{
-			path_val = env_lst->val;
-			return (path_val);
-		}
-		env_lst = env_lst->next;
+		path = ft_strjoin(paths[i], "/");
+		exe_file = ft_strjoin(path, data->lex_lst->token);
+		free(path);
+		if (access(exe_file, X_OK) == 0)
+			return (exe_file);
+		free(exe_file);
+		i++;
 	}
+	//error function
+	perror("gosh: ");
 	return (NULL);
 }
 
-//環境変数PATHから外部コマンドの実行ファイルを探索する
-// void	search_command_from_path(t_data *data)
-// {
-	
-// }
+void	child_process(t_data *data)
+{
+	char	*exe_file;
 
-// void	do_single_command(t_data *data)
-// {
-// 	search_command_from_path(data);
-// }
+	exe_file =  search_exe_from_path(data);
+	execve(exe_file, &data->lex_lst->token, NULL);
+}
+
+void	do_single_command(t_data *data)
+{
+	pid_t	ch_pid;
+
+	ch_pid = fork();
+	if (ch_pid == -1)
+		return ;  // error
+	else if (ch_pid == 0)
+		child_process(data);
+	wait(0);
+}

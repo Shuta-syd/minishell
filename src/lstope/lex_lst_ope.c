@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   lex_lst_ope.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 20:02:58 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:44:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	print_lex_lst(t_token *lex_lst)
+{
+	while (lex_lst)
+	{
+		printf("type->%d token->%s\n", lex_lst->type, lex_lst->token);
+		lex_lst = lex_lst->next;
+	}
+}
 
 void	free_lex_lst(t_token *lex_lst)
 {

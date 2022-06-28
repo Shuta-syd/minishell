@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2022/06/28 12:43:25 by shogura          ###   ########.fr       */
+=======
 /*   Updated: 2022/06/28 18:34:18 by tharaguc         ###   ########.fr       */
+>>>>>>> 8b7d7dc1dbbcd7420670d89dc37cf85d083dd1ee
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +37,6 @@ void	free_all(t_data *data)
 	}
 	if (data->input != NULL)
 		free(data->input);
-}
-
-void	ctrl_c(int signal)
-{
-	// ft_putstr_fd("\b\b  \b\b\n", 1);
-	ft_putstr_fd("\033[15C", 1);
-	ft_putstr_fd("\b\b  \b\b\n", 1);
-	// rl_replace_line("", 0);
-	// rl_on_new_line();
-	// rl_redisplay();
-}
-
-void	signal_handeler(void)
-{
-	signal(SIGINT, &ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGTERM, SIG_IGN);
 }
 
 int main(int argc, char *argv[], char **envp)

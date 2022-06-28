@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 12:45:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/28 19:33:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "signal.h"
 
 # define PROMPT "gosh$ "
-# define META ";|&`\"'\\<>()[]{}"
+# define METACHAR ";|&`\"'\\<>()[]{}"
 # define NOTYPE 0
 
 void	user_input(t_data *data);

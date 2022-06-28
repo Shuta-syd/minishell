@@ -6,7 +6,11 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/28 12:43:25 by shogura          ###   ########.fr       */
+=======
+/*   Updated: 2022/06/28 18:34:18 by tharaguc         ###   ########.fr       */
+>>>>>>> 8b7d7dc1dbbcd7420670d89dc37cf85d083dd1ee
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +47,8 @@ int main(int argc, char *argv[], char **envp)
 	store_env_lst(&data, envp);
 	while (1)
 	{
-		set_signal();
-		user_input(&data);		  //入力受取
+		signal_handeler();
+		user_input(&data);//入力受取
 		lexer(&data, data.input); //字句解析
 		// creat_abstract_syntax(&data) //抽象構文木の生成
 		//変数展開

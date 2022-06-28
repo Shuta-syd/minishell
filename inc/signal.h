@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:44:14 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 19:33:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/28 19:46:40 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <minishell.h>
 # include <struct.h>
 
-void	signal_handeler(void);
+void	set_signal(void);
 
 #endif

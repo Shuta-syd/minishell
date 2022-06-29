@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_signal.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:42:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/29 19:24:27 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/29 18:53:53 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/29 19:47:18 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// ctrl_dの何の機能かわかる関数名にした方がいい
-void	ctrl_d(void)
+void	output_error_msg(char *msg, char *cmd)
 {
-	write(1, "\b\b", 2);
-	exit_(0);
-}
-
-// ctrl_cの何の機能かわかる関数名にした方がいい
-void	ctrl_c(int signal)
-{
-	ft_putchar_fd('\n', 1);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	set_signal(void)
-{
-	signal(SIGINT, &ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGTERM, SIG_IGN);
+	
 }

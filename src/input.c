@@ -6,11 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/29 18:54:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/28 21:44:50 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	ctrl_d(void);
 
 void	user_input(t_data *data)
 {
@@ -18,7 +20,10 @@ void	user_input(t_data *data)
 
 	input = readline(PROMPT); //入力値の受取
 	if (input == NULL)
-		ctrl_d(); // Ctl+D
+	{
+		free_all(data);
+		ctrl_d(); // Ctl+D error
+	}
 	/*
 		if (ft_strlen(input) > 0)
 			add_history(input); //コマンドがある場合historyに保存
@@ -27,4 +32,10 @@ void	user_input(t_data *data)
 	free(input);
 	if (data->input == NULL)
 		return ; //error
+}
+
+void	ctrl_d(void)
+{
+	write(1, "\b\b", 2);
+	exit_(0);
 }

@@ -6,17 +6,19 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 21:43:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/29 20:08:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
 __attribute__((destructor))
 static void	destructor(void)
 {
 	system("leaks -q minishell");
 }
+*/
 
 void	free_all(t_data *data)
 {

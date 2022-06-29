@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:15:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 21:34:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/29 19:55:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*search_exe_from_path(t_data *data)
 		free(exe_file);
 		i++;
 	}
-	//error function
 	perror("gosh: ");
 	return (NULL);
 }

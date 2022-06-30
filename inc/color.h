@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:41:06 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 16:56:49 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:07:13 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,5 @@
 # define GREEN "\x1b[32m"
 # define BLUE "\x1b[34m"
 # define C_DEFAULT "\x1b[39m"
-
-void	color(char *str, char *color);
 
 #endif

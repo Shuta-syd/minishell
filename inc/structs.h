@@ -6,14 +6,14 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:31:08 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:14:02 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# include <minishell.h>
+# include "minishell.h"
 
 typedef struct s_env
 {

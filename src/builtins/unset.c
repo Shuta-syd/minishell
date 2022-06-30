@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.h                                           :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:44:14 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 19:46:40 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/25 16:10:00 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 19:16:47 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
+// #include <builtin.h>
 
-# include <minishell.h>
-# include <struct.h>
-
-void	set_signal(void);
-
-#endif
+// void	unset(t_data *data)
+// {
+	
+// }

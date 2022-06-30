@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:01 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/27 21:07:59 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 19:16:29 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+// void	echo(t_data *data)
+// {
+// 	bool	opt_n;
+// 	char	**inputs;
+// 	int		i;
 
-# include <stdio.h>
-# include <string.h>
-# include <stdbool.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <libft.h>
-
-# include "color.h"
-# include "structs.h"
-# include "functions.h"
-
-# define PROMPT "gosh$ "
-# define METACHAR ";|&`\"'\\<>()[]{}"
-# define NOTYPE 0
-
-#endif
+// 	opt_n = false;
+// 	inputs = &data->inputs[1];
+// 	if (ft_strcmp(inputs[0], "-n") == 0)
+// 	{
+// 		opt_n = true;
+// 		inputs++;
+// 	}
+// 	i = 0;
+// 	while (inputs[i])
+// 	{
+// 		if (i != 0)
+// 			printf(" ");
+// 		printf("%s", inputs[i++]);
+// 	}
+// 	if (opt_n == false)
+// 		printf("\n");
+// }

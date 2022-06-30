@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:02:49 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:38:15 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 18:38:58 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-
 #include <minishell.h>
 
-void	cd(t_data *data);
-void	env(t_data *data);
-void	exit_(int status);
-
-#endif
+void	env(t_data *data)
+{
+	int i;
+	t_env	*tmp;
+	
+	i = 0;
+	tmp = data->env_lst;
+	while (tmp)
+	{
+		printf("%s=%s\n", tmp->key, tmp->val);
+		tmp = tmp->next;
+	}
+}

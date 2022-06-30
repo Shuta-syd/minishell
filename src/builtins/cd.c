@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:01 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/25 16:06:27 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 16:31:55 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <minishell.h>
 
-# include <stdio.h>
-# include <string.h>
-# include <stdbool.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <libft.h>
+static void	go_home(void);
 
-# include "color.h"
-# include "structs.h"
-# include "functions.h"
+void	cd(t_data *data)
+{
+	const char *path = data->lex_lst->next->token;
 
-# define PROMPT "gosh$ "
-# define METACHAR ";|&`\"'\\<>()[]{}"
-# define NOTYPE 0
+	if (path == NULL || ft_strcmp(path, "~") == 0)
+		go_home();
+	else if (chdir(path) != 0)
+		ft_putendl(strerror(errno));
+}
 
-#endif
+static void	go_home(void)
+{
+	if (chdir(getenv("HOME")) != 0)
+		printf("Can't found $HOME\n");
+}

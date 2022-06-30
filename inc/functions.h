@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_ope.h                                          :+:      :+:    :+:   */
+/*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 18:30:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 20:44:01 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 19:16:03 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LST_OPE_H
-# define LST_OPE_H
+#ifndef FUNCTIONS_H
+# define FUNCTIONS_H
 
-# include <minishell.h>
-# include <struct.h>
+#include "minishell.h"
+
+void	free_all(t_data *data);
+void	user_input(t_data *data);
+void	lexer(t_data *data, char **input);
+void	motd(void);
+char	*ms_getenv(t_data *data, char *name);
+
+void	do_single_command(t_data *data);
+
+void	set_signal(void);
+
+void	cd(t_data *data);
+void	env(t_data *data);
+void	exit_(int status);
 
 // lstope func
 t_env	*env_node_new(char *env);

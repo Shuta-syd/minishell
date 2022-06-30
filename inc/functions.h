@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:03 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:21:08 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,27 @@
 
 #include "minishell.h"
 
-void	free_all(t_data *data);
-void	user_input(t_data *data);
-void	lexer(t_data *data, char **input);
-void	motd(void);
+//utils
 char	*ms_getenv(t_data *data, char *name);
+void	free_all(t_data *data);
+void	motd(void);
 
-void	do_single_command(t_data *data);
-
+//input
+void	user_input(t_data *data);
 void	set_signal(void);
 
+//lexer
+void	lexer(t_data *data, char **input);
+
+//execution
+void	do_single_command(t_data *data);
+
+//builtins
 void	cd(t_data *data);
 void	env(t_data *data);
 void	exit_(int status);
 
-// lstope func
+// list funcs
 t_env	*env_node_new(char *env);
 t_env	*get_env_last_node(t_env *env_lst);
 void	env_node_add_back(t_env **env_lst, t_env *new_node);

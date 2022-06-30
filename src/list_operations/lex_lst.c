@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:16:59 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:22:27 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	print_lex_lst(t_token *lex_lst)
 	while (tmp)
 	{
 		printf("type > %d ", tmp->type);
-		printf("token > ");
-		color(tmp->token, GREEN);
-		printf("\n");
+		printf("token > %s%s%s\n", GREEN, tmp->token, C_DEFAULT);
 		tmp = tmp->next;
 	}
 }

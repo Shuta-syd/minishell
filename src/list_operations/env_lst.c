@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_lst_ope.c                                      :+:      :+:    :+:   */
+/*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 19:42:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/30 18:45:54 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ t_env	*env_node_new(char *env)
 	return (new_env_node);
 }
 
-//環境変数のリスト構造化
 void	store_env_lst(t_data *data, char **envp)
 {
 	t_env	*new_node;

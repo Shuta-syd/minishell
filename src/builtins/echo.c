@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:02:49 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 21:12:32 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/27 21:07:59 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 19:16:29 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+// void	echo(t_data *data)
+// {
+// 	bool	opt_n;
+// 	char	**inputs;
+// 	int		i;
 
-#include <minishell.h>
-
-void	cd(t_data *data);
-void	exit_(int status);
-
-#endif
+// 	opt_n = false;
+// 	inputs = &data->inputs[1];
+// 	if (ft_strcmp(inputs[0], "-n") == 0)
+// 	{
+// 		opt_n = true;
+// 		inputs++;
+// 	}
+// 	i = 0;
+// 	while (inputs[i])
+// 	{
+// 		if (i != 0)
+// 			printf(" ");
+// 		printf("%s", inputs[i++]);
+// 	}
+// 	if (opt_n == false)
+// 		printf("\n");
+// }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:09:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 21:11:38 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/25 16:10:00 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 19:16:47 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <builtin.h>
+// #include <builtin.h>
 
-void	pwd(void)
-{
-	char cwd[PATH_MAX];
-
-	getcwd(cwd, PATH_MAX);
-	ft_putendl(cwd);
-}
+// void	unset(t_data *data)
+// {
+	
+// }

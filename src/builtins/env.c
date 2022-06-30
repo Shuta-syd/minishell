@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:38:09 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 19:36:32 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-
-void	user_input(t_data *data)
+void	env(t_data *data)
 {
-	char	*input;
+	int i;
+	t_env	*env_lst;
 
-	input = readline(PROMPT);
-	if (input == NULL)
-		ctrl_d();
-	/*
-		if (ft_strlen(input) > 0)
-			add_history(input); //コマンドがある場合historyに保存
-	*/
-	data->input = ft_split(input, ' ');
-	free(input);
-	if (data->input == NULL)
-		return ;
+	i = 0;
+	env_lst = data->env_lst;
+	while (env_lst)
+	{
+		printf("%s=%s\n", env_lst->key, env_lst->val);
+		env_lst = env_lst->next;
+	}
 }

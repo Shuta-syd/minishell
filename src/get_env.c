@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:06:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 12:40:51 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 19:36:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	go_home(void);
-
-void	cd(t_data *data)
+char	*ms_getenv(t_data *data, char *name)
 {
-	const char *path = data->lex_lst->next->token; //定数にする必要ない
-	if (path == NULL || ft_strcmp(path, "~") == 0)
-		go_home();
-	else if (chdir(path) != 0)
-		ft_putendl(strerror(errno));
-}
+	t_env *env_lst;
 
-static void	go_home(void)
-{
-	if (chdir(getenv("HOME")) != 0)
-		printf("Can't found $HOME\n");
+	env_lst = data->env_lst;
+	while (env_lst)
+	{
+		if (ft_strncmp(env_lst->key, name, ft_strlen(name)) == 0)
+			return (env_lst->val);
+		env_lst = env_lst->next;
+	}
+	return (NULL);
 }

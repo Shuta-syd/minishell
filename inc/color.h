@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:10:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/25 16:10:21 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 16:41:06 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 19:07:13 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <builtin.h>
+#ifndef COLOR_H
+# define COLOR_H
 
-void	unset(t_data *data)
-{
-	
-}
+# define RED "\x1b[31m"
+# define GREEN "\x1b[32m"
+# define BLUE "\x1b[34m"
+# define C_DEFAULT "\x1b[39m"
+
+#endif

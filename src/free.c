@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.h                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:44:14 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 19:46:40 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 16:17:05 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 18:07:07 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
+#include <minishell.h>
 
-# include <minishell.h>
-# include <struct.h>
+void	free_all(t_data *data)
+{
+	size_t i;
 
-void	set_signal(void);
-
-#endif
+	i = 0;
+	free_lex_lst(data->lex_lst);
+	if (data->input == NULL)
+		return ;
+	while (data->input[i])
+	{
+		free(data->input[i]);
+		i++;
+	}
+	free(data->input);
+}

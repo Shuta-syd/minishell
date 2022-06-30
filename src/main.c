@@ -6,48 +6,34 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/29 20:08:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/30 19:40:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-/*
+///*
 __attribute__((destructor))
 static void	destructor(void)
 {
 	system("leaks -q minishell");
 }
-*/
+// */
 
-void	free_all(t_data *data)
-{
-	size_t i;
-
-	i = 0;
-	// free_env_lst(data->env_lst);
-	// free_lex_lst(data->lex_lst);
-	while (data->input[i])
-	{
-		free(data->input[i]);
-		i++;
-	}
-	if (data->input != NULL)
-		free(data->input);
-}
 
 int main(int argc, char *argv[], char **envp)
 {
 	t_data	data;
 
+	data = (t_data){};
 	data.envp = envp;
 	store_env_lst(&data, envp);
 	set_signal();
 	while (1)
 	{
-		user_input(&data);//入力受取
-		lexer(&data, data.input); //字句解析
-		// creat_abstract_syntax(&data) //抽象構文木の生成
+		user_input(&data);
+		lexer(&data, data.input);
+		// creat_abstract_syntax(&data)
 		//変数展開
 		//コマンド実行
 		free_all(&data);

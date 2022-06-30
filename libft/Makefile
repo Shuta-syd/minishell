@@ -6,7 +6,7 @@
 #    By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 15:22:14 by shogura           #+#    #+#              #
-#    Updated: 2022/06/27 20:04:07 by tharaguc         ###   ########.fr        #
+#    Updated: 2022/06/30 18:06:15 by tharaguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -I $(INCDIR) -o $(@) -c $(<)
+	$(CC) $(CFLAGS) -I $(INCDIR) -o $(@) -c -g $(<)
 
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)

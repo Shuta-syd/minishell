@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/27 21:07:23 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 19:14:02 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef STRUCT_H
+# define STRUCT_H
 
-void	env(t_data *data)
+# include "minishell.h"
+
+typedef struct s_env
 {
-	int i;
-	
-	i = 0;
-	while (data->envp[i])
-	{
-		ft_putendl(data->envp[i]);
-		i++;
-	}
-}
+	char		*key;
+	char		*val;
+	struct s_env	*next;
+}	t_env;
+
+typedef struct s_token
+{
+	int			type;
+	char		*token;
+	struct s_token	*next;
+}	t_token;
+
+typedef struct s_data
+{
+	char	**input;
+	char	**envp;
+	pid_t	*ch_pid;
+	t_token	*lex_lst;
+	t_env	*env_lst;
+}	t_data;
+
+#endif

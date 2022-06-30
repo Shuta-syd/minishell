@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:38:58 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/30 16:17:05 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 18:07:07 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	env(t_data *data)
+void	free_all(t_data *data)
 {
-	int i;
-	t_env	*tmp;
-	
+	size_t i;
+
 	i = 0;
-	tmp = data->env_lst;
-	while (tmp)
+	free_lex_lst(data->lex_lst);
+	if (data->input == NULL)
+		return ;
+	while (data->input[i])
 	{
-		printf("%s=%s\n", tmp->key, tmp->val);
-		tmp = tmp->next;
+		free(data->input[i]);
+		i++;
 	}
+	free(data->input);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 21:44:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/30 18:11:35 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,13 @@ void	user_input(t_data *data)
 {
 	char	*input;
 
-	input = readline(PROMPT); //入力値の受取
+	input = readline(PROMPT);
 	if (input == NULL)
-	{
-		free_all(data);
-		ctrl_d(); // Ctl+D error
-	}
-	/*
-		if (ft_strlen(input) > 0)
-			add_history(input); //コマンドがある場合historyに保存
-	*/
+		ctrl_d();
 	data->input = ft_split(input, ' ');
-	free(input);
 	if (data->input == NULL)
-		return ; //error
+		return ;
+	free(input);
 }
 
 void	ctrl_d(void)

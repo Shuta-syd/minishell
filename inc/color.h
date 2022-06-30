@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:38:58 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/06/30 16:41:06 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 16:56:49 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef COLOR_H
+# define COLOR_H
 
-void	env(t_data *data)
-{
-	int i;
-	t_env	*tmp;
-	
-	i = 0;
-	tmp = data->env_lst;
-	while (tmp)
-	{
-		printf("%s=%s\n", tmp->key, tmp->val);
-		tmp = tmp->next;
-	}
-}
+# define RED "\x1b[31m"
+# define GREEN "\x1b[32m"
+# define BLUE "\x1b[34m"
+# define C_DEFAULT "\x1b[39m"
+
+void	color(char *str, char *color);
+
+#endif

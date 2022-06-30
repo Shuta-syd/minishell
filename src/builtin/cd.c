@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:06:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 12:40:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/30 16:31:55 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	go_home(void);
 
 void	cd(t_data *data)
 {
-	const char *path = data->lex_lst->next->token; //定数にする必要ない
+	const char *path = data->lex_lst->next->token;
+
 	if (path == NULL || ft_strcmp(path, "~") == 0)
 		go_home();
 	else if (chdir(path) != 0)

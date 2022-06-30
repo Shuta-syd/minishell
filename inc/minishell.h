@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 21:35:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/30 18:45:33 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,22 @@
 # include <libft.h>
 # include "struct.h"
 # include "builtin.h"
-# include "lst_ope.h"
+# include "lst_operations.h"
 # include "signal.h"
+# include "color.h"
 
 # define PROMPT "gosh$ "
 # define METACHAR ";|&`\"'\\<>()[]{}"
 # define NOTYPE 0
 
-void free_all(t_data *data);
-void user_input(t_data *data);
+void	free_all(t_data *data);
+void	user_input(t_data *data);
 void	lexer(t_data *data, char **input);
+void	motd(void);
+char	*ms_getenv(t_data *data, char *name);
 
-//execute func
+//execute
 void	do_single_command(t_data *data);
+
 
 #endif

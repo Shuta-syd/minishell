@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_lst_ope.c                                      :+:      :+:    :+:   */
+/*   lex_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 21:26:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/06/30 18:16:59 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 void	print_lex_lst(t_token *lex_lst)
 {
-	while (lex_lst)
+	t_token *tmp;
+
+	tmp = lex_lst;
+	while (tmp)
 	{
-		printf("type->%d token->%s\n", lex_lst->type, lex_lst->token);
-		lex_lst = lex_lst->next;
+		printf("type > %d ", tmp->type);
+		printf("token > ");
+		color(tmp->token, GREEN);
+		printf("\n");
+		tmp = tmp->next;
 	}
 }
 
@@ -30,12 +36,13 @@ void	free_lex_lst(t_token *lex_lst)
 	while (lex_lst)
 	{
 		tmp = lex_lst;
-		if (lex_lst->token != NULL)
+		// if (lex_lst->token != NULL)
 			free(lex_lst->token);
 		lex_lst = lex_lst->next;
-		if (tmp != NULL)
+		// if (tmp != NULL)
 			free(tmp);
 	}
+	free(lex_lst);
 }
 
 t_token	*get_lex_last_node(t_token *lex_lst)
@@ -86,26 +93,25 @@ t_token	*lex_node_new(char *token, int type)
 	return (new_token_node);
 }
 
-//入力値のリスト化
 void	store_lex_lst(t_data *data, char **input)
 {
 	size_t	i;
 	t_token	*new_node;
 
 	i = 1;
-	if (input[0] == NULL)//enter || space だけの時
+	if (input[0] == NULL)//enter | space だけの時
 	{
 		data->lex_lst = NULL;
 		return ;
 	}
 	data->lex_lst = lex_node_new(input[0], NOTYPE);
 	if (data->lex_lst == NULL)
-		return; // error
+		return;
 	while (input[i])
 	{
 		new_node = lex_node_new(input[i], NOTYPE);
 		if (new_node == NULL)
-			return; // error
+			return;
 		lex_node_add_back(&data->lex_lst, new_node);
 		i++;
 	}

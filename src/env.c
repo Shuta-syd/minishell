@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/28 21:31:58 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 18:47:34 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// 字句解析のための関数
-void	lexer(t_data *data, char **input)
+char	*ms_getenv(t_data *data, char *name)
 {
-	store_lex_lst(data, input);
-	// print_lex_lst(data->lex_lst);
-	// if(メタ文字がなかった場合)
-	 do_single_command(data);
+	t_env *tmp;
+
+	tmp = data->env_lst;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->key, name, ft_strlen(name)) == 0)
+			return (tmp->val);
+		tmp = tmp->next;
+	}
+	return (NULL);
 }

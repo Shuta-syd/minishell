@@ -5,60 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 15:06:18 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/12 15:48:06 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/04/07 18:13:47 by shogura           #+#    #+#             */
+/*   Updated: 2022/06/30 19:41:05 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-static char	**dp_malloc(const char *str, char c);
-
-char	**ft_split(const char *str, char c)
+static char	*ft_strchr_rev(const char *s, int c)
 {
-	char		**res;
-	size_t		i;
-	const char	*start;
+	unsigned char	*str;
+	unsigned char	charset;
 
-	i = 0;
-	res = dp_malloc(str, c);
-	if (res == NULL)
-		return (NULL);
-	while (*str == c)
-		str++;
+	str = (unsigned char *)s;
+	charset = (unsigned char)c;
 	while (*str)
 	{
-		start = str;
-		while (*str != c && *str)
-			str++;
-		res[i] = malloc(sizeof(char) * (str - start + 1));
-		if (res[i] == NULL)
-			return (NULL);
-		ft_strlcpy(res[i], start, str - start + 1);
-		while (*str == c && *str)
-			str++;
-		i++;
+		if (*str != charset)
+			return ((char *)str);
+		str++;
 	}
-	res[i] = NULL;
-	return (res);
+	return (NULL);
 }
 
-static char	**dp_malloc(const char *str, char c)
+static size_t	count_num_str(char const *s, char deli)
 {
-	char		**res;
-	size_t		cnt;
+	size_t	num_str;
 
-	cnt = 0;
-	while (*str == c)
-		str++;
-	while (*str)
+	num_str = 0;
+	while (*s)
 	{
-		while (*str != c && *str)
-			str++;
-		cnt++;
-		while (*str == c && *str)
-			str++;
+		if (*s != deli)
+		{
+			num_str++;
+			while (*s != deli && *s != '\0')
+				s++;
+		}
+		else
+			s++;
 	}
-	res = malloc(sizeof(char *) * (cnt + 1));
-	return (res);
+	return (num_str);
+}
+
+static size_t	word_count(char const *src, char deli)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] && src[i] != deli)
+		i++;
+	return (i);
+}
+
+static char	**store_str(char **strs, char const *src, char deli)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	while (*src)
+	{
+		src = ft_strchr_rev(src, deli);
+		if (src == NULL)
+			break ;
+		len = word_count(src, deli);
+		strs[i] = ft_calloc(len + 1, sizeof(char));
+		if (strs[i] == NULL)
+		{
+			i = 0;
+			while (strs[i])
+				free(strs[i++]);
+			free(strs);
+			return (NULL);
+		}
+		ft_strlcpy(strs[i], src, len + 1);
+		i++;
+		src += len;
+	}
+	strs[i] = NULL;
+	return (strs);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**strs;
+	size_t	num_str;
+
+	if (s == NULL)
+		return (NULL);
+	num_str = count_num_str(s, c);
+	strs = (char **)malloc(sizeof(char *) * (num_str + 1));
+	if (strs == NULL)
+		return (NULL);
+	return (store_str(strs, s, c));
 }

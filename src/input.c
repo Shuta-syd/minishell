@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:11:35 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:38:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	ctrl_d(void);
 
 void	user_input(t_data *data)
 {
@@ -21,14 +20,12 @@ void	user_input(t_data *data)
 	input = readline(PROMPT);
 	if (input == NULL)
 		ctrl_d();
+	/*
+		if (ft_strlen(input) > 0)
+			add_history(input); //コマンドがある場合historyに保存
+	*/
 	data->input = ft_split(input, ' ');
+	free(input);
 	if (data->input == NULL)
 		return ;
-	free(input);
-}
-
-void	ctrl_d(void)
-{
-	write(1, "\b\b", 2);
-	exit_(0);
 }

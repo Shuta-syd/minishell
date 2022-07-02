@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 19:21:08 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:32:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	do_single_command(t_data *data);
 void	cd(t_data *data);
 void	env(t_data *data);
 void	exit_(int status);
+
+//signal
+void	ctrl_d(void);
 
 // list funcs
 t_env	*env_node_new(char *env);

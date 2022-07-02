@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_signal.c                                       :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:42:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/29 19:54:15 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/06/30 19:36:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	ctrl_d(void)
+char	*ms_getenv(t_data *data, char *name)
 {
-	write(1, "\b\b", 2);
-	exit_(0);
-}
+	t_env *env_lst;
 
-void	ctrl_c(int signal)
-{
-	ft_putchar_fd('\n', 1);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	set_signal(void)
-{
-	signal(SIGINT, &ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGTERM, SIG_IGN);
+	env_lst = data->env_lst;
+	while (env_lst)
+	{
+		if (ft_strncmp(env_lst->key, name, ft_strlen(name)) == 0)
+			return (env_lst->val);
+		env_lst = env_lst->next;
+	}
+	return (NULL);
 }

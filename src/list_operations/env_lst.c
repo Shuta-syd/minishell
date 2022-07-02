@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:45:54 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:45:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,6 @@ void	env_node_add_back(t_env **env_lst, t_env *new_node)
 	last_node->next = new_node;
 }
 
-/*
-	key valの2つに区切りたい
-	key valに=が含まれていた場合うまく区切りれない
-	[参考]https://zenn.dev/notrogue/articles/81e41153bfa42d
-*/
 t_env	*env_node_new(char *env)
 {
 	t_env	*new_env_node;

@@ -1,4 +1,5 @@
 .vscode
 obj
 minishell
+test/*
 *.a

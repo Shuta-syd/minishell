@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:08:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 18:38:58 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:36:32 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	env(t_data *data)
 {
 	int i;
-	t_env	*tmp;
-	
+	t_env	*env_lst;
+
 	i = 0;
-	tmp = data->env_lst;
-	while (tmp)
+	env_lst = data->env_lst;
+	while (env_lst)
 	{
-		printf("%s=%s\n", tmp->key, tmp->val);
-		tmp = tmp->next;
+		printf("%s=%s\n", env_lst->key, env_lst->val);
+		env_lst = env_lst->next;
 	}
 }

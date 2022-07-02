@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/02 15:34:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/02 19:34:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef enum
 	ND_PIPE,  // |
 	ND_SEM,	   // ;
 	ND_DOLLAR, // $
-	ND_BG, //&
+	ND_BACKGROUND, //&
 	ND_REDIRECT_IN, // >
 	ND_REDIRECT_OUT, // <
+	ND_ARGUMENT,
 	ND_DATA // data
 } NodeType;
 

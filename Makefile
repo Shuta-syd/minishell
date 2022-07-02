@@ -21,7 +21,7 @@ INCDIR	=	inc $(LIBDIR)/inc
 
 # find src -name \*.c | sed -e "s/$/\\\/g" | pbcopy
 SRCS	=	$(shell find $(SRCDIR) -name \*.c | tr "\n" " ") # fix here
-OBJS	=	$(addprefix $(OBJDIR)/,$(subst ../$(SRCDIR)/,,$(addprefix ../,$(SRCS:%.c=%.o))))
+OBJS	=	$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 INCS	=	$(addprefix -I,$(INCDIR))
 
 all: libft $(NAME) $(OBJDIR)

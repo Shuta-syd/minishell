@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:49:19 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/04 20:52:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/04 22:49:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right)
 	return (node);
 }
 
-t_ast	*ast_new_node_nd_data(char *nd_data)
+t_ast	*ast_new_node_nd_data(t_token **lex_lst)
 {
 	t_ast	*node;
 
 	node = ft_calloc(1, sizeof(t_ast));
 	node->type = ND_DATA;
-	node->nd_data = nd_data;
+	node->nd_data = (*lex_lst)->token;
+	*lex_lst = (*lex_lst)->next;
 	return (node);
 }

@@ -1,0 +1,2 @@
+cat file | grep a | wc
+cat file | grep a | wc > file2 > file3 ; echo a

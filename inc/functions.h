@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/04 21:51:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/04 22:51:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	lexer(t_data *data, char **input);
 //parser
 void	parse(t_data *data);
 bool	has_meta_char(t_token **lex_lst, char *meta_char);
+t_ast	*cmd_line(t_token **lex_lst);
+t_ast	*piped_cmd(t_token **lex_lst);
+t_ast	*cmd(t_token **lex_lst);
+t_ast	*arg(t_token **lex_lst);
+t_ast	*redirect(t_token **lex_lst);
+
 // execution
 void	do_single_command(t_data *data);
 
@@ -56,6 +62,6 @@ void	free_lex_lst(t_token *lex_lst);
 void	print_lex_lst(t_token *lex_lst);
 
 t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right);
-t_ast	*ast_new_node_nd_data(char *nd_data);
+t_ast	*ast_new_node_nd_data(t_token **lex_lst);
 
 #endif

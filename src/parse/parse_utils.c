@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/04 20:46:39 by shogura          ###   ########.fr       */
+/*   Created: 2022/07/04 21:07:33 by shogura           #+#    #+#             */
+/*   Updated: 2022/07/04 21:47:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	lexer(t_data *data, char **input)
+bool	has_meta_char(t_token **lex_lst, char *meta_char)
 {
-	store_lex_lst(data, input);
-	 print_lex_lst(data->lex_lst);
-	//do_single_command(data);
+	if (ft_strcmp((*lex_lst)->token, meta_char) == 0)
+	{
+		*lex_lst = (*lex_lst)->next;
+		return (true);
+	}
+	return (false);
 }

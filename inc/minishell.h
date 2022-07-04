@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:01 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:56:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 # include "functions.h"
 
 # define PROMPT "gosh$ "
-# define METACHAR ";|&`\"'\\<>()[]{}"
 # define NOTYPE 0
+
+//parse
+# define DEL ';'
+# define PIPE '|'
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/02 16:58:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/04 20:46:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char *argv[], char **envp)
 	{
 		user_input(&data);
 		lexer(&data, data.input);
-		//構文解析
+		parse(&data);
 		//変数展開
 		//コマンド実行
 		free_all(&data);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:07:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 16:39:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:45:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_ast_tree(t_ast *ast)
 {
 	if (ast->left)
 		print_ast_tree(ast->left);
-	printf("NodeType->[%d] nd_data->[%s] me->[%p] left->[%p] right->[%p]\n", ast->type, ast->nd_data, ast, ast->left, ast->right);
+	printf("NodeType->[%s%d%s] nd_data->[%s%s%s] me->[%s%p%s] left->[%s%p%s] right->[%s%p%s]\n", GREEN,ast->type,C_DEFAULT, BLUE, ast->nd_data, C_DEFAULT, RED,ast, C_DEFAULT, RED,ast->left, C_DEFAULT, RED, ast->right, C_DEFAULT);
 	if (ast->right)
 		print_ast_tree(ast->right);
 }

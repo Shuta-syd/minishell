@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/04 22:51:44 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:00:25 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_ast	*cmd_line(t_token **lex_lst);
 t_ast	*piped_cmd(t_token **lex_lst);
 t_ast	*cmd(t_token **lex_lst);
 t_ast	*arg(t_token **lex_lst);
-t_ast	*redirect(t_token **lex_lst);
+t_ast	*redirect(t_token **lex_lst, char *redirect_token);
 
 // execution
 void	do_single_command(t_data *data);
@@ -63,5 +63,6 @@ void	print_lex_lst(t_token *lex_lst);
 
 t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right);
 t_ast	*ast_new_node_nd_data(t_token **lex_lst);
+t_ast	*ast_new_node_no_child_node(NodeType type);
 
 #endif

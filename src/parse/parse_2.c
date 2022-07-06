@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:47:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/04 22:49:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:11:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,36 @@
 	[メモ]
 	関数のフォーマットが同じなら関数ポインタなどで代用できるかも
 */
-t_ast *redirect(t_token **lex_lst)
+t_ast *redirect(t_token **lex_lst, char *redirect_token)
 {
 	t_ast	*node;
 
-	node = NULL;
-	return (node);
-}
-
-t_ast	*arg(t_token **lex_lst)
-{
-	t_ast	*node;
-
-	if (has_meta_char(lex_lst, REDIRECT))
-	{
-		node = redirect(lex_lst);
-		node = ast_new_node(ND_REDIRECT_IN, node, arg(lex_lst));
-		return node;
-	}
-	node = ast_new_node_nd_data(lex_lst);
-	if (has_meta_char(lex_lst, META) == false)//さらにargがある場合 条件-> META文字以外
-		node = ast_new_node(ND_DATA, node, arg(lex_lst));
+	if (strcmp(redirect_token, ">"))
+		node = ast_new_node_no_child_node(ND_REDIRECT_OUT_UPDATE);
+	else if (strcmp(redirect_token, ">>"))
+		node = ast_new_node_no_child_node(ND_REDIRECT_OUT_ADD);
+	else if (strcmp(redirect_token, "<"))
+		node = ast_new_node_no_child_node(ND_REDIRECT_IN);
+	else if (strcmp(redirect_token, "<<"))
+		node = ast_new_node_no_child_node(ND_HEREDOC);
 	return (node);
 }
 
 t_ast	*cmd(t_token **lex_lst)
 {
-	t_ast	*node;
+	t_ast *node;
+	char	*redirect_token;
 
-	node = arg(lex_lst);
+	redirect_token = (*lex_lst)->token;
+	if (has_meta_char(lex_lst, REDIRECT))
+	{
+		node = redirect(lex_lst, redirect_token);
+		node = ast_new_node(ND_REDIRECT_IN, node, cmd(lex_lst));
+		return node;
+	}
+	node = ast_new_node_nd_data(lex_lst);
+	if (has_meta_char(lex_lst, META) == false)
+		node = ast_new_node(ND_DATA, node, cmd(lex_lst));
 	return (node);
 }
 
@@ -67,6 +68,6 @@ t_ast	*cmd_line(t_token **lex_lst)
 
 	node = piped_cmd(lex_lst);
 	if (has_meta_char(lex_lst, DEL))
-		node = ast_new_node(ND_DEL, node, piped_cmd(lex_lst));
+		node = ast_new_node(ND_DEL, node, cmd_line(lex_lst));
 	return (node);
 }

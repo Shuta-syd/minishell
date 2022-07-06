@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/04 21:53:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:11:32 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ typedef enum
 	ND_DEL,					 // ;
 	ND_BRACE,				 // { }
 	ND_BACKGROUND,	 //&
-	ND_REDIRECT_IN,	 // >
-	ND_REDIRECT_OUT, // <
+	ND_REDIRECT_IN,	 // <
+	ND_HEREDOC, //heredoc EOS
+	ND_REDIRECT_OUT_UPDATE, // >
+	ND_REDIRECT_OUT_ADD, // >>
 	ND_NL,					 // '\n'
 	ND_CMD,			//cmd
 	ND_DATA			 // data

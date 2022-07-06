@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:07:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 17:11:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 18:12:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	has_meta_char(t_token **lex_lst, char *meta_ch)
 {
-	while (*meta_ch)
+	while (*lex_lst && *meta_ch)
 	{
 		if (ft_strchr((*lex_lst)->token, *meta_ch))
 		{

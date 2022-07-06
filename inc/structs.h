@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/02 15:34:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:59:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,26 @@ typedef struct s_token
 //抽象構文木（AST）
 typedef enum
 {
-	ND_PIPE,  // |
-	ND_SEM,	   // ;
-	ND_DOLLAR, // $
-	ND_BG, //&
-	ND_REDIRECT_IN, // >
-	ND_REDIRECT_OUT, // <
-	ND_DATA // data
+	ND_PIPE,				 // |
+	ND_DEL,					 // ;
+	ND_BRACE,				 // { }
+	ND_BACKGROUND,	 //&
+	ND_REDIRECT_IN,	 // <
+	ND_HEREDOC, //heredoc EOS
+	ND_REDIRECT_OUT_UPDATE, // >
+	ND_REDIRECT_OUT_ADD, // >>
+	ND_NL,					 // '\n'
+	ND_CMD,			//cmd
+	ND_DATA			 // data
 } NodeType;
 
-typedef struct s_tree
+typedef struct s_ast
 {
 	NodeType	type;
 	char		*nd_data; //type -> ND_DATAの時だけ格納、それ以外はNULL
-	struct s_tree	*left;
-	struct s_tree	*right;
-
-} t_tree;
+	struct s_ast	*left;
+	struct s_ast	*right;
+} t_ast;
 
 typedef struct s_data
 {
@@ -57,6 +60,7 @@ typedef struct s_data
 	pid_t	*ch_pid;
 	t_token	*lex_lst;
 	t_env	*env_lst;
+	t_ast	*ast_tree;
 }	t_data;
 
 #endif

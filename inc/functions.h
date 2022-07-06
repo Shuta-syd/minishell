@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 19:32:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:16:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,16 @@ void	set_signal(void);
 //lexer
 void	lexer(t_data *data, char **input);
 
-//execution
+//parser
+void	parse(t_data *data);
+bool	has_meta_char(t_token **lex_lst, char *meta_char);
+t_ast	*cmd_line(t_token **lex_lst);
+t_ast	*piped_cmd(t_token **lex_lst);
+t_ast	*cmd(t_token **lex_lst);
+t_ast	*redirect(t_token **lex_lst, char *redirect_token);
+void	print_ast_tree(t_ast *ast);
+
+// execution
 void	do_single_command(t_data *data);
 
 //builtins
@@ -51,5 +60,9 @@ void	lex_node_add_back(t_token **lex_lst, t_token *new_node);
 void	store_lex_lst(t_data *data, char **input);
 void	free_lex_lst(t_token *lex_lst);
 void	print_lex_lst(t_token *lex_lst);
+
+t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right);
+t_ast	*ast_new_node_nd_data(t_token **lex_lst);
+t_ast	*ast_new_node_no_child_node(NodeType type);
 
 #endif

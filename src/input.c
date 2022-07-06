@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:38:09 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 18:04:52 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	user_input(t_data *data)
 	char	*input;
 
 	input = readline(PROMPT);
+	// input = ft_strdup("cat < file | grep a | wc \n");
 	if (input == NULL)
 		ctrl_d();
 	/*

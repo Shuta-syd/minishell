@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:33:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 18:04:52 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:50:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,9 @@
 
 void	user_input(t_data *data)
 {
-	char	*input;
-
-	input = readline(PROMPT);
-	// input = ft_strdup("cat < file | grep a | wc \n");
-	if (input == NULL)
-		ctrl_d();
-	/*
-		if (ft_strlen(input) > 0)
-			add_history(input); //コマンドがある場合historyに保存
-	*/
-	data->input = ft_split(input, ' ');
-	free(input);
+	data->input = readline(PROMPT);
 	if (data->input == NULL)
-		return ;
+		ctrl_d();
+	if (ft_strlen(data->input) > 0)
+		add_history(data->input);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/06 15:00:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:16:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ bool	has_meta_char(t_token **lex_lst, char *meta_char);
 t_ast	*cmd_line(t_token **lex_lst);
 t_ast	*piped_cmd(t_token **lex_lst);
 t_ast	*cmd(t_token **lex_lst);
-t_ast	*arg(t_token **lex_lst);
 t_ast	*redirect(t_token **lex_lst, char *redirect_token);
+void	print_ast_tree(t_ast *ast);
 
 // execution
 void	do_single_command(t_data *data);

@@ -6,12 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:47:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 15:11:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:39:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+int count = 1;
 /*
 	t_astにおいてredirectをどのように扱うか
 	> >> < << を全て分けて考えるべきか
@@ -39,16 +40,21 @@ t_ast	*cmd(t_token **lex_lst)
 	t_ast *node;
 	char	*redirect_token;
 
-	redirect_token = (*lex_lst)->token;
+	// printf("1 cmd token->[%s]\n", (*lex_lst)->token);
+	if ((*lex_lst)->token)
+		redirect_token = (*lex_lst)->token;
 	if (has_meta_char(lex_lst, REDIRECT))
 	{
+		// printf("2 cmd token->[%s]\n", (*lex_lst)->token);
 		node = redirect(lex_lst, redirect_token);
 		node = ast_new_node(ND_REDIRECT_IN, node, cmd(lex_lst));
 		return node;
 	}
 	node = ast_new_node_nd_data(lex_lst);
+	// printf("2.1 cmd token->[%s]\n", (*lex_lst)->token);
 	if (has_meta_char(lex_lst, META) == false)
 		node = ast_new_node(ND_DATA, node, cmd(lex_lst));
+	// printf("3.1 cmd token->[%s]\n", (*lex_lst)->token);
 	return (node);
 }
 
@@ -57,8 +63,10 @@ t_ast	*piped_cmd(t_token **lex_lst)
 	t_ast	*node;
 
 	node = cmd(lex_lst);
+	// printf("1 piped token->[%s]\n", (*lex_lst)->token);
 	if (has_meta_char(lex_lst, PIPE))
 		node = ast_new_node(ND_PIPE, node, piped_cmd(lex_lst));
+	// printf("2 piped token->[%s]\n", (*lex_lst)->token);
 	return (node);
 }
 
@@ -66,6 +74,7 @@ t_ast	*cmd_line(t_token **lex_lst)
 {
 	t_ast	*node;
 
+	// printf("cmd_line token->[%s]\n", (*lex_lst)->token);
 	node = piped_cmd(lex_lst);
 	if (has_meta_char(lex_lst, DEL))
 		node = ast_new_node(ND_DEL, node, cmd_line(lex_lst));

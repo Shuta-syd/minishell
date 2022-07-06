@@ -39,13 +39,16 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 $(NAME): $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 	@echo "$(CYN)\n=====link=====$(RES)"
-	@echo "$(YEL)Objects$(RES): $(OBJS)"
-	@echo "$(YEL)Flags$(RES): $(LDFLAGS)"
+	@echo "$(YEL)Objects$(RES): $(OBJS)\n"
+	@echo "$(YEL)Flags$(RES): $(LDFLAGS)\n"
 	@echo "     $(MGN)--->$(RES) $(GRN)$(NAME)$(RES)"
 	@echo "$(CYN)==============$(RES)"
 
 libft:
 	@make -C $(LIBDIR)
+
+libre:
+	@make re -C $(LIBDIR)
 
 clean:
 	@echo "$(RED)"
@@ -61,6 +64,8 @@ eclean:
 fclean:	clean eclean
 
 re: fclean all
+
+reall: libre re
 
 .PHONY: all libft clean fclean eclean re
 

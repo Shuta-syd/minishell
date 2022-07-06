@@ -53,14 +53,16 @@ clean:
 	@$(RM)r $(OBJDIR)
 	@echo "$(RES)"
 
-fclean:	clean
+eclean:
 	@echo "$(RED)"
 	$(RM) $(NAME)
 	@echo "$(RES)"
 
+fclean:	clean eclean
+
 re: fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all libft clean fclean eclean re
 
 RED = \033[31m
 GRN = \033[32m

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 23:50:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:54:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,19 @@ t_token	*lex_node_new(char *token, int type)
 	return (new_token_node);
 }
 
-/*
 void	store_lex_lst(t_data *data, char **input)
 {
-	size_t	i;
-	t_token	*new_node;
+	t_token	*node;
+	char	*word;
 
-	i = 1;
-	if (input[0] == NULL)//enter | space だけの時
-	{
-		data->lex_lst = NULL;
-		return ;
-	}
-	data->lex_lst = lex_node_new(input[0], NOTYPE);
-	if (data->lex_lst == NULL)
-		return; //error
-	while (input[i])
-	{
-		new_node = lex_node_new(input[i], NOTYPE);
-		if (new_node == NULL)
-			return; //error
-		lex_node_add_back(&data->lex_lst, new_node);
-		i++;
-	}
-	return ;
+	if (**input == '\0')
+		return;
+	word = fetch_word(input);
+	if (word == NULL)
+		return;
+	node = lex_node_new(word, NOTYPE);
+	lex_node_add_back(&data->lex_lst, node);
+	free(word);
+	word = NULL;
+	store_lex_lst(data, input);
 }
-*/

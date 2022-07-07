@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/07 17:43:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:49:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	user_input(t_data *data);
 void	set_signal(void);
 
 //lexer
+size_t	count_len_deled_str(char *input);
+bool	is_delimiter_prev_next(char *input);
+char	*del_white_space(char *input);
+char	*fetch_word(char **input);
+char	*fetch_deli(char **input);
 void	lexer(t_data *data);
 
 //parser

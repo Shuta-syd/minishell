@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 17:30:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 20:11:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ int main(int argc, char *argv[], char **envp)
 	data.envp = envp;
 	store_env_lst(&data, envp);
 	set_signal();
-	// while (1)
-	// {
+	while (1)
+	{
 		user_input(&data);
 		lexer(&data);
 		// parse(&data);
 		//変数展開
 		//コマンド実行
 		// free_all(&data);
-		exit(1);
-	// }
-		return (0);
+		// exit(1);
+	}
+	return (0);
 }

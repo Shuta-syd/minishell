@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 23:05:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 11:39:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define NOTYPE 0
 
 //lexer
-# define DELIMITERS ";|{}$&\'\"'\n'<> "
+# define DELIMITERS "-;|{}$&\'\"'\n'<> "
 
 //parse
 # define META ";|{}$&\'\"'\n'"

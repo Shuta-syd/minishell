@@ -6,7 +6,7 @@
 #    By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 15:22:14 by shogura           #+#    #+#              #
-#    Updated: 2022/06/30 18:06:15 by tharaguc         ###   ########.fr        #
+#    Updated: 2022/07/06 23:30:16 by tharaguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,17 +36,40 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -I $(INCDIR) -o $(@) -c -g $(<)
+	@$(CC) $(CFLAGS) -I $(INCDIR) -o $(@) -c -g $(<)
+	@echo "$(<)\n     \
+	$(MGN)--->$(RES) \
+	$(GRN)$(@)$(RES)"
 
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@echo "$(CYN)\n=====archive=====$(RES)"
+	@echo "$(YEL)Objects$(RES): $(OBJS)\n"
+	@echo "$(YEL)Flags$(RES): $(ARFLAGS)\n"
+	@echo "     $(MGN)--->$(RES) $(GRN)$(NAME)$(RES)"
+	@echo "$(CYN)==============$(RES)"
 
 clean:
-	$(RM)r $(OBJDIR)
+	@echo "$(RED)"
+	$(RM) $(OBJS)
+	@$(RM)r $(OBJDIR)
+	@echo "$(RES)"
 
-fclean: clean
+eclean:
+	@echo "$(RED)"
 	$(RM) $(NAME)
+	@echo "$(RES)"
+
+fclean:	clean eclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean eclean fclean re
+
+RED = \033[31m
+GRN = \033[32m
+YEL = \033[33m
+BLU = \033[34m
+MGN = \033[35m
+CYN = \033[36m
+RES = \033[m

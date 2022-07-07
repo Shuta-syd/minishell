@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 18:50:52 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 18:59:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,17 +136,16 @@ void	store_lex_lst(t_data *data, char **input)
 	t_token	*node;
 	char	*word;
 
-	// printf("input->%s%s%s\n", RED, *input, C_DEFAULT); // cat file|grep a|wc
+	if (**input == '\0')
+		return ;
 	word = fetch_word(input);
-	printf("input->[%s%s%s] word->[%s%s%s]\n", GREEN, *input, C_DEFAULT,GREEN, word, C_DEFAULT);
 	if (word == NULL)
 		return ; // error
-	printf("word->[%s] input->[%s]\n", word, *input);
-	node = lex_node_new(word, NOTYPE); // search_type
+	node = lex_node_new(word, NOTYPE);
 	lex_node_add_back(&data->lex_lst, node);
 	free(word);
 	word = NULL;
-	// store_lex_lst(data, input);
+	store_lex_lst(data, input);
 }
 
 void	lexer(t_data *data)
@@ -158,15 +157,7 @@ void	lexer(t_data *data)
 	input_cp = input;
 	free(data->input);
 	data->input = NULL;
-	// printf("input->%s%s%s\n", RED, input, C_DEFAULT); // cat file|grep a|wc
 	store_lex_lst(data, &input_cp);
-	store_lex_lst(data, &input_cp);
-	store_lex_lst(data, &input_cp);
-	store_lex_lst(data, &input_cp);
-	store_lex_lst(data, &input_cp);
-	// store_lex_lst(data, &input_cp);
 	free(input);
-	/*
-		print_lex_lst(data->lex_lst);
-	*/
+	print_lex_lst(data->lex_lst);
 }

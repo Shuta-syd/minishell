@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:17:05 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 19:46:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 11:42:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ void	free_all(t_data *data)
 		i++;
 	}
 	free(data->input);
+}
+
+void	mem_free(void **mem)
+{
+	
 }

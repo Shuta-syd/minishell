@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 13:17:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 18:50:52 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 	echo "This is $USER"  'This is $USER' ->
 	cat<file|grep 42|wc;echo "This is $USER";
 	cat<file|grep 42|wc;echo 'This is $USER';
+
+	" "のなかにある空白の扱い
 */
 //cat | grep
 
@@ -73,7 +75,7 @@ char	*del_white_space(char *input)
 	i = 0;
 	j = 0;
 	len = count_len_deled_str(input);
-	ret = ft_calloc(len, sizeof(char));
+	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
 		return (NULL);//error
 	while (input[j])
@@ -85,12 +87,23 @@ char	*del_white_space(char *input)
 		}
 		j++;
 	}
+	ret[i] = '\0';
 	return (ret);
 }
 
 char	*fetch_deli(char **input)
 {
-	//delimiterを切り取る
+	char	*ret_word;
+
+	if (**input == '\0')
+		return (NULL);
+	ret_word = ft_calloc(2, sizeof(char));
+	if (ret_word == NULL)
+		return (NULL);
+	ret_word[0] = **input;
+	ret_word[1] = '\0';
+	(*input)++;
+	return (ret_word);
 }
 
 char *fetch_word(char **input)
@@ -110,34 +123,49 @@ char *fetch_word(char **input)
 		(*input)++;
 		end++;
 	}
+	while (**input == ' ')
+		(*input)++;
 	ret_word = ft_substr(input_cp, 0, end);
 	if (ret_word == NULL)
 		return (NULL);
 	return (ret_word);
 }
 
-void	store_lex_lst(t_data *data, char *input)
+void	store_lex_lst(t_data *data, char **input)
 {
 	t_token	*node;
 	char	*word;
 
-	word = fetch_word(&input);
+	// printf("input->%s%s%s\n", RED, *input, C_DEFAULT); // cat file|grep a|wc
+	word = fetch_word(input);
+	printf("input->[%s%s%s] word->[%s%s%s]\n", GREEN, *input, C_DEFAULT,GREEN, word, C_DEFAULT);
 	if (word == NULL)
 		return ; // error
-	printf("word->[%s] input->[%s]\n", word, data->input);
+	printf("word->[%s] input->[%s]\n", word, *input);
 	node = lex_node_new(word, NOTYPE); // search_type
 	lex_node_add_back(&data->lex_lst, node);
-	free(node);
 	free(word);
-	store_lex_lst(data);
+	word = NULL;
+	// store_lex_lst(data, input);
 }
 
 void	lexer(t_data *data)
 {
 	char	*input;
+	char	*input_cp;
 
 	input = del_white_space(data->input);
-	store_lex_lst(data, input);
+	input_cp = input;
+	free(data->input);
+	data->input = NULL;
+	// printf("input->%s%s%s\n", RED, input, C_DEFAULT); // cat file|grep a|wc
+	store_lex_lst(data, &input_cp);
+	store_lex_lst(data, &input_cp);
+	store_lex_lst(data, &input_cp);
+	store_lex_lst(data, &input_cp);
+	store_lex_lst(data, &input_cp);
+	// store_lex_lst(data, &input_cp);
+	free(input);
 	/*
 		print_lex_lst(data->lex_lst);
 	*/

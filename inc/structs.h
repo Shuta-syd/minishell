@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 19:09:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 22:44:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_data
 	pid_t	*ch_pid;
 	t_token	*lex_lst;
 	t_env	*env_lst;
-	t_ast	*ast_tree;
+	t_ast	*ast;
 }	t_data;
 
 #endif

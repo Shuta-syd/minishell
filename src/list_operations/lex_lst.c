@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 19:54:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 22:40:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ void	print_lex_lst(t_token *lex_lst)
 	}
 }
 
-void	free_lex_lst(t_token *lex_lst)
+void	free_lex_lst(t_data *data)
 {
 	t_token	*tmp;
 
-	if (lex_lst == NULL)
+	if (data->lex_lst == NULL)
 		return ;
-	while (lex_lst)
+	while (data->lex_lst)
 	{
-		tmp = lex_lst;
-		if (lex_lst->token != NULL)
-			free(lex_lst->token);
-		lex_lst = lex_lst->next;
+		tmp = data->lex_lst;
+		if (data->lex_lst->token != NULL)
+			free(data->lex_lst->token);
+		data->lex_lst = data->lex_lst->next;
 		if (tmp != NULL)
 			free(tmp);
 	}
-	free(lex_lst);
+	free(data->lex_lst);
 }
 
 t_token	*get_lex_last_node(t_token *lex_lst)

@@ -6,11 +6,16 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:49:19 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 17:58:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 23:02:56 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	free_ast(t_ast **ast)
+{
+	t_ast	*tmp;
+}
 
 t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right)
 {

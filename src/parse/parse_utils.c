@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:07:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 18:12:38 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/07 22:50:40 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ bool	has_meta_char(t_token **lex_lst, char *meta_ch)
 
 
 // to debug
-void	print_ast_tree(t_ast *ast)
+void	print_ast(t_ast *ast)
 {
 	if (ast->left)
-		print_ast_tree(ast->left);
+		print_ast(ast->left);
 	printf("NodeType->[%s%d%s] nd_data->[%s%s%s] me->[%s%p%s] left->[%s%p%s] right->[%s%p%s]\n", GREEN,ast->type,C_DEFAULT, GREEN, ast->nd_data, C_DEFAULT, GREEN,ast, C_DEFAULT, GREEN,ast->left, C_DEFAULT, GREEN, ast->right, C_DEFAULT);
 	if (ast->right)
-		print_ast_tree(ast->right);
+		print_ast(ast->right);
 }

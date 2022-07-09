@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:07:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 22:50:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/09 22:41:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ bool	has_meta_char(t_token **lex_lst, char *meta_ch)
 	}
 	return (false);
 }
-
 
 // to debug
 void	print_ast(t_ast *ast)

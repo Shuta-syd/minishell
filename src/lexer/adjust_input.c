@@ -6,11 +6,16 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:21:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 20:37:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/09 23:21:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+bool	dquote_next_is_ws(char *input)
+{
+	//""の後にwsがあったらwsを1つ確保する関数
+}
 
 bool	is_delimiter_prev_next(char *input)
 {
@@ -40,13 +45,14 @@ size_t	count_len_deled_str(char *input)
 
 	i = 0;
 	len_ws = 0;
-	len = ft_strlen(input) + 1;
+	len = ft_strlen(input) + 1; //全体の文字数 + ヌル文字
 	while (input[i])
 	{
 		if (input[i] == ' ' && is_delimiter_prev_next(&input[i - 1]))
-			len_ws++;
+			len_ws++;//空白文字の数
 		i++;
 	}
+	printf("len->%zu ws->%zu\n", len, len_ws);
 	return (len - len_ws);
 }
 

@@ -6,20 +6,14 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:49:19 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/09 20:06:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/09 22:38:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	delete_node(t_data *data)
+void delete_node(t_data *data)
 {
-	printf("NodeType->[%s%d%s] nd_data->[%s%s%s] me->[%s%p%s] left->[%s%p%s] right->[%s%p%s]\n", RED, data->ast->type, C_DEFAULT, RED, data->ast->nd_data, C_DEFAULT, RED, data->ast, C_DEFAULT, RED, data->ast->left, C_DEFAULT, RED, data->ast->right, C_DEFAULT);
-	if (data->ast->nd_data)
-	{
-		free(data->ast->nd_data);
-		data->ast->nd_data = NULL;
-	}
 	free(data->ast);
 	data->ast = NULL;
 }

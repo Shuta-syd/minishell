@@ -6,15 +6,47 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:49:19 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 23:02:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/09 20:06:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	free_ast(t_ast **ast)
+void	delete_node(t_data *data)
+{
+	printf("NodeType->[%s%d%s] nd_data->[%s%s%s] me->[%s%p%s] left->[%s%p%s] right->[%s%p%s]\n", RED, data->ast->type, C_DEFAULT, RED, data->ast->nd_data, C_DEFAULT, RED, data->ast, C_DEFAULT, RED, data->ast->left, C_DEFAULT, RED, data->ast->right, C_DEFAULT);
+	if (data->ast->nd_data)
+	{
+		free(data->ast->nd_data);
+		data->ast->nd_data = NULL;
+	}
+	free(data->ast);
+	data->ast = NULL;
+}
+
+void	free_ast(t_data *data)
 {
 	t_ast	*tmp;
+
+	tmp = NULL;
+	if (data->ast->left)
+	{
+		tmp = data->ast;
+		data->ast = data->ast->left;
+		free_ast(data);
+	}
+	if (tmp)
+		data->ast = tmp;
+	if (data->ast->right)
+	{
+		tmp = data->ast;
+		data->ast = data->ast->right;
+		free_ast(data);
+	}
+	if (tmp)
+		data->ast = tmp;
+	if (data->ast)
+		delete_node(data);//ast -> NULL
 }
 
 t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right)

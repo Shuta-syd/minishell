@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 23:16:40 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 22:44:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/09 19:07:25 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	parse(t_data *data)
 		node = ast_new_node(ND_NL, NULL, NULL);
 		data->ast = ast_new_node(ND_DEL, data->ast, node);
 	}
-	else
-		data->ast = ast_new_node(ND_NL, data->ast, NULL);
 	putchar('\n');
-	print_ast(data->ast);
+	// print_ast(data->ast);
 }

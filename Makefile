@@ -19,8 +19,8 @@ OBJDIR	=	obj
 LIBDIR	=	./libft
 INCDIR	=	inc $(LIBDIR)/inc
 
-# find src -name \*.c | sed -e "s/$/\\\/g" | pbcopy <-- copy all src files
-SRCS	=	$(shell find $(SRCDIR) -name "*.c" -type f) # fix here
+# find src -name \*.c | sed -e "s/$/\\\/g" | pbcopy
+SRCS	=	$(shell find $(SRCDIR) -name \*.c | tr "\n" " ") # fix here
 OBJS	=	$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 INCS	=	$(addprefix -I,$(INCDIR))
 
@@ -30,49 +30,22 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INCS) -o $(@) -c -g $(<)
-	@echo "$(<)\n     \
-	$(MGN)--->$(RES) \
-	$(GRN)$(@)$(RES)"
+	@mkdir -p $(dir $(@))
+	$(CC) $(CFLAGS) $(INCS) -o $(@) -c -g $(<)
 
 $(NAME): $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
-	@echo "$(CYN)\n=====link=====$(RES)"
-	@echo "$(YEL)Objects$(RES): $(OBJS)\n"
-	@echo "$(YEL)Flags$(RES): $(LDFLAGS)\n"
-	@echo "     $(MGN)--->$(RES) $(GRN)$(NAME)$(RES)"
-	@echo "$(CYN)==============$(RES)"
+	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 libft:
 	@make -C $(LIBDIR)
 
-libre:
-	@make re -C $(LIBDIR)
-
 clean:
-	@echo "$(RED)"
 	$(RM) $(OBJS)
-	@$(RM)r $(OBJDIR)
-	@echo "$(RES)"
+	$(RM)r $(OBJDIR)
 
-eclean:
-	@echo "$(RED)"
+fclean:	clean
 	$(RM) $(NAME)
-	@echo "$(RES)"
-
-fclean:	clean eclean
 
 re: fclean all
 
-reall: libre re
-
-.PHONY: all libft clean fclean eclean re
-
-RED = \033[31m
-GRN = \033[32m
-YEL = \033[33m
-BLU = \033[34m
-MGN = \033[35m
-CYN = \033[36m
-RES = \033[m
+.PHONY: all libft clean fclean re

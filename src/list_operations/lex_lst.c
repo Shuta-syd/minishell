@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 17:17:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:58:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ void	store_lex_lst(t_data *data, char **input)
 	if (word == NULL)
 		return;
 	node = lex_node_new(word, NOTYPE);
-	lex_node_add_back(&data->lex_lst, node);
 	free(word);
 	word = NULL;
+	lex_node_add_back(&data->lex_lst, node);
 	store_lex_lst(data, input);
 }

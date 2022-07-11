@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:47:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 16:00:01 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:06:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ t_ast	*redirect(t_token **lex_lst, char *redirect_token)
 
 t_ast	*cmd(t_token **lex_lst)
 {
-	t_ast	*node;
+	t_ast		*node;
 	t_token	*tmp;
-	char	*redirect_token;
+	char		*redirect_token;
 
 	if (*lex_lst)
 		redirect_token = (*lex_lst)->token;

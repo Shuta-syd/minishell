@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:46:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/07 19:54:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:14:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,29 @@ char *fetch_deli(char **input)
 	ret_word[0] = **input;
 	ret_word[1] = '\0';
 	(*input)++;
+	while (**input == ' ')
+		(*input)++;
 	return (ret_word);
 }
 
-// ""に囲まれてる空白の取り扱い
 char	*fetch_word(char **input)
 {
-	size_t	end;
-	char	*input_cp;
-	char	*ret_word;
+	size_t	len;
+	char		*input_cp;
+	char		*ret_word;
 
 	if (ft_strchr(DELIMITERS, **input))
 		return (fetch_deli(input));
-	end = 0;
+	len = 0;
 	input_cp = *input;
 	while (**input)
 	{
-		// ""に囲まれてる空白の取り扱い
 		if (ft_strchr(DELIMITERS, **input))
 			break;
 		(*input)++;
-		end++;
+		len++;
 	}
-	// ""に囲まれてる空白の取り扱い
-	while (**input == ' ')
-		(*input)++;
-	ret_word = ft_substr(input_cp, 0, end);
+	ret_word = ft_substr(input_cp, 0, len);
 	if (ret_word == NULL)
 		return (NULL);
 	return (ret_word);

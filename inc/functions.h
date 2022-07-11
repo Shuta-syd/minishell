@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/08 22:35:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:21:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ void	user_input(t_data *data);
 void	set_signal(void);
 
 //lexer
-size_t	count_len_deled_str(char *input);
-bool	is_delimiter_prev_next(char *input);
-char	*del_white_space(char *input);
 char	*fetch_word(char **input);
-char	*fetch_deli(char **input);
 void	lexer(t_data *data);
 
 //parser
@@ -39,10 +35,9 @@ t_ast	*cmd_line(t_token **lex_lst);
 t_ast	*piped_cmd(t_token **lex_lst);
 t_ast	*cmd(t_token **lex_lst);
 t_ast	*redirect(t_token **lex_lst, char *redirect_token);
-void	print_ast(t_ast *ast);
 
 // execution
-void	do_single_command(t_data *data);
+void do_single_command(t_data *data);
 
 //builtins
 void	cd(t_data *data);
@@ -70,5 +65,6 @@ t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right);
 t_ast	*ast_new_node_nd_data(t_token **lex_lst);
 t_ast	*ast_new_node_no_child_node(NodeType type);
 void	free_ast(t_data *data);
+void	print_ast(t_ast *ast);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 23:16:40 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 19:43:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:23:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	parse(t_data *data)
 	node = NULL;
 	lex_lst = data->lex_lst;
 	data->ast = cmd_line(&lex_lst);
-	if (has_meta_char(&lex_lst, DEL))
+	if (has_meta_char(&lex_lst, ";"))
 	{
 		node = ast_new_node(ND_NL, NULL, NULL);
 		data->ast = ast_new_node(ND_DEL, data->ast, node);
 	}
 	else
 		data->ast = ast_new_node(ND_NL, data->ast, NULL);
-	//print_ast(data->ast);
+	print_ast(data->ast);
 }

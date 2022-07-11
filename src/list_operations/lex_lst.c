@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 19:39:38 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:15:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_token	*lex_node_new(char *token, int type)
 void	store_lex_lst(t_data *data, char **input)
 {
 	t_token	*node;
-	char	*word;
+	char		*word;
 
 	if (**input == '\0')
 		return;

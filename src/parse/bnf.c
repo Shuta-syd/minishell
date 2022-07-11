@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:47:44 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 16:06:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:55:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ast	*cmd(t_token **lex_lst)
 		redirect_token = (*lex_lst)->token;
 	else
 		return (NULL);
-	if (has_meta_char(lex_lst, REDIRECT))
+	if (has_meta_char(lex_lst, "<>"))
 	{
 		node = redirect(lex_lst, redirect_token);
 		node = ast_new_node(ND_CMD, node, cmd(lex_lst));
@@ -45,7 +45,7 @@ t_ast	*cmd(t_token **lex_lst)
 	}
 	node = ast_new_node_nd_data(lex_lst);
 	tmp = *lex_lst;
-	if (has_meta_char(lex_lst, META))
+	if (has_meta_char(lex_lst, "; |\n "))
 		*lex_lst = tmp;
 	else
 		node = ast_new_node(ND_CMD, node, cmd(lex_lst));
@@ -57,7 +57,7 @@ t_ast	*piped_cmd(t_token **lex_lst)
 	t_ast	*node;
 
 	node = cmd(lex_lst);
-	if (has_meta_char(lex_lst, PIPE))
+	if (has_meta_char(lex_lst, "|"))
 		node = ast_new_node(ND_PIPE, node, piped_cmd(lex_lst));
 	return (node);
 }
@@ -67,7 +67,7 @@ t_ast	*cmd_line(t_token **lex_lst)
 	t_ast	*node;
 
 	node = piped_cmd(lex_lst);
-	if (has_meta_char(lex_lst, DEL))
+	if (has_meta_char(lex_lst, ";"))
 		node = ast_new_node(ND_DEL, node, cmd_line(lex_lst));
 	return (node);
 }

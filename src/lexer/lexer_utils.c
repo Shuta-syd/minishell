@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:46:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 19:49:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:22:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,27 @@ char	*fetch_quoted_word(char **input)
 	return (ret);
 }
 
-char *fetch_deli(char **input)
+char *fetch_rediret(char **input)
+{
+	char	*input_cp;
+	char	*ret;
+	size_t	len;
+
+	len = 1;
+	input_cp = *input;
+	(*input)++;
+	if (**input == '<' || **input == '>')
+	{
+		len++;
+		(*input)++;
+	}
+	ret = ft_substr(input_cp, 0, len);
+	if (ret == NULL)
+		return (NULL);
+	return (ret);
+}
+
+char	*fetch_deli(char **input)
 {
 	char	*ret_word;
 
@@ -57,11 +77,9 @@ char *fetch_deli(char **input)
 		return (NULL);
 	else if (**input == '\"' || **input == '\'')
 		return (fetch_quoted_word(input));
-	ret_word = ft_calloc(2, sizeof(char));
-	if (ret_word == NULL)
-		return (NULL);
-	ret_word[0] = **input;
-	ret_word[1] = '\0';
+	else if (**input == '>' || **input == '<')
+		return (fetch_rediret(input));
+	ret_word = ft_substr(*input, 0, 1);
 	(*input)++;
 	while (**input && **input == ' ')
 		(*input)++;
@@ -74,6 +92,7 @@ char	*fetch_word(char **input)
 	char		*input_cp;
 	char		*ret_word;
 
+	printf("input->%s\n", *input);
 	if (ft_strchr(DELIMITERS, **input))
 		return (fetch_deli(input));
 	len = 0;

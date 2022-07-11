@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 17:49:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:36:00 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@
 # define DEL ";"
 # define PIPE "|"
 # define REDIRECT "<>"
-
 #endif

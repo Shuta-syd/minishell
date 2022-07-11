@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/11 17:21:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:23:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	set_signal(void);
 
 //lexer
 char	*fetch_word(char **input);
+int		search_type(char *word);
 void	lexer(t_data *data);
 
 //parser

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/08 18:23:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:38:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ typedef struct s_env
 
 typedef enum
 {
-	NORMAL,			   //囲まれていない
+	TP_NORMAL,			   //囲まれていない
 	EXPANDABLE_QUOTED, //""で囲まれてる;
 	NOT_EXPANDABLE,	   //''で囲まれてる
-	PIPE,			   // |
-	DELIMITER,		   //;
-	REDIRECT		   // <
+	TP_PIPE,			   // |
+	TP_DELIMITER,		   //;
+	TP_REDIRECT
 } LexType;
 
 typedef struct s_token

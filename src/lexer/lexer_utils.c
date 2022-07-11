@@ -6,11 +6,27 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:46:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 18:00:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:49:46 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+int	search_type(char *word)
+{
+	if (ft_strchr(word, '\"'))
+		return (EXPANDABLE_QUOTED);
+	else if (ft_strchr(word, '\''))
+		return (NOT_EXPANDABLE);
+	else if (ft_strcmp(word, " ")  == 0)
+		return (TP_DELIMITER);
+	else if (ft_strchr(word, '<') || ft_strchr(word, '>'))
+		return (TP_REDIRECT);
+	else if (ft_strcmp(word, "|") == 0)
+		return (TP_PIPE);
+	else
+		return (TP_NORMAL);
+}
 
 char	*fetch_quoted_word(char **input)
 {

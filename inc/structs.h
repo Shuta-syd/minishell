@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 16:59:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:38:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ typedef struct s_env
 	char		*val;
 	struct s_env	*next;
 }	t_env;
+
+typedef enum
+{
+	TP_NORMAL,			   //囲まれていない
+	EXPANDABLE_QUOTED, //""で囲まれてる;
+	NOT_EXPANDABLE,	   //''で囲まれてる
+	TP_PIPE,			   // |
+	TP_DELIMITER,		   //;
+	TP_REDIRECT
+} LexType;
 
 typedef struct s_token
 {
@@ -55,12 +65,12 @@ typedef struct s_ast
 
 typedef struct s_data
 {
-	char	**input;
+	char	*input;
 	char	**envp;
 	pid_t	*ch_pid;
 	t_token	*lex_lst;
 	t_env	*env_lst;
-	t_ast	*ast_tree;
+	t_ast	*ast;
 }	t_data;
 
 #endif

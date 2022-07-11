@@ -6,11 +6,42 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:49:19 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/06 17:58:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/09 22:49:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void delete_node(t_data *data)
+{
+	free(data->ast);
+	data->ast = NULL;
+}
+
+void	free_ast(t_data *data)
+{
+	t_ast	*tmp;
+
+	tmp = NULL;
+	if (data->ast->left)
+	{
+		tmp = data->ast;
+		data->ast = data->ast->left;
+		free_ast(data);
+	}
+	if (tmp)
+		data->ast = tmp;
+	if (data->ast->right)
+	{
+		tmp = data->ast;
+		data->ast = data->ast->right;
+		free_ast(data);
+	}
+	if (tmp)
+		data->ast = tmp;
+	if (data->ast)
+		delete_node(data);//ast -> NULL
+}
 
 t_ast	*ast_new_node(NodeType type, t_ast *left, t_ast *right)
 {

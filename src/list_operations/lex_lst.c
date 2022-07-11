@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:40:33 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:41:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:15:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,28 @@ void	print_lex_lst(t_token *lex_lst)
 	tmp = lex_lst;
 	while (tmp)
 	{
-		printf("type > %d ", tmp->type);
-		printf("token > %s%s%s\n", GREEN, tmp->token, C_DEFAULT);
+		printf("type > [%d] ", tmp->type);
+		printf("token > %s[%s]%s\n", GREEN, tmp->token, C_DEFAULT);
 		tmp = tmp->next;
 	}
 }
 
-void	free_lex_lst(t_token *lex_lst)
+void	free_lex_lst(t_data *data)
 {
 	t_token	*tmp;
 
-	if (lex_lst == NULL)
+	if (data->lex_lst == NULL)
 		return ;
-	while (lex_lst)
+	while (data->lex_lst)
 	{
-		tmp = lex_lst;
-		if (lex_lst->token != NULL)
-			free(lex_lst->token);
-		lex_lst = lex_lst->next;
+		tmp = data->lex_lst;
+		if (data->lex_lst->token != NULL)
+			free(data->lex_lst->token);
+		data->lex_lst = data->lex_lst->next;
 		if (tmp != NULL)
 			free(tmp);
 	}
-	free(lex_lst);
+	free(data->lex_lst);
 }
 
 t_token	*get_lex_last_node(t_token *lex_lst)
@@ -93,25 +93,17 @@ t_token	*lex_node_new(char *token, int type)
 
 void	store_lex_lst(t_data *data, char **input)
 {
-	size_t	i;
-	t_token	*new_node;
+	t_token	*node;
+	char		*word;
 
-	i = 1;
-	if (input[0] == NULL)//enter | space だけの時
-	{
-		data->lex_lst = NULL;
-		return ;
-	}
-	data->lex_lst = lex_node_new(input[0], NOTYPE);
-	if (data->lex_lst == NULL)
-		return; //error
-	while (input[i])
-	{
-		new_node = lex_node_new(input[i], NOTYPE);
-		if (new_node == NULL)
-			return; //error
-		lex_node_add_back(&data->lex_lst, new_node);
-		i++;
-	}
-	return ;
+	if (**input == '\0')
+		return;
+	word = fetch_word(input);
+	if (word == NULL)
+		return;
+	node = lex_node_new(word, search_type(word));
+	free(word);
+	word = NULL;
+	lex_node_add_back(&data->lex_lst, node);
+	store_lex_lst(data, input);
 }

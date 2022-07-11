@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/09 23:03:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:03:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define NOTYPE 0
 
 //lexer
-# define DELIMITERS ";|{}&'\n'<>\""
+# define DELIMITERS ";|{}&'\n'<>\" "
 
 //parse
-# define META ";|{}$&\'\"'\n'"
+# define META ";|\n"
 # define DEL ";"
 # define PIPE "|"
 # define REDIRECT "<>"

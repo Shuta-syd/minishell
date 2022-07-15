@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 23:56:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 00:00:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,15 @@ char **split_by_pipe(char *input, uint32_t cmd_cnt)
 		exit(1);
 	while (input[j])
 	{
-		if (input[j] == '\"')
-			through_quote(input, &j, '\"');
-		else if (input[j] == '\'')
-			through_quote(input, &j, '\'');
+		if (input[j] == '\"' || input[j] == '\'')
+			through_quote(input, &j, input[j]);
 		else if (input[j] == '|')
 		{
-			ret[i_ret] = ft_substr(input, start_input - input, &input[j] - start_input);
-			i_ret++;
+			ret[i_ret++] = ft_substr(input, start_input - input, &input[j] - start_input);
 			start_input = input + j + 1;
 		}
 		else if (input[j + 1] == '\0')
-		{
-			ret[i_ret] = ft_substr(input, start_input - input, &input[j] - start_input + 1);
-			i_ret++;
-		}
+			ret[i_ret++] = ft_substr(input, start_input - input, &input[j] - start_input + 1);
 		j++;
 	}
 	ret[i_ret] = NULL;

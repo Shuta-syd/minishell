@@ -1,8 +1,4 @@
 .vscode
 obj
 minishell
-test/*
 *.a
-test_ast/*
-file
-

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   handle_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 14:17:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 20:23:01 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/28 12:42:59 by shogura           #+#    #+#             */
+/*   Updated: 2022/07/15 14:36:42 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-/*
-	echo                "this is $USER"       'Hello $USER'
-	↓
-	echo "this is $USER" 'Hello $USER'
-*/
-
-void	lexer(t_data *data)
+void	handle_signal(int signal)
 {
-	char	*input;
-
-	input = data->input;
-	store_lex_lst(data, &data->input);
-	data->input = input;
-	print_lex_lst(data->lex_lst);
+	if (signal == SIGINT)
+	{
+		ft_putchar_fd('\n', 1);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }

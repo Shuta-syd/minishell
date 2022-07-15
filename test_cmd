@@ -1,4 +1,0 @@
-cat file | grep a | wc
-cat < file | grep a | wc -l > file2 > file3; echo a
-echo "hello w"'orld'; cat<file|wc
-echo "This is $USER"  'This is $USER'

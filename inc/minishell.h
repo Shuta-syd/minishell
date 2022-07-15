@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/11 19:55:44 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/15 14:27:33 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,13 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <libft.h>
+
+# include "libft.h"
 
 # include "color.h"
 # include "structs.h"
 # include "functions.h"
 
-# define PROMPT "gosh$ "
-# define NOTYPE 0
-
-//lexer
-# define DELIMITERS ";|\n<>\"\' "
+# define PROMPT "\x1b[32mgosh$\x1b[39m "
 
 #endif

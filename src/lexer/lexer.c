@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 15:46:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/15 18:10:00 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void lexer(t_shell *shell)
 	input = ft_split(shell->input, '|');
 	if (input == NULL)
 		exit(1);
-	// while (input[i])
-	// 	printf("input -> %s\n", input[i++]);
 	while (input[i])
 	{
 		if (ft_strchr(input[i]), )

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 13:11:07 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/15 14:32:14 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/15 15:56:23 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,14 @@ void	execution(t_shell *shell);
 int main(void)
 {
 	t_shell	shell;
-	shell.cmd_cnt = 2;
-	shell.infile = "test.c";
-	shell.outfile = "out";
+	shell.cmd_cnt = 1;
+	shell.infile = NULL;
+	shell.outfile = NULL;
 
-	char *argv1[] = {"cat", NULL};
-	char *argv2[] = {"grep", "main", NULL};
+	char *argv1[] = {"grep", "all",NULL};
 
-	shell.cmds = malloc(sizeof(t_cmd) * 2);
+	shell.cmds = malloc(sizeof(t_cmd) * shell.cmd_cnt);
 	shell.cmds[0].argv = argv1;
-	shell.cmds[1].argv = argv2;
 	execution(&shell);
 	return (0);
 }

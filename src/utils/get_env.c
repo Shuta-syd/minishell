@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 15:44:01 by shogura          ###   ########.fr       */
+/*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/15 15:42:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-__attribute__((destructor))
-static void	destructor(void)
+char	*ms_getenv(t_shell *data, char *name)
 {
-	system("leaks -q minishell");
-}
+	t_env *env_lst;
 
-int main(int argc, char *argv[], char **envp)
-{
-	t_shell	data;
-
-	data = (t_shell){};
-	signal(SIGINT, &handle_signal);
-	signal(SIGQUIT, SIG_IGN);
-	while (1)
+	env_lst = data->env_lst;
+	while (env_lst)
 	{
-		data.input = readline(PROMPT);
-		if (data.input == NULL)
-			exit_("\b\bexit", EXIT_SUCCESS);
-		lexer(&data);
-		printf("%s\n", data.input);
-
-		free(data.input);
+		if (ft_strncmp(env_lst->key, name, ft_strlen(name)) == 0)
+			return (env_lst->val);
+		env_lst = env_lst->next;
 	}
-	return (0);
+	return (NULL);
 }

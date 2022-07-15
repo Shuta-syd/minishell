@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 15:44:01 by shogura          ###   ########.fr       */
+/*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
+/*   Updated: 2022/07/15 15:46:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-__attribute__((destructor))
-static void	destructor(void)
+void lexer(t_shell *shell)
 {
-	system("leaks -q minishell");
-}
+	size_t	i;
+	char **input;
 
-int main(int argc, char *argv[], char **envp)
-{
-	t_shell	data;
-
-	data = (t_shell){};
-	signal(SIGINT, &handle_signal);
-	signal(SIGQUIT, SIG_IGN);
-	while (1)
+	i = 0;
+	input = ft_split(shell->input, '|');
+	if (input == NULL)
+		exit(1);
+	// while (input[i])
+	// 	printf("input -> %s\n", input[i++]);
+	while (input[i])
 	{
-		data.input = readline(PROMPT);
-		if (data.input == NULL)
-			exit_("\b\bexit", EXIT_SUCCESS);
-		lexer(&data);
-		printf("%s\n", data.input);
+		if (ft_strchr(input[i]), )
+		{
+			/* code */
+		}
 
-		free(data.input);
+		i++;
 	}
-	return (0);
+
+	return ;
 }

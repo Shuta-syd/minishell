@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/16 00:09:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 13:41:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,51 @@ char	**split_by_pipe(char *input, uint32_t cmd_cnt)
 }
 
 /*
+	Count the number of arguments when divided into each argument
+*/
+size_t	count_args(char *input)
+{
+	size_t	i;
+	size_t	cnt;
+
+	i = 0;
+	cnt = 1;
+	while (input[i])
+	{
+		if (input[i])
+		{
+			if (input[i] == ' ' && input[i + 1] != ' ')
+				cnt++;
+			else if (input[i + 1] == '\0')
+				cnt++;
+			else if (input[i] == '\"' || input[i] == '\'')
+			{
+				cnt++;
+				skip_quote(input, &i, input[i]);
+			}
+			else if (ft_strchr("<>", input[i]))
+				return (cnt);
+			i++;
+		}
+	}
+	return (cnt);
+}
+
+/*
 	Set up in a format that is easy to execve
 */
-void formatting_to_exe(t_shell *data, char *input)
+void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 {
-	
+	size_t	i;
+	size_t	arg_cnt;
+	char	*input_trimmed;
+
+	i = 0;
+	input_trimmed = ft_strtrim(input, " ");
+	if (input_trimmed == NULL)
+		exit(1);
+	arg_cnt = count_args(input_trimmed);
+	printf("arg_cnt -> %zu\n", arg_cnt);
 }
 
 void lexer(t_shell *data)
@@ -113,9 +153,12 @@ void lexer(t_shell *data)
 	while (input[i])
 		printf("%s\n", input[i++]);
 	i = 0;
+	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));
+	if (data->exe->cmds == NULL)
+		exit(1);
 	while (input[i])
 	{
-		formatting_to_exe(data, input[i]);
+		formatting_to_exe(data, &data->exe->cmds[i], input[i]);
 		i++;
 	}
 	return ;

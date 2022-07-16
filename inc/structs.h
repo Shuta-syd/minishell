@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 22:23:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 13:16:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_cmd
 */
 typedef struct s_exe
 {
-	struct s_cmd	*cmd;
+	struct s_cmd	*cmds;
 	char			*infile;
 	char			*outfile;
 	uint32_t		cmd_cnt;

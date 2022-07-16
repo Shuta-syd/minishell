@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/16 14:54:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 17:37:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ char	*ms_getenv(t_shell *data, char *name)
 			return (env_lst->val);
 		env_lst = env_lst->next;
 	}
-	return (NULL);
+	return ("");
 }

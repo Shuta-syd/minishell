@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/16 17:30:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 17:43:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,25 @@ size_t	count_arg_len(char *arg, t_list *val, t_list *key)
 }
 
 /*
+	Copying environment variables
+*/
+void copy_env_val(char **dst, size_t	*j, t_list * env_val)
+{
+	size_t	i;
+	char	*val;
+
+	i = 0;
+	val = (char *)env_val->content;
+	env_val = env_val->next;
+	while (val[i])
+	{
+		(*dst)[*j] = val[i];
+		(*j)++;
+		i++;
+	}
+}
+
+/*
 	Create environment variable expanded argument
 */
 char	*create_expanded_arg(char *arg, t_list *val, size_t len)
@@ -210,10 +229,18 @@ char	*create_expanded_arg(char *arg, t_list *val, size_t len)
 	{
 		if (arg[i] == '$')
 		{
-			
+			copy_env_val(&ret, &j ,val);
+			while (arg[i])
+			{
+				if (ft_strchr("<>$ ", arg[i]))
+					break;
+				i++;
+			}
 		}
-		ret[j] = arg[i];
+		ret[j++] = arg[i++];
 	}
+	ret[j] = '\0';
+	return (ret);
 }
 
 /*

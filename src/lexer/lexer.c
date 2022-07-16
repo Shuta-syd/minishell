@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/16 14:34:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 15:02:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,20 +120,64 @@ size_t	count_args(char *input)
 }
 
 /*
+	Extracts only the names of environment variables from the argument in a list
+*/
+void	extract_env_key(char *arg, t_list *env_key)
+{
+	size_t	len;
+	size_t	i;
+	char	*key;
+	t_list	*node;
+
+	i = 0;
+	while (arg[i])
+	{
+		len = -1;
+		if (arg[i] == '$')
+		{
+			while (arg[i++])
+			{
+				if (ft_strchr("<>$ ", arg[len]))
+					break ;
+				len++;
+			}
+			key = ft_substr(arg, i, len);
+			node = ft_lstnew(key);
+			ft_lstadd_back(&env_key, node);
+		}
+		else
+			i++;
+	}
+}
+
+/*
+	Expand environment variable name to value
+*/
+void	get_env_val(t_shell *data, t_list *val, t_list *key)
+{
+	t_list	*node;
+	t_list	*key_tmp;
+
+	key_tmp = key;
+	while (key_tmp)
+	{
+		node = ft_lstnew(ms_getenv(data, (char *)key_tmp->content));
+		ft_lstadd_back(&val, node);
+		key_tmp = key_tmp->next;
+	}
+}
+
+/*
 	Expand environment variables and create new strings
 */
 char *expand_env(char *arg, t_shell *data)
 {
-	size_t	i;
-	size_t	j;
-	t_list	env;
+	t_list	env_val;
+	t_list	env_key;
 	char	*ret;
 
-	i = 0;
-	j = 0;
-	
-
-
+	extract_env_key(arg, &env_key);
+	get_env_val(data, &env_val, &env_key);
 
 }
 

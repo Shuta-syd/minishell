@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/15 15:26:01 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:55:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 //utils
 void	motd(void);
+char	*ms_getenv(t_shell *data, char *name);
 
-//signal
+// signal
 void	handle_signal(int signal);
 
 //builtins

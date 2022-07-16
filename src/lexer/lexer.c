@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/16 13:41:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:34:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ char	**split_by_pipe(char *input, uint32_t cmd_cnt)
 	size_t		i_ret;
 	size_t		j;
 	char		**ret;
-	char		*start_input;
+	char		*start;
 
 	j = 0;
 	i_ret = 0;
-	start_input = input;
+	start = input;
 	ret = ft_calloc(cmd_cnt + 1, sizeof(char *));
 	if (ret == NULL)
 		exit(1);
@@ -77,11 +77,11 @@ char	**split_by_pipe(char *input, uint32_t cmd_cnt)
 			skip_quote(input, &j, input[j]);
 		else if (input[j] == '|')
 		{
-			ret[i_ret++] = ft_substr(input, start_input - input, &input[j] - start_input);
-			start_input = input + j + 1;
+			ret[i_ret++] = ft_substr(input, start - input, &input[j] - start);
+			start += j + 1;
 		}
 		else if (input[j + 1] == '\0')
-			ret[i_ret++] = ft_substr(input, start_input - input, &input[j] - start_input + 1);
+			ret[i_ret++] = ft_substr(input, start - input, &input[j] - start + 1);
 		j++;
 	}
 	ret[i_ret] = NULL;
@@ -120,6 +120,72 @@ size_t	count_args(char *input)
 }
 
 /*
+	Expand environment variables and create new strings
+*/
+char *expand_env(char *arg, t_shell *data)
+{
+	size_t	i;
+	size_t	j;
+	t_list	env;
+	char	*ret;
+
+	i = 0;
+	j = 0;
+	
+
+
+
+}
+
+/*
+	Stores the argument enclosed in quote, also expands environment variables.
+*/
+char *store_quoted_arg(t_shell *data, char *input, char quote)
+{
+	size_t	len;
+	char	*arg;
+
+	len = 1;
+	while (input[len] != quote)
+		len++;
+	arg = ft_substr(input, 1, len - 1);
+	if (arg == NULL)
+		exit(1);
+	if (quote == '\"')
+	{
+		expand_env(arg, data);
+	}
+}
+
+/*
+	Store each character separated by a delimiter such as space, double quote, etc.
+*/
+void	store_args(t_shell *data, t_cmd *cmds, char *input)
+{
+	size_t	i;
+	size_t	j;
+	char	*start;
+
+	i = 0;
+	j = 0;
+	start = input;
+	while (input[i])
+	{
+		if (input[i] == ' ' && input[i - 1] != ' ')
+		{
+			cmds->args[j] = ft_substr(input, start - input, &input[i] - start);
+			start += i + 1;
+		}
+		else if (input[j] == '\"' || input[j] == '\'')
+		{
+			cmds->args[j++] = store_quoted_arg(data, &input[i], input[j]);
+			start += i + 1;
+		}
+		i++;
+	}
+}
+
+/*
 	Set up in a format that is easy to execve
 */
 void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
@@ -133,7 +199,10 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	if (input_trimmed == NULL)
 		exit(1);
 	arg_cnt = count_args(input_trimmed);
-	printf("arg_cnt -> %zu\n", arg_cnt);
+	cmds->args = ft_calloc(arg_cnt, sizeof(char *));
+	if (cmds->args == NULL)
+		exit(1);
+	store_args(data, cmds, input_trimmed);
 }
 
 void lexer(t_shell *data)

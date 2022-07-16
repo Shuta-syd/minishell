@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 23:22:18 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 18:18:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int argc, char *argv[], char **envp)
 		if (data.input == NULL)
 			exit_("\b\bexit", EXIT_SUCCESS);
 		lexer(&data);
-		printf("%s\n", data.input);
+		// printf("%s\n", data.input);
 
 		free(data.input);
 	}

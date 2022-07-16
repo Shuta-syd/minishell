@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/16 18:32:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/16 19:39:37 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ size_t	count_args(char *input)
 				cnt++;
 			else if (input[i + 1] == '\0')
 				cnt++;
-			else if (input[i] == '\"' || input[i] == '\'')
+			else if (ft_strchr("<>", input[i]))
+				return (cnt);
+			if (input[i] == '\"' || input[i] == '\'')
 			{
 				cnt++;
 				skip_quote(input, &i, input[i]);
 			}
-			else if (ft_strchr("<>", input[i]))
-				return (cnt);
 			i++;
 		}
 	}
@@ -276,7 +276,7 @@ char *store_quoted_arg(t_shell *data, char *input, char quote)
 	while (input[len] != quote)
 		len++;
 	if (quote == '\"')
-		arg = expand_env(arg, data);
+		arg = expand_env(input, data);
 	else
 		arg = ft_substr(input, 1, len - 1);
 	if (arg == NULL)
@@ -301,13 +301,15 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 		if (input[i] == ' ' && input[i - 1] != ' ')
 		{
 			cmds->args[j++] = ft_substr(input, start - input, &input[i] - start);
-			start += i + 1;
+			start = input + i + 1;
 		}
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
 			cmds->args[j++] = store_quoted_arg(data, &input[i], input[i]);
-			start += i + 1;
+			start = input + i + 1;
 		}
+		else if (input[i + 1] == '\0')
+			cmds->args[j++] = ft_substr(input, start - input, &input[i] - start + 1);
 		i++;
 	}
 	cmds->args[j] = NULL;
@@ -322,7 +324,6 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	size_t	arg_cnt;
 	char	*input_trimmed;
 
-	i = 0;
 	input_trimmed = ft_strtrim(input, " ");
 	printf("trimmed_>[%s]\n", input_trimmed);
 	if (input_trimmed == NULL)
@@ -358,14 +359,14 @@ void lexer(t_shell *data)
 		formatting_to_exe(data, &data->exe->cmds[i], input[i]);
 		i++;
 	}
-	// i = 0;
-	// size_t j = 0;
-	// while (data->exe->cmd_cnt--)
-	// {
-	// 	j = 0;
-	// 	while (data->exe->cmds[i].args[j])
-	// 		printf("cmds_>[%s]\n", data->exe->cmds[i].args[j++]);
-	// 	i++;
-	// }
+	i = 0;
+	size_t j = 0;
+	while (data->exe->cmd_cnt--)
+	{
+		j = 0;
+		while (data->exe->cmds[i].args[j])
+			printf("cmds_>[%s]\n", data->exe->cmds[i].args[j++]);
+		i++;
+	}
 	return;
 }

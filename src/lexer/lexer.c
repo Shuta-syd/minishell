@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/17 14:36:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/17 14:50:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	extract_env_key(char *arg, t_list **env_key)
 	t_list	*node;
 
 	i = 0;
-	while (arg[i] == '\"' || arg[i])
+	while (arg[i] != '\"' && arg[i])
 	{
 		if (arg[i] == '$')
 		{
@@ -158,9 +158,7 @@ void	get_env_val(t_shell *data, t_list **val, t_list **key)
 	key_tmp = *key;
 	while (key_tmp)
 	{
-		printf("key val->[%s]\n", (char *)key_tmp->content);
 		node = ft_lstnew(ms_getenv(data, (char *)key_tmp->content));
-		printf("val node->%s\n", (char *)node->content);
 		ft_lstadd_back(val, node);
 		key_tmp = key_tmp->next;
 	}
@@ -224,19 +222,21 @@ char	*create_expanded_arg(char *arg, t_list **val, size_t len)
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
 		return (NULL);
-	while (arg[i])
+	while (arg[i] != '\"' && arg[i])
 	{
 		if (arg[i] == '$')
 		{
-			copy_env_val(&ret, &j ,val);
+			i += 1;
+			copy_env_val(&ret, &j, val);
 			while (arg[i])
 			{
-				if (ft_strchr("<>$ ", arg[i]))
+				if (ft_strchr("<>$\" ", arg[i]))
 					break;
 				i++;
 			}
 		}
-		ret[j++] = arg[i++];
+		else
+			ret[j++] = arg[i++];
 	}
 	ret[j] = '\0';
 	return (ret);
@@ -257,9 +257,7 @@ char *expand_env(char *arg, t_shell *data)
 	env_val = NULL;
 	env_key = NULL;
 	extract_env_key(arg, &env_key);
-	printf("key->%s\n", (char *)env_key->content);
 	get_env_val(data, &env_val, &env_key);
-	printf("val->%s\n", (char *)env_val->content);
 	len = count_arg_len(arg, &env_val, &env_key);
 	ret = create_expanded_arg(arg, &env_val, len);
 	if (ret == NULL)

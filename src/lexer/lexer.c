@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/16 20:02:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/17 14:06:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,18 +267,23 @@ char *expand_env(char *arg, t_shell *data)
 /*
 	Stores the argument enclosed in quote, also expands environment variables.
 */
-char *store_quoted_arg(t_shell *data, char *input, char quote)
+char *store_quoted_arg(t_shell *data, char *input, size_t *i, char quote)
 {
 	size_t	len;
 	char	*arg;
 
-	len = 1;
-	while (input[len] != quote)
+	len = 0;
+	*i += 1;
+	while (input[*i] != quote)
+	{
+		(*i)++;
 		len++;
+	}
 	if (quote == '\"')
 		arg = expand_env(input, data);
 	else
-		arg = ft_substr(input, 1, len - 1);
+		arg = ft_substr(input, *i - len, len);
+	printf("arg->%s\n", arg);
 	if (arg == NULL)
 		return (NULL);
 	return (arg);
@@ -305,7 +310,7 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 		}
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
-			cmds->args[j++] = store_quoted_arg(data, &input[i], input[i]);
+			cmds->args[j++] = store_quoted_arg(data, input, &i, input[i]);
 			start = input + i + 1;
 		}
 		else if (input[i + 1] == '\0')

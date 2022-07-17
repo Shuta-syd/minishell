@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/17 14:06:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/17 14:36:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,28 +122,25 @@ size_t	count_args(char *input)
 /*
 	Extracts only the names of environment variables from the argument in a list
 */
-void	extract_env_key(char *arg, t_list *env_key)
+void	extract_env_key(char *arg, t_list **env_key)
 {
-	size_t	len;
+	size_t	start;
 	size_t	i;
 	char	*key;
 	t_list	*node;
 
 	i = 0;
-	while (arg[i])
+	while (arg[i] == '\"' || arg[i])
 	{
-		len = -1;
 		if (arg[i] == '$')
 		{
-			while (arg[i++])
-			{
-				if (ft_strchr("<>$ ", arg[len]))
-					break ;
-				len++;
-			}
-			key = ft_substr(arg, i, len);
+			start = i + 1;
+			i += 1;
+			while (ft_strchr("<>$\" \0", arg[i]) == NULL)
+				i++;
+			key = ft_substr(arg, start, i - start);
 			node = ft_lstnew(key);
-			ft_lstadd_back(&env_key, node);
+			ft_lstadd_back(env_key, node);
 		}
 		else
 			i++;
@@ -153,16 +150,18 @@ void	extract_env_key(char *arg, t_list *env_key)
 /*
 	Expand environment variable name to value
 */
-void	get_env_val(t_shell *data, t_list *val, t_list *key)
+void	get_env_val(t_shell *data, t_list **val, t_list **key)
 {
 	t_list	*node;
 	t_list	*key_tmp;
 
-	key_tmp = key;
+	key_tmp = *key;
 	while (key_tmp)
 	{
+		printf("key val->[%s]\n", (char *)key_tmp->content);
 		node = ft_lstnew(ms_getenv(data, (char *)key_tmp->content));
-		ft_lstadd_back(&val, node);
+		printf("val node->%s\n", (char *)node->content);
+		ft_lstadd_back(val, node);
 		key_tmp = key_tmp->next;
 	}
 }
@@ -170,14 +169,14 @@ void	get_env_val(t_shell *data, t_list *val, t_list *key)
 /*
 	Count the total number of characters by expanding the environment variable name to value
 */
-size_t	count_arg_len(char *arg, t_list *val, t_list *key)
+size_t	count_arg_len(char *arg, t_list **val, t_list **key)
 {
 	size_t	len;
 	t_list	*key_tmp;
 	t_list	*val_tmp;
 
-	key_tmp = key;
-	val_tmp = val;
+	key_tmp = *key;
+	val_tmp = *val;
 	len = ft_strlen(arg);
 	while (key_tmp)
 	{
@@ -195,14 +194,14 @@ size_t	count_arg_len(char *arg, t_list *val, t_list *key)
 /*
 	Copying environment variables
 */
-void copy_env_val(char **dst, size_t	*j, t_list * env_val)
+void copy_env_val(char **dst, size_t	*j, t_list **env_val)
 {
 	size_t	i;
 	char	*val;
 
 	i = 0;
-	val = (char *)env_val->content;
-	env_val = env_val->next;
+	val = (char *)(*env_val)->content;
+	*env_val = (*env_val)->next;
 	while (val[i])
 	{
 		(*dst)[*j] = val[i];
@@ -214,7 +213,7 @@ void copy_env_val(char **dst, size_t	*j, t_list * env_val)
 /*
 	Create environment variable expanded argument
 */
-char	*create_expanded_arg(char *arg, t_list *val, size_t len)
+char	*create_expanded_arg(char *arg, t_list **val, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -250,13 +249,17 @@ char *expand_env(char *arg, t_shell *data)
 {
 	size_t	i;
 	size_t	len;
-	t_list	env_val;
-	t_list	env_key;
+	t_list	*env_val;
+	t_list	*env_key;
 	char	*ret;
 
 	i = 0;
+	env_val = NULL;
+	env_key = NULL;
 	extract_env_key(arg, &env_key);
+	printf("key->%s\n", (char *)env_key->content);
 	get_env_val(data, &env_val, &env_key);
+	printf("val->%s\n", (char *)env_val->content);
 	len = count_arg_len(arg, &env_val, &env_key);
 	ret = create_expanded_arg(arg, &env_val, len);
 	if (ret == NULL)
@@ -280,7 +283,7 @@ char *store_quoted_arg(t_shell *data, char *input, size_t *i, char quote)
 		len++;
 	}
 	if (quote == '\"')
-		arg = expand_env(input, data);
+		arg = expand_env(&input[*i - len], data);
 	else
 		arg = ft_substr(input, *i - len, len);
 	printf("arg->%s\n", arg);

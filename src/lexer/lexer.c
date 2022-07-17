@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/17 14:50:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/17 23:50:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,7 +306,10 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 	{
 		if (input[i] == ' ' && input[i - 1] != ' ')
 		{
-			cmds->args[j++] = ft_substr(input, start - input, &input[i] - start);
+			if (*start == '$')
+				cmds->args[j++] = expand_env(start, data);
+			else
+				cmds->args[j++] = ft_substr(input, start - input, &input[i] - start);
 			start = input + i + 1;
 		}
 		else if (input[i] == '\"' || input[i] == '\'')
@@ -315,7 +318,12 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 			start = input + i + 1;
 		}
 		else if (input[i + 1] == '\0')
-			cmds->args[j++] = ft_substr(input, start - input, &input[i] - start + 1);
+		{
+			if (*start == '$')
+				cmds->args[j++] = expand_env(start, data);
+			else
+				cmds->args[j++] = ft_substr(input, start - input, &input[i] - start + 1);
+		}
 		i++;
 	}
 	cmds->args[j] = NULL;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 19:01:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 19:12:08 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,7 @@ char *store_quoted_arg(t_shell *data, char *input, size_t *i, char quote)
 }
 
 /*
-
+	Extract arg and remove excess space
 */
 char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 {
@@ -307,6 +307,12 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 		arg = ft_substr(input, *start - input, &input[*i] - *start);
 	ret = ft_strtrim(arg, " ");
 	free(arg);
+	if (*ret == '$')
+	{
+		arg = expand_env(ret, data);
+		free(ret);
+		ret = arg;
+	}
 	*start = input + *i + 1;
 	return (ret);
 }

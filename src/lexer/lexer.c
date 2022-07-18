@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/17 23:50:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 18:47:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,11 +311,13 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 			else
 				cmds->args[j++] = ft_substr(input, start - input, &input[i] - start);
 			start = input + i + 1;
+
 		}
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
 			cmds->args[j++] = store_quoted_arg(data, input, &i, input[i]);
 			start = input + i + 1;
+			i++;
 		}
 		else if (input[i + 1] == '\0')
 		{

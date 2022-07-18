@@ -6,11 +6,37 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 19:18:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 19:52:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+/*
+	Free dynamic memory of t_exe
+*/
+void	free_t_exe(t_shell *data)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (data->exe->cmd_cnt--)
+	{
+		j = 0;
+		while (data->exe->cmds[i].args[j])
+		{
+			free(data->exe->cmds[i].args[j]);
+			j++;
+		}
+		free(data->exe->cmds[i].args);
+		i++;
+	}
+	free(data->exe->infile);
+	free(data->exe->outfile);
+	free(data->exe->cmds);
+	free(data->exe);
+}
 
 /*
 	skip single quotes or Double quotes,
@@ -262,6 +288,8 @@ char *expand_env(char *arg, t_shell *data)
 	get_env_val(data, &env_val, &env_key);
 	len = count_arg_len(arg, &env_val, &env_key);
 	ret = create_expanded_arg(arg, &env_val, len);
+	ft_lstclear(&env_key, free);
+	ft_lstclear(&env_val, free);
 	if (ret == NULL)
 		exit(1);
 	return (ret);
@@ -286,7 +314,6 @@ char *store_quoted_arg(t_shell *data, char *input, size_t *i, char quote)
 		arg = expand_env(&input[*i - len], data);
 	else
 		arg = ft_substr(input, *i - len, len);
-	printf("arg->%s\n", arg);
 	if (arg == NULL)
 		return (NULL);
 	return (arg);
@@ -307,7 +334,11 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 		arg = ft_substr(input, *start - input, &input[*i] - *start + 1);
 	else
 		arg = ft_substr(input, *start - input, &input[*i] - *start);
+	if (arg == NULL)
+		exit(1);
 	ret = ft_strtrim(arg, " ");
+	if (ret == NULL)
+		exit(1);
 	free(arg);
 	if (*ret == '$')
 	{
@@ -356,11 +387,9 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	char	*input_trimmed;
 
 	input_trimmed = ft_strtrim(input, " ");
-	printf("trimmed_>[%s]\n", input_trimmed);
 	if (input_trimmed == NULL)
 		exit(1);
 	arg_cnt = count_args(input_trimmed);
-	printf("arg_cnt->%zu\n", arg_cnt);
 	cmds->args = ft_calloc(arg_cnt, sizeof(char *));
 	if (cmds->args == NULL)
 		exit(1);
@@ -377,27 +406,18 @@ void lexer(t_shell *data)
 	if (data->exe == NULL)
 		exit(1);
 	data->exe->cmd_cnt = count_cmds(data->input);
-	printf("cmd_cnt _> %u\n", data->exe->cmd_cnt);
 	input = split_by_pipe(data->input, data->exe->cmd_cnt);
 	if (input == NULL)
 		exit(1);
 	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));
 	if (data->exe->cmds == NULL)
 		exit(1);
-	printf("input->%s\n", input[0]);
 	while (input[i])
 	{
 		formatting_to_exe(data, &data->exe->cmds[i], input[i]);
+		free(input[i]);
 		i++;
 	}
-	i = 0;
-	size_t j = 0;
-	while (data->exe->cmd_cnt--)
-	{
-		j = 0;
-		while (data->exe->cmds[i].args[j])
-			printf("cmds_>[%s]\n", data->exe->cmds[i].args[j++]);
-		i++;
-	}
+	free(input);
 	return;
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 19:12:08 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 19:18:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void	extract_env_key(char *arg, t_list **env_key)
 			key = ft_substr(arg, start, i - start);
 			node = ft_lstnew(key);
 			ft_lstadd_back(env_key, node);
+			free(key);
+			key = NULL;
 		}
 		else
 			i++;

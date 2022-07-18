@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 18:47:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 19:01:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,27 @@ char *store_quoted_arg(t_shell *data, char *input, size_t *i, char quote)
 }
 
 /*
+
+*/
+char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
+{
+	char	*arg;
+	char	*ret;
+
+	ret = NULL;
+	if (**start == '$')
+		arg = expand_env(*start, data);
+	else if (input[*i + 1] == '\0')
+		arg = ft_substr(input, *start - input, &input[*i] - *start + 1);
+	else
+		arg = ft_substr(input, *start - input, &input[*i] - *start);
+	ret = ft_strtrim(arg, " ");
+	free(arg);
+	*start = input + *i + 1;
+	return (ret);
+}
+
+/*
 	Store each character separated by a delimiter such as space, double quote, etc.
 */
 void	store_args(t_shell *data, t_cmd *cmds, char *input)
@@ -304,27 +325,13 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 	start = input;
 	while (input[i])
 	{
-		if (input[i] == ' ' && input[i - 1] != ' ')
-		{
-			if (*start == '$')
-				cmds->args[j++] = expand_env(start, data);
-			else
-				cmds->args[j++] = ft_substr(input, start - input, &input[i] - start);
-			start = input + i + 1;
-
-		}
+		if ((input[i] == ' ' && input[i - 1] != ' ') || input[i + 1] == '\0')
+			cmds->args[j++] =  extract_arg(data, input, &start, &i);
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
 			cmds->args[j++] = store_quoted_arg(data, input, &i, input[i]);
 			start = input + i + 1;
 			i++;
-		}
-		else if (input[i + 1] == '\0')
-		{
-			if (*start == '$')
-				cmds->args[j++] = expand_env(start, data);
-			else
-				cmds->args[j++] = ft_substr(input, start - input, &input[i] - start + 1);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 19:52:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 20:02:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,6 +394,7 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	if (cmds->args == NULL)
 		exit(1);
 	store_args(data, cmds, input_trimmed);
+	free(input_trimmed);
 }
 
 void lexer(t_shell *data)

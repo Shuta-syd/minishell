@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/17 14:37:10 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 11:40:43 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ void	exit_(char *msg, int status);
 
 //lexer
 void	lexer(t_shell *shell);
+
+//executor
+void	executor(t_shell *shell);
+int		ft_execvp(char *file, char *argv[]);
 
 #endif

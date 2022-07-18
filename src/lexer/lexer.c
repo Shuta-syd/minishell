@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/17 23:50:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/18 11:48:48 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,11 +339,11 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	char	*input_trimmed;
 
 	input_trimmed = ft_strtrim(input, " ");
-	printf("trimmed_>[%s]\n", input_trimmed);
+	// printf("trimmed_>[%s]\n", input_trimmed);
 	if (input_trimmed == NULL)
 		exit(1);
 	arg_cnt = count_args(input_trimmed);
-	printf("arg_cnt->%zu\n", arg_cnt);
+	// printf("arg_cnt->%zu\n", arg_cnt); 
 	cmds->args = ft_calloc(arg_cnt, sizeof(char *));
 	if (cmds->args == NULL)
 		exit(1);
@@ -360,14 +360,14 @@ void lexer(t_shell *data)
 	if (data->exe == NULL)
 		exit(1);
 	data->exe->cmd_cnt = count_cmds(data->input);
-	printf("cmd_cnt _> %u\n", data->exe->cmd_cnt);
+	// printf("cmd_cnt _> %u\n", data->exe->cmd_cnt);
 	input = split_by_pipe(data->input, data->exe->cmd_cnt);
 	if (input == NULL)
 		exit(1);
 	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));
 	if (data->exe->cmds == NULL)
 		exit(1);
-	printf("input->%s\n", input[0]);
+	// printf("input->%s\n", input[0]);
 	while (input[i])
 	{
 		formatting_to_exe(data, &data->exe->cmds[i], input[i]);
@@ -375,12 +375,12 @@ void lexer(t_shell *data)
 	}
 	i = 0;
 	size_t j = 0;
-	while (data->exe->cmd_cnt--)
-	{
-		j = 0;
-		while (data->exe->cmds[i].args[j])
-			printf("cmds_>[%s]\n", data->exe->cmds[i].args[j++]);
-		i++;
-	}
+	// while (data->exe->cmd_cnt--)
+	// {
+	// 	j = 0;
+	// 	while (data->exe->cmds[i].args[j])
+	// 		printf("cmds_>[%s]\n", data->exe->cmds[i].args[j++]);
+	// 	i++;
+	// }
 	return;
 }

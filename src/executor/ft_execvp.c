@@ -6,11 +6,11 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:24:20 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/14 22:55:02 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:44:04 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 static char	*get_abs_exe(char *file, char **paths);
 static void	free_dp(char **dp);

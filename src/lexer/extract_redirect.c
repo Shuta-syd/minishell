@@ -6,25 +6,28 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:49:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:17:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:28:04 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char *extract_redirect_file(char *input)
+char	*extract_redirect_file(char *input)
 {
 	char	*ret_file;
 	char	*root;
 
 	ret_file = NULL;
-	root = input + 1;
+
+	input = ft_strtrim(input, " ");
+	root = input;
 	while (*input)
 	{
 		if (ft_strchr("| ", *input))
 			break ;
 		input++;
 	}
+	free(input);
 	ret_file = ft_substr(root, 0, input - root);
 	if (ret_file == NULL)
 		return (NULL);
@@ -42,10 +45,10 @@ void	store_redirect_in_out(t_shell *data, char *input)
 	while (input[i])
 	{
 		if (ft_strchr("<", input[i]))
-			data->exe->outfile = extract_redirect_file(&input[i]);
+			data->exe->outfile = extract_redirect_file(&input[i + 1]);
 		else if (ft_strchr(">", input[i]) && input[i + 1] != '>')
 		{
-			data->exe->outfile = extract_redirect_file(&input[i]);
+			data->exe->outfile = extract_redirect_file(&input[i + 1]);
 			data->exe->outfile_mode = TRUNC;
 		}
 		else if (ft_strchr(">", input[i]) && input[i + 1] != '>')

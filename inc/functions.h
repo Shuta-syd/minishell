@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/21 12:08:44 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 18:58:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	lexer(t_shell *shell);
 void	free_t_exe(t_shell *data);
 char	*extract_arg(t_shell *data, char *input, char **start, size_t *i);
 char	*store_quoted_arg(t_shell *data, char *input, size_t *i, char quote);
-char	*expand_env(char *arg, t_shell *data);
+char	*expand_env(char *arg, t_shell *data, bool quoted);
 char	*create_expanded_arg(char *arg, t_list **val, size_t len);
 char	**split_by_pipe(char *input, size_t cmd_cnt);
 size_t	count_arg_len(char *arg, t_list **val, t_list **key);

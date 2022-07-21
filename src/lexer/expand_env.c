@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 16:40:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 19:14:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 /*
 	Extracts only the names of environment variables from the argument in a list
 */
-void extract_env_key(char *arg, t_list **env_key)
+void	extract_env_key(char *arg, t_list **env_key)
 {
-	size_t start;
-	size_t i;
-	char *key;
-	t_list *node;
+	size_t	start;
+	size_t	i;
+	char	*key;
+	t_list	*node;
 
 	i = 0;
 	while (arg[i] != '\"' && arg[i])
@@ -43,10 +43,10 @@ void extract_env_key(char *arg, t_list **env_key)
 /*
 	Expand environment variable name to value
 */
-void get_env_val(t_shell *data, t_list **val, t_list **key)
+void	get_env_val(t_shell *data, t_list **val, t_list **key)
 {
-	t_list *node;
-	t_list *key_tmp;
+	t_list	*node;
+	t_list	*key_tmp;
 	char	*content;
 
 	key_tmp = *key;
@@ -59,18 +59,48 @@ void get_env_val(t_shell *data, t_list **val, t_list **key)
 	}
 }
 
+char	*extract_env_val(char *arg, t_shell *data)
+{
+	char	*key;
+	char	*root;
+	char	*val;
+	size_t	len;
+
+	len = 0;
+	while (*arg)
+	{
+		if (*arg == '$')
+		{
+			root = arg + 1;
+			while (*arg != ' ' && *arg)
+			{
+				arg++;
+				len++;
+			}
+			break ;
+		}
+		arg++;
+	}
+	key = ft_substr(root, 0, len);
+	if (key == NULL)
+		return (NULL);
+	val = ft_strdup(ms_getenv(data, key));
+	free(key);
+	return (val);
+}
+
 /*
 	Expand environment variables and create new strings
 */
-char	*expand_env(char *arg, t_shell *data)
+char	*expand_env(char *arg, t_shell *data, bool quoted)
 {
-	size_t i;
-	size_t len;
-	t_list *env_val;
-	t_list *env_key;
-	char *ret;
+	size_t	len;
+	t_list	*env_val;
+	t_list	*env_key;
+	char	*ret;
 
-	i = 0;
+	if (quoted == false)
+		return (extract_env_val(arg, data));
 	env_val = NULL;
 	env_key = NULL;
 	extract_env_key(arg, &env_key);

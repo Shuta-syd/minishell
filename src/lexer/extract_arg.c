@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:39:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 16:29:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 19:07:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*store_quoted_arg(t_shell *data, char *input, size_t *i, char quote)
 		len++;
 	}
 	if (quote == '\"')
-		arg = expand_env(&input[*i - len], data);
+		arg = expand_env(&input[*i - len], data, true);
 	else
 		arg = ft_substr(input, *i - len, len);
 	if (arg == NULL)
@@ -45,8 +45,9 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 	char	*ret;
 
 	ret = NULL;
+	printf("arg->%s start->%s\n", &input[*i], *start);
 	if (**start == '$')
-		arg = expand_env(*start, data);
+		arg = expand_env(*start, data, false);
 	else if (input[*i + 1] == '\0')
 		arg = ft_substr(input, *start - input, &input[*i] - *start + 1);
 	else
@@ -59,10 +60,13 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 	free(arg);
 	if (*ret == '$')
 	{
-		arg = expand_env(ret, data);
+		arg = expand_env(ret, data, false);
 		free(ret);
 		ret = arg;
 	}
+	printf("ret->%s\n", ret);
+	printf("start->%s\n", *start);
 	*start = input + *i + 1;
+	printf("start->%s\n", *start);
 	return (ret);
 }

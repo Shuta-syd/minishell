@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 16:21:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:37:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ void	print_data_exe(t_shell *data)
 	}
 }
 
+void	print_env_lst(t_env *env_lst)
+{
+	while (env_lst)
+	{
+		printf("%s=%s\n", env_lst->key, env_lst->val);
+		env_lst = env_lst->next;
+	}
+}
+
 int main(int argc, char *argv[], char **envp)
 {
 	t_shell	data;
@@ -43,6 +52,7 @@ int main(int argc, char *argv[], char **envp)
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
 	store_env_lst(&data, envp);
+	// print_env_lst(data.env_lst);
 	while (1)
 	{
 		data.input = readline(PROMPT);

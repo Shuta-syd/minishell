@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 16:21:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:27:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 			cmds->args[j++] =  extract_arg(data, input, &start, &i);
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
-			cmds->args[j++] = store_quoted_arg(data, input, &i, input[i]);
+			cmds->args[j] = store_quoted_arg(data, input, &i, input[i]);
+			printf("args->[%s]\n", cmds->args[j++]);
 			start = input + i + 1;
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 11:44:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:40:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@ void extract_env_key(char *arg, t_list **env_key)
 	{
 		if (arg[i] == '$')
 		{
-			start = i + 1;
 			i += 1;
+			start = i;
 			while (ft_strchr("<>$\" \0", arg[i]) == NULL)
 				i++;
 			key = ft_substr(arg, start, i - start);
 			node = ft_lstnew(key);
 			ft_lstadd_back(env_key, node);
-			free(key);
 			key = NULL;
 		}
 		else
@@ -48,11 +47,13 @@ void get_env_val(t_shell *data, t_list **val, t_list **key)
 {
 	t_list *node;
 	t_list *key_tmp;
+	char	*content;
 
 	key_tmp = *key;
 	while (key_tmp)
 	{
-		node = ft_lstnew(ms_getenv(data, (char *)key_tmp->content));
+		content = ms_getenv(data, (char *)key_tmp->content);
+		node = ft_lstnew(content);
 		ft_lstadd_back(val, node);
 		key_tmp = key_tmp->next;
 	}

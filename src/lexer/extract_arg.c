@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:39:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 19:07:38 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 19:19:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 	char	*ret;
 
 	ret = NULL;
-	printf("arg->%s start->%s\n", &input[*i], *start);
 	if (**start == '$')
 		arg = expand_env(*start, data, false);
 	else if (input[*i + 1] == '\0')
@@ -64,9 +63,6 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 		free(ret);
 		ret = arg;
 	}
-	printf("ret->%s\n", ret);
-	printf("start->%s\n", *start);
 	*start = input + *i + 1;
-	printf("start->%s\n", *start);
 	return (ret);
 }

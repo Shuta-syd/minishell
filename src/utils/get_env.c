@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/21 19:11:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 19:20:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*ms_getenv(t_shell *data, char *name)
 {
 	t_env *env_lst;
 
-	printf("name->%s\n", name);
 	env_lst = data->env_lst;
 	while (env_lst)
 	{

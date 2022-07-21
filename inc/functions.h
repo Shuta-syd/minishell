@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/21 11:52:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 11:57:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@ void	store_redirect_in_out(t_shell *data, char *input);
 
 
 //execution
+
+//executor
+void	executor(t_shell *shell);
+int		ft_execvp(char *file, char *argv[]);
 
 #endif

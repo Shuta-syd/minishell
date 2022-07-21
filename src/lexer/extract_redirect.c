@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:49:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:28:04 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:35:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*extract_redirect_file(char *input)
 
 	ret_file = NULL;
 
-	input = ft_strtrim(input, " ");
+	while (*input != ' ')
+		input++;
 	root = input;
 	while (*input)
 	{
@@ -27,7 +28,6 @@ char	*extract_redirect_file(char *input)
 			break ;
 		input++;
 	}
-	free(input);
 	ret_file = ft_substr(root, 0, input - root);
 	if (ret_file == NULL)
 		return (NULL);
@@ -45,7 +45,7 @@ void	store_redirect_in_out(t_shell *data, char *input)
 	while (input[i])
 	{
 		if (ft_strchr("<", input[i]))
-			data->exe->outfile = extract_redirect_file(&input[i + 1]);
+			data->exe->infile = extract_redirect_file(&input[i + 1]);
 		else if (ft_strchr(">", input[i]) && input[i + 1] != '>')
 		{
 			data->exe->outfile = extract_redirect_file(&input[i + 1]);

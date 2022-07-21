@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:24:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:32:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[], char **envp)
 			exit_("\b\bexit", EXIT_SUCCESS);
 		lexer(&data);
 		print_data_exe(&data);
-		executor(&data);
+		// executor(&data);
 		free(data.input);
 	}
 	return (0);

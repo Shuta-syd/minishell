@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 16:08:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:21:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 			start = input + i + 1;
 			i++;
 		}
+		else if (ft_strchr("<>", input[i]))
+			break ;
 		i++;
 	}
 	cmds->args[j] = NULL;
@@ -48,9 +50,11 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	char	*input_trimmed;
 
 	input_trimmed = ft_strtrim(input, " ");
+	printf("input_trimmed->[%s]\n", input_trimmed);
 	if (input_trimmed == NULL)
 		exit(1);
 	arg_cnt = count_args(input_trimmed);
+	printf("arg_cnt->[%zu]\n", arg_cnt);
 	cmds->args = ft_calloc(arg_cnt, sizeof(char *));
 	if (cmds->args == NULL)
 		exit(1);
@@ -70,6 +74,7 @@ void lexer(t_shell *data)
 	store_redirect_in_out(data, data->input);
 	data->exe->cmd_cnt = count_cmds(data->input);
 	input = split_by_pipe(data->input, data->exe->cmd_cnt);
+	i = 0;
 	if (input == NULL)
 		exit(1);
 	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));

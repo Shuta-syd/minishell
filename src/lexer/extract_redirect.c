@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:49:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 14:48:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 15:57:53 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*extract_redirect_file(char *input)
 	root = input;
 	while (*input)
 	{
-		if (ft_strchr(" \0|", *input))
+		if (ft_strchr(" |", *input))
 			break ;
 		input++;
 	}

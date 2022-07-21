@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:42:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:08:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void lexer(t_shell *data)
 		exit(1);
 	while (input[i])
 	{
-		printf("input->%s\n", input[i]);
 		formatting_to_exe(data, &data->exe->cmds[i], input[i]);
 		free(input[i]);
 		i++;

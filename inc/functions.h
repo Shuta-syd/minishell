@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/21 11:45:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 11:47:23 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ char	*expand_env(char *arg, t_shell *data);
 char	*create_expanded_arg(char *arg, t_list **val, size_t len);
 void	copy_env_val(char **dst, size_t *j, t_list **env_val);
 size_t	count_arg_len(char *arg, t_list **val, t_list **key);
+size_t	count_args(char *input);
+u_int32_t	count_cmds(char *input);
+char	**split_by_pipe(char *input, uint32_t cmd_cnt);
 
 #endif

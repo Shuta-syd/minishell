@@ -6,25 +6,27 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:49:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:40:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 14:48:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
+	Extract redirect file
+*/
 char	*extract_redirect_file(char *input)
 {
 	char	*ret_file;
 	char	*root;
 
 	ret_file = NULL;
-
 	while (*input == ' ')
 		input++;
 	root = input;
 	while (*input)
 	{
-		if (ft_strchr("|\0 ", *input))
+		if (ft_strchr(" \0|", *input))
 			break ;
 		input++;
 	}
@@ -51,10 +53,10 @@ void	store_redirect_in_out(t_shell *data, char *input)
 			data->exe->outfile = extract_redirect_file(&input[i + 1]);
 			data->exe->outfile_mode = TRUNC;
 		}
-		else if (ft_strchr(">", input[i]) && input[i + 1] != '>')
+		else if (ft_strchr(">", input[i]) && input[i + 1] == '>')
 		{
 			i++;
-			data->exe->outfile = extract_redirect_file(&input[i]);
+			data->exe->outfile = extract_redirect_file(&input[i + 1]);
 			data->exe->outfile_mode = APPEND;
 		}
 		i++;

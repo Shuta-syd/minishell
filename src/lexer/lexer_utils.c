@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:09:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 15:13:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	**split_by_pipe(char *input, size_t cmd_cnt)
 		if (input[j] == '|')
 		{
 			ret[i_ret++] = ft_substr(input, start - input, &input[j] - start);
-			start += j + 1;
+			start = input + j + 1;
 		}
 		else if (input[j + 1] == '\0')
 			ret[i_ret++] = ft_substr(input, start - input, &input[j] - start + 1);

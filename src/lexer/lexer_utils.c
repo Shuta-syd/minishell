@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 11:40:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:09:42 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 /*
 	Free dynamic memory of t_exe
 */
-void free_t_exe(t_shell *data)
+void	free_t_exe(t_shell *data)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (data->exe->cmd_cnt--)
@@ -40,9 +40,9 @@ void free_t_exe(t_shell *data)
 /*
 	skip single quotes or Double quotes,
 */
-void skip_quote(char *input, size_t *i, char quote)
+void	skip_quote(char *input, size_t *i, char quote)
 {
-	size_t j;
+	size_t	j;
 
 	j = *i + 1;
 	while (input[j])
@@ -57,10 +57,10 @@ void skip_quote(char *input, size_t *i, char quote)
 /*
 	Count the number of command lines
 */
-u_int32_t count_cmds(char *input)
+size_t count_cmds(char *input)
 {
-	uint32_t cmd_cnt;
-	size_t i;
+	size_t	cmd_cnt;
+	size_t	i;
 
 	i = 0;
 	cmd_cnt = 1;
@@ -83,12 +83,12 @@ u_int32_t count_cmds(char *input)
 /*
 	Split per pipe and extract command line (ignore pipes in double and single quarts)
 */
-char **split_by_pipe(char *input, uint32_t cmd_cnt)
+char	**split_by_pipe(char *input, size_t cmd_cnt)
 {
-	size_t i_ret;
-	size_t j;
-	char **ret;
-	char *start;
+	size_t	i_ret;
+	size_t	j;
+	char	**ret;
+	char	*start;
 
 	j = 0;
 	i_ret = 0;
@@ -116,10 +116,10 @@ char **split_by_pipe(char *input, uint32_t cmd_cnt)
 /*
 	Count the number of arguments when divided into each argument
 */
-size_t count_args(char *input)
+size_t	count_args(char *input)
 {
-	size_t i;
-	size_t cnt;
+	size_t	i;
+	size_t	cnt;
 
 	i = 0;
 	cnt = 1;

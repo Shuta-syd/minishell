@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 11:43:14 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/21 12:08:56 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_exe
 	struct s_cmd	*cmds;
 	char			*infile;
 	char			*outfile;
-	uint32_t		cmd_cnt;
+	size_t			cmd_cnt;
 	int				fd[2];
 	int				pipe_fd[2];
 	int				outfile_mode;

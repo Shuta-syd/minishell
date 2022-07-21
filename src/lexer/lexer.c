@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 11:41:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 11:50:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void lexer(t_shell *data)
 	data->exe = ft_calloc(1, sizeof(t_exe));
 	if (data->exe == NULL)
 		exit(1);
+	store_redirect_in_out(data, data->input);
 	data->exe->cmd_cnt = count_cmds(data->input);
 	input = split_by_pipe(data->input, data->exe->cmd_cnt);
 	if (input == NULL)

@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_env.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
+/*   Updated: 2022/07/21 11:44:42 by shogura          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <minishell.h>
+/*
+	Extracts only the names of environment variables from the argument in a list
+*/
+void extract_env_key(char *arg, t_list **env_key)
+{
+	size_t start;
+	size_t i;
+	char *key;
+	t_list *node;
+
+	i = 0;
+	while (arg[i] != '\"' && arg[i])
+	{
+		if (arg[i] == '$')
+		{
+			start = i + 1;
+			i += 1;
+			while (ft_strchr("<>$\" \0", arg[i]) == NULL)
+				i++;
+			key = ft_substr(arg, start, i - start);
+			node = ft_lstnew(key);
+			ft_lstadd_back(env_key, node);
+			free(key);
+			key = NULL;
+		}
+		else
+			i++;
+	}
+}
+
+/*
+	Expand environment variable name to value
+*/
+void get_env_val(t_shell *data, t_list **val, t_list **key)
+{
+	t_list *node;
+	t_list *key_tmp;
+
+	key_tmp = *key;
+	while (key_tmp)
+	{
+		node = ft_lstnew(ms_getenv(data, (char *)key_tmp->content));
+		ft_lstadd_back(val, node);
+		key_tmp = key_tmp->next;
+	}
+}
+
+/*
+	Expand environment variables and create new strings
+*/
+char	*expand_env(char *arg, t_shell *data)
+{
+	size_t i;
+	size_t len;
+	t_list *env_val;
+	t_list *env_key;
+	char *ret;
+
+	i = 0;
+	env_val = NULL;
+	env_key = NULL;
+	extract_env_key(arg, &env_key);
+	get_env_val(data, &env_val, &env_key);
+	len = count_arg_len(arg, &env_val, &env_key);
+	ret = create_expanded_arg(arg, &env_val, len);
+	ft_lstclear(&env_key, free);
+	ft_lstclear(&env_val, free);
+	if (ret == NULL)
+		exit(1);
+	return (ret);
+}

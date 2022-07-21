@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 11:50:00 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:21:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,32 @@ __attribute__((destructor))
 static void	destructor(void)
 {
 	system("leaks -q minishell");
+}
+
+void	print_data_exe(t_shell *data)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	printf("infile ->[%s] outfile->[%s] mode->[%d]\n", data->exe->infile, data->exe->outfile, data->exe->outfile_mode);
+	printf("cmd_cnt->%zu\n", data->exe->cmd_cnt);
+	while (data->exe->cmd_cnt--)
+	{
+		j = 0;
+		while (data->exe->cmds[i].args[j])
+			printf("arg->[%s]\n", data->exe->cmds[i].args[j++]);
+		i++;
+	}
+}
+
+void	print_env_lst(t_env *env_lst)
+{
+	while (env_lst)
+	{
+		printf("%s=%s\n", env_lst->key, env_lst->val);
+		env_lst = env_lst->next;
+	}
 }
 
 int main(int argc, char *argv[], char **envp)
@@ -32,8 +58,8 @@ int main(int argc, char *argv[], char **envp)
 		if (data.input == NULL)
 			exit_("\b\bexit", EXIT_SUCCESS);
 		lexer(&data);
-		// printf("%s\n", data.input);
-		executor(&data);
+		print_data_exe(&data);
+		// executor(&data);
 		free(data.input);
 	}
 	return (0);

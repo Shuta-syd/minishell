@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/16 17:37:16 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/21 19:20:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ms_getenv(t_shell *data, char *name)
 	env_lst = data->env_lst;
 	while (env_lst)
 	{
-		if (ft_strncmp(env_lst->key, name, ft_strlen(name)) == 0)
+		if (ft_strcmp(env_lst->key, name) == 0)
 			return (env_lst->val);
 		env_lst = env_lst->next;
 	}

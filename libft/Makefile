@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 15:22:14 by shogura           #+#    #+#              #
-#    Updated: 2022/07/16 17:53:08 by shogura          ###   ########.fr        #
+#    Updated: 2022/07/18 19:39:56 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS =  ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c 
 			 ft_strcmp.c ft_strcpy.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strcat.c\
 			 ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnew.c\
 			 ft_strnstr.c ft_strrchr.c ft_strstr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c\
-			 ft_strchr_rev.c ft_strnlen.c ft_lstnew.c ft_lstadd_back.c ft_lstlast.c
+			 ft_strchr_rev.c ft_strnlen.c ft_lstnew.c ft_lstadd_back.c ft_lstlast.c ft_lstclear.c\
+			 ft_lstdelone.c
 
 OBJS = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:%.c=%.o)))
 

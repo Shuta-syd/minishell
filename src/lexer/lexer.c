@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 19:19:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/22 16:09:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 	{
 		if ((input[i] == ' ' && input[i - 1] != ' ') || input[i + 1] == '\0')
 			cmds->args[j++] =  extract_arg(data, input, &start, &i);
+		else if (ft_strchr("<>", input[i]))
+			cmds->args[j++] = extract_arg(data, input, &start, &i);
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
 			cmds->args[j++] = store_quoted_arg(data, input, &i, input[i]);
 			i++;
 			start = input + i;
 		}
-		else if (ft_strchr("<>", input[i]))
+		if (ft_strchr("<>", input[i]))
 			break ;
 		i++;
 	}
@@ -43,9 +45,8 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 /*
 	Set up in a format that is easy to execve
 */
-void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
+void	formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 {
-	size_t	i;
 	size_t	arg_cnt;
 	char	*input_trimmed;
 
@@ -60,10 +61,10 @@ void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	free(input_trimmed);
 }
 
-void lexer(t_shell *data)
+void	lexer(t_shell *data)
 {
 	size_t	i;
-	char **input;
+	char	**input;
 
 	i = 0;
 	data->exe = ft_calloc(1, sizeof(t_exe));

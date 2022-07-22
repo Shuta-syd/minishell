@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/22 16:14:26 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:33:44 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int main(int argc, char *argv[], char **envp)
 {
 	t_shell	data;
 
+	(void)argc;
+	(void)argv;
 	data = (t_shell){};
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);

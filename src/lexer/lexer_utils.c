@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 15:13:11 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/22 15:47:37 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	skip_quote(char *input, size_t *i, char quote)
 /*
 	Count the number of command lines
 */
-size_t count_cmds(char *input)
+size_t	count_cmds(char *input)
 {
 	size_t	cmd_cnt;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 19:19:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/22 15:28:53 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 */
 void formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 {
-	size_t	i;
 	size_t	arg_cnt;
 	char	*input_trimmed;
 

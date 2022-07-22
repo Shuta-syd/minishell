@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 19:21:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/22 15:46:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int main(int argc, char *argv[], char **envp)
 {
 	t_shell	data;
 
+	(void)argc;
+	(void)argv;
 	data = (t_shell){};
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
@@ -57,9 +59,12 @@ int main(int argc, char *argv[], char **envp)
 		data.input = readline(PROMPT);
 		if (data.input == NULL)
 			exit_("\b\bexit", EXIT_SUCCESS);
-		lexer(&data);
-		print_data_exe(&data);
-		// executor(&data);
+		else if (*data.input != '\0') // empty command
+		{
+			lexer(&data);
+			print_data_exe(&data);
+			// executor(&data);
+		}
 		free(data.input);
 	}
 	return (0);

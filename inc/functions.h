@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/21 18:58:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/22 16:02:49 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 void	motd(void);
 void	store_env_lst(t_shell *data, char **envp);
 char	*ms_getenv(t_shell *data, char *name);
+void	reset(t_shell *shell);
 
 // signal
 void	handle_signal(int signal);

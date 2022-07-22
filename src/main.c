@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/22 16:30:44 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/22 19:26:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int main(int argc, char *argv[], char **envp)
 			exit_("\b\bexit", EXIT_SUCCESS);
 		else if (data.input[0] != '\0')
 		{
-			exe_heredoc(&data);
-			lexer(&data);
+			heredoc(&data);
+			// lexer(&data);
 			// print_data_exe(&data);
 			// executor(&data);
 		}

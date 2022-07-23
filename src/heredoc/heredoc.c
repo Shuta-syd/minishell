@@ -6,13 +6,42 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 20:45:53 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 21:22:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+size_t	count_input_len(t_list *heredoc, char *input)
+{
+	size_t	i;
+	size_t	total_len;
 
+	i = 0;
+	total_len = count_input_len(heredoc, input);
+	total_len = ft_strlen(input);
+	input = ft_strstr(input, "<<");
+	while (input[i])
+	{
+		if (input[i] == '|' || input[i] == '\0')
+			break;
+		total_len--;
+	}
+	while (heredoc)
+	{
+		total_len += ft_strlen((char *)heredoc->content);
+		heredoc = heredoc->next;
+	}
+	return (total_len);
+}
+
+void	merge_heredoc_input(t_list *heredoc, char *input)
+{
+	char	*ret;
+	size_t	len;
+
+	len = count_input_len(heredoc, input);
+}
 
 char *extract_sign(char *input)
 {
@@ -32,18 +61,16 @@ char *extract_sign(char *input)
 	return (ret);
 }
 
-void	start_heredoc(char *input, t_list **heredoc_lst)
+void	loop_heredoc(char *sign, t_list **heredoc_lst)
 {
-	char	*sign;
 	char	*heredoc_input;
 	t_list	*node;
 
-	sign = extract_sign(input);
 	while (42)
 	{
 		write(0, "> ", 2);
 		heredoc_input = get_next_line(0);
-		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign) + 1))
+		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)))
 		{
 			free(heredoc_input);
 			break;
@@ -57,13 +84,16 @@ void	start_heredoc(char *input, t_list **heredoc_lst)
 void	heredoc(t_shell *data)
 {
 	char	*input;
+	char	*sign;
 	t_list	*heredoc_lst;
 
-	input = data->input;
+	if (ft_strstr(input, "<<") == 0)
+		return ;
 	heredoc_lst = NULL;
-	if (ft_strstr(input, "<<"))
-		start_heredoc(input, &heredoc_lst);
-	data->input = merge_heredoc_input(heredoc_lst, input);
+	input = data->input;
+	sign = extract_sign(input);
+	loop_heredoc(sign, &heredoc_lst);
+	// data->input = merge_heredoc_input(heredoc_lst, input);
 	free(input);
 	ft_lstclear(&heredoc_lst, free);
 }

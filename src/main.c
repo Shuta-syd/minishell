@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/22 16:33:44 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:43:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	print_env_lst(t_env *env_lst)
 int main(int argc, char *argv[], char **envp)
 {
 	t_shell	data;
+	char	ch;
 
 	(void)argc;
 	(void)argv;
@@ -61,9 +62,12 @@ int main(int argc, char *argv[], char **envp)
 			exit_("\b\bexit", EXIT_SUCCESS);
 		if (data.input[0] != '\0')
 		{
+			heredoc(&data);
+			add_history(data.input);
+			printf("input ->%s\n", data.input);
 			lexer(&data);
 			executor(&data);
-			reset(&data);
+			// reset(&data);
 		} else {
 			free(data.input);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/22 16:02:49 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:38:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 void	motd(void);
 void	store_env_lst(t_shell *data, char **envp);
 char	*ms_getenv(t_shell *data, char *name);
+char	*get_next_line(int fd);
 void	reset(t_shell *shell);
+void	copy_lst_content(char **dst, size_t *j, t_list **lst);
 
 // signal
 void	handle_signal(int signal);
@@ -41,8 +43,13 @@ size_t	count_cmds(char *input);
 void	copy_env_val(char **dst, size_t *j, t_list **env_val);
 void	store_redirect_in_out(t_shell *data, char *input);
 
+// heredoc
+char	*extract_sign(char *input);
+size_t	count_input_len(t_list *heredoc, char *input);
+void	heredoc(t_shell *data);
+
 // executor
-void executor(t_shell *shell);
+void	executor(t_shell *shell);
 int		ft_execvp(char *file, char *argv[]);
 
 #endif

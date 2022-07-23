@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/22 19:26:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 20:12:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	print_env_lst(t_env *env_lst)
 int main(int argc, char *argv[], char **envp)
 {
 	t_shell	data;
+	char	ch;
 
 	(void)argc;
 	(void)argv;

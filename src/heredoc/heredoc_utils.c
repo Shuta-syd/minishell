@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 21:36:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 21:38:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 21:49:53 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ size_t	count_input_len(t_list *heredoc, char *input)
 	size_t	total_len;
 
 	i = 0;
-	total_len = count_input_len(heredoc, input);
 	total_len = ft_strlen(input);
 	input = ft_strstr(input, "<<");
 	while (input[i])

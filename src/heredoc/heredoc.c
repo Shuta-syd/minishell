@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 21:39:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 21:46:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ char *merge_heredoc_input(t_list *heredoc, char *input)
 		ret[j++] = input[i++];
 	while (heredoc)
 		copy_lst_content(&ret, &j, &heredoc);
-	
-
+	while (input[i + 1] != '\0' && input[i + 1] != '|')
+		i++;
+	while (input[i])
+		ret[j++] = input[i++];
+	printf("pass ret->%s\n", ret);
+	return (ret);
 }
 
 void	loop_heredoc(char *sign, t_list **heredoc_lst)
@@ -59,13 +63,14 @@ void	heredoc(t_shell *data)
 	char	*sign;
 	t_list	*heredoc_lst;
 
-	if (ft_strstr(input, "<<") == 0)
-		return ;
 	heredoc_lst = NULL;
 	input = data->input;
+	if (ft_strstr(input, "<<") == NULL)
+		return ;
+	printf("pass");
 	sign = extract_sign(input);
 	loop_heredoc(sign, &heredoc_lst);
-	// data->input = merge_heredoc_input(heredoc_lst, input);
+	data->input = merge_heredoc_input(heredoc_lst, input);
 	free(input);
 	ft_lstclear(&heredoc_lst, free);
 }

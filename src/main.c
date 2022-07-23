@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 20:43:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 20:46:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(int argc, char *argv[], char **envp)
 		if (data.input[0] != '\0')
 		{
 			heredoc(&data);
+			add_history(data.input);
 			lexer(&data);
 			executor(&data);
 			reset(&data);

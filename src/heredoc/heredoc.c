@@ -6,11 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 20:24:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 20:45:53 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+
 
 char *extract_sign(char *input)
 {
@@ -61,5 +63,7 @@ void	heredoc(t_shell *data)
 	heredoc_lst = NULL;
 	if (ft_strstr(input, "<<"))
 		start_heredoc(input, &heredoc_lst);
-	
+	data->input = merge_heredoc_input(heredoc_lst, input);
+	free(input);
+	ft_lstclear(&heredoc_lst, free);
 }

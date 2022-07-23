@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 20:22:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 20:24:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ void	heredoc(t_shell *data)
 	heredoc_lst = NULL;
 	if (ft_strstr(input, "<<"))
 		start_heredoc(input, &heredoc_lst);
+	
 }

@@ -6,59 +6,31 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 21:22:11 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 21:39:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-size_t	count_input_len(t_list *heredoc, char *input)
-{
-	size_t	i;
-	size_t	total_len;
-
-	i = 0;
-	total_len = count_input_len(heredoc, input);
-	total_len = ft_strlen(input);
-	input = ft_strstr(input, "<<");
-	while (input[i])
-	{
-		if (input[i] == '|' || input[i] == '\0')
-			break;
-		total_len--;
-	}
-	while (heredoc)
-	{
-		total_len += ft_strlen((char *)heredoc->content);
-		heredoc = heredoc->next;
-	}
-	return (total_len);
-}
-
-void	merge_heredoc_input(t_list *heredoc, char *input)
+char *merge_heredoc_input(t_list *heredoc, char *input)
 {
 	char	*ret;
 	size_t	len;
+	size_t	i;
+	size_t	j;
 
+	i = 0;
+	j = 0;
 	len = count_input_len(heredoc, input);
-}
-
-char *extract_sign(char *input)
-{
-	char	*sign;
-	char	*start;
-	char	*ret;
-
-	sign = ft_strstr(input, "<<") + 2;
-	while (*sign == ' ')
-		sign++;
-	start = sign;
-	while (*sign != ' ' && *sign != '\0')
-		sign++;
-	ret = ft_substr(start, 0, sign - start);
+	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
 		return (NULL);
-	return (ret);
+	while (input[i] == '>' && input[i + 1] == '>')
+		ret[j++] = input[i++];
+	while (heredoc)
+		copy_lst_content(&ret, &j, &heredoc);
+	
+
 }
 
 void	loop_heredoc(char *sign, t_list **heredoc_lst)

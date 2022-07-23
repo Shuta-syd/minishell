@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/23 21:01:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 21:38:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	store_env_lst(t_shell *data, char **envp);
 char	*ms_getenv(t_shell *data, char *name);
 char	*get_next_line(int fd);
 void	reset(t_shell *shell);
+void	copy_lst_content(char **dst, size_t *j, t_list **lst);
 
 // signal
 void	handle_signal(int signal);
@@ -43,6 +44,8 @@ void	copy_env_val(char **dst, size_t *j, t_list **env_val);
 void	store_redirect_in_out(t_shell *data, char *input);
 
 // heredoc
+char	*extract_sign(char *input);
+size_t	count_input_len(t_list *heredoc, char *input);
 void	heredoc(t_shell *data);
 
 // executor

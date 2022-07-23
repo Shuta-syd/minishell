@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:44:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 18:50:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 21:34:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ size_t	count_arg_len(char *arg, t_list **val, t_list **key)
 }
 
 /*
-	Copying environment variables
+	Copying lst content
 */
-void	copy_env_val(char **dst, size_t *j, t_list **env_val)
+void	copy_lst_content(char **dst, size_t *j, t_list **lst)
 {
 	size_t	i;
 	char	*val;
 
 	i = 0;
-	val = (char *)(*env_val)->content;
-	*env_val = (*env_val)->next;
+	val = (char *)(*lst)->content;
+	*lst = (*lst)->next;
 	while (val[i])
 	{
 		(*dst)[*j] = val[i];
@@ -75,7 +75,7 @@ char	*create_expanded_arg(char *arg, t_list **val, size_t len)
 		if (arg[i] == '$')
 		{
 			i += 1;
-			copy_env_val(&ret, &j, val);
+			copy_lst_content(&ret, &j, val);
 			while (arg[i])
 			{
 				if (ft_strchr("<>$\" ", arg[i]))

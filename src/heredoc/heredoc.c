@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 21:46:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 22:52:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char *merge_heredoc_input(t_list *heredoc, char *input)
 	i = 0;
 	j = 0;
 	len = count_input_len(heredoc, input);
+	printf("len->%zu\n", len);
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
 		return (NULL);
@@ -33,7 +34,6 @@ char *merge_heredoc_input(t_list *heredoc, char *input)
 		i++;
 	while (input[i])
 		ret[j++] = input[i++];
-	printf("pass ret->%s\n", ret);
 	return (ret);
 }
 
@@ -46,10 +46,10 @@ void	loop_heredoc(char *sign, t_list **heredoc_lst)
 	{
 		write(0, "> ", 2);
 		heredoc_input = get_next_line(0);
-		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)))
+		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)) == 0)
 		{
 			free(heredoc_input);
-			break;
+			break ;
 		}
 		node = ft_lstnew(heredoc_input);
 		ft_lstadd_back(heredoc_lst, node);
@@ -65,9 +65,8 @@ void	heredoc(t_shell *data)
 
 	heredoc_lst = NULL;
 	input = data->input;
-	if (ft_strstr(input, "<<") == NULL)
+	if (ft_strstr(data->input, "<<") == NULL)
 		return ;
-	printf("pass");
 	sign = extract_sign(input);
 	loop_heredoc(sign, &heredoc_lst);
 	data->input = merge_heredoc_input(heredoc_lst, input);

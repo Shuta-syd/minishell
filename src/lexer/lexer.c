@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/22 16:09:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 15:46:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	store_args(t_shell *data, t_cmd *cmds, char *input)
 	{
 		if ((input[i] == ' ' && input[i - 1] != ' ') || input[i + 1] == '\0')
 			cmds->args[j++] =  extract_arg(data, input, &start, &i);
-		else if (ft_strchr("<>", input[i]))
+		else if (ft_strchr("<>", input[i]) && (input[i] != '<' && input[i] != '<'))
 			cmds->args[j++] = extract_arg(data, input, &start, &i);
 		else if (input[i] == '\"' || input[i] == '\'')
 		{
@@ -73,7 +73,6 @@ void	lexer(t_shell *data)
 	store_redirect_in_out(data, data->input);
 	data->exe->cmd_cnt = count_cmds(data->input);
 	input = split_by_pipe(data->input, data->exe->cmd_cnt);
-	i = 0;
 	if (input == NULL)
 		exit(1);
 	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));

@@ -6,47 +6,52 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 12:39:18 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 16:15:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*merge_heredoc_input(t_list *heredoc, char *input)
+char	*extract_sign(char *input)
 {
+	char	*sign;
+	char	*start;
 	char	*ret;
-	size_t	len;
-	size_t	i;
-	size_t	j;
 
-	i = 0;
-	j = 0;
-	len = count_input_len(heredoc, input);
-	ret = ft_calloc(len + 1, sizeof(char));
+	sign = ft_strstr(input, "<<") + 2;
+	while (*sign == ' ')
+		sign++;
+	start = sign;
+	while (*sign != ' ' && *sign != '\0')
+		sign++;
+	ret = ft_substr(start, 0, sign - start);
 	if (ret == NULL)
 		return (NULL);
-	while (input[i] != '<' && input[i + 1] != '<')
-		ret[j++] = input[i++];
-	ret[j++] = ' ';
-	while (heredoc)
-		copy_lst_content(&ret, &j, &heredoc);
-	while (input[i + 1] != '\0' && input[i + 1] != '|')
-		i++;
-	if (input[i + 1] == '\0')
-		ret[j] = '\0';
-	else
-	{
-		while (input[i])
-			ret[j++] = input[i++];
-		ret[j] = '\0';
-	}
 	return (ret);
 }
 
-void	loop_heredoc(char *input, t_list **heredoc_lst)
+void	write_heredoc_file(t_list *heredoc_lst)
+{
+	char	*line;
+	int	fd;
+
+	line = NULL;
+	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC | S_IRUSR | S_IWUSR);
+	if (fd < 0)
+		return ; //error
+	while (heredoc_lst)
+	{
+		line = (char *)heredoc_lst->content;
+		write(fd, line, ft_strlen(line));
+		heredoc_lst = heredoc_lst->next;
+	}
+}
+
+void	loop_heredoc(char *input, t_list **heredoc_lst, t_shell *data)
 {
 	char	*sign;
 	char	*heredoc_input;
+	char	*ret;
 	t_list	*node;
 
 	sign = extract_sign(input);
@@ -54,13 +59,17 @@ void	loop_heredoc(char *input, t_list **heredoc_lst)
 	{
 		write(0, "> ", 2);
 		heredoc_input = get_next_line(0);
+		if (heredoc_input == NULL)
+			return ;//error
 		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)) == 0)
 		{
 			free(heredoc_input);
 			free(sign);
 			break;
 		}
-		node = ft_lstnew(heredoc_input);
+		ret = expand_env(heredoc_input, data, true);
+		free(heredoc_input);
+		node = ft_lstnew(ret);
 		ft_lstadd_back(heredoc_lst, node);
 	}
 	return ;
@@ -68,16 +77,13 @@ void	loop_heredoc(char *input, t_list **heredoc_lst)
 
 void	heredoc(t_shell *data)
 {
-	char	*input;
 	char	*sign;
 	t_list	*heredoc_lst;
 
 	heredoc_lst = NULL;
-	input = data->input;
 	if (ft_strstr(data->input, "<<") == NULL)
 		return ;
-	loop_heredoc(input, &heredoc_lst);
-	data->input = merge_heredoc_input(heredoc_lst, input);
-	free(input);
+	loop_heredoc(data->input, &heredoc_lst, data);
+	write_heredoc_file(heredoc_lst);
 	ft_lstclear(&heredoc_lst, free);
 }

@@ -6,13 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 12:08:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 12:39:18 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char *merge_heredoc_input(t_list *heredoc, char *input)
+char	*merge_heredoc_input(t_list *heredoc, char *input)
 {
 	char	*ret;
 	size_t	len;
@@ -22,18 +22,24 @@ char *merge_heredoc_input(t_list *heredoc, char *input)
 	i = 0;
 	j = 0;
 	len = count_input_len(heredoc, input);
-	printf("len->%zu\n", len);
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
 		return (NULL);
-	while (input[i] == '>' && input[i + 1] == '>')
+	while (input[i] != '<' && input[i + 1] != '<')
 		ret[j++] = input[i++];
+	ret[j++] = ' ';
 	while (heredoc)
 		copy_lst_content(&ret, &j, &heredoc);
 	while (input[i + 1] != '\0' && input[i + 1] != '|')
 		i++;
-	while (input[i])
-		ret[j++] = input[i++];
+	if (input[i + 1] == '\0')
+		ret[j] = '\0';
+	else
+	{
+		while (input[i])
+			ret[j++] = input[i++];
+		ret[j] = '\0';
+	}
 	return (ret);
 }
 
@@ -51,7 +57,8 @@ void	loop_heredoc(char *input, t_list **heredoc_lst)
 		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)) == 0)
 		{
 			free(heredoc_input);
-			break ;
+			free(sign);
+			break;
 		}
 		node = ft_lstnew(heredoc_input);
 		ft_lstadd_back(heredoc_lst, node);

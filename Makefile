@@ -55,7 +55,7 @@ $(BIN_DIR):
 	mkdir $(BIN_DIR)
 
 $(BIN_DIR)/$(ECHO):
-	$(CC) $(CFLAGS) $(INCS) -o $(BIN_DIR)/$(ECHO) builtins/ft_echo.c
+	$(CC) $(CFLAGS) $(INCS) $(LDFLAGS) -o $(BIN_DIR)/$(ECHO) builtins/ft_echo.c
 
 libre:
 	@make re -C $(LIBDIR)

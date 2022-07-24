@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 10:55:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 12:08:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ char *merge_heredoc_input(t_list *heredoc, char *input)
 		ret[j++] = input[i++];
 	while (heredoc)
 		copy_lst_content(&ret, &j, &heredoc);
-	// while (input[i + 1] != '\0' && input[i + 1] != '|')
-	// 	i++;
-	// while (input[i])
-	// 	ret[j++] = input[i++];
+	while (input[i + 1] != '\0' && input[i + 1] != '|')
+		i++;
+	while (input[i])
+		ret[j++] = input[i++];
 	return (ret);
 }
 

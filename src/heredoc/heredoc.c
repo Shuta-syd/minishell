@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 22:52:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 10:55:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ char *merge_heredoc_input(t_list *heredoc, char *input)
 		ret[j++] = input[i++];
 	while (heredoc)
 		copy_lst_content(&ret, &j, &heredoc);
-	while (input[i + 1] != '\0' && input[i + 1] != '|')
-		i++;
-	while (input[i])
-		ret[j++] = input[i++];
+	// while (input[i + 1] != '\0' && input[i + 1] != '|')
+	// 	i++;
+	// while (input[i])
+	// 	ret[j++] = input[i++];
 	return (ret);
 }
 
-void	loop_heredoc(char *sign, t_list **heredoc_lst)
+void	loop_heredoc(char *input, t_list **heredoc_lst)
 {
+	char	*sign;
 	char	*heredoc_input;
 	t_list	*node;
 
+	sign = extract_sign(input);
 	while (42)
 	{
 		write(0, "> ", 2);
@@ -67,8 +69,7 @@ void	heredoc(t_shell *data)
 	input = data->input;
 	if (ft_strstr(data->input, "<<") == NULL)
 		return ;
-	sign = extract_sign(input);
-	loop_heredoc(sign, &heredoc_lst);
+	loop_heredoc(input, &heredoc_lst);
 	data->input = merge_heredoc_input(heredoc_lst, input);
 	free(input);
 	ft_lstclear(&heredoc_lst, free);

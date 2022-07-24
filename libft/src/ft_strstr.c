@@ -6,11 +6,12 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 22:42:22 by shogura           #+#    #+#             */
-/*   Updated: 2022/04/06 22:43:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/23 23:28:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static size_t	ft_check_len(char const *s1, char const *s2)
 {

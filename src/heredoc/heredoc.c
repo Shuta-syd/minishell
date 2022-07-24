@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 15:38:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 16:15:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ void	write_heredoc_file(t_list *heredoc_lst)
 	}
 }
 
-void	loop_heredoc(char *input, t_list **heredoc_lst)
+void	loop_heredoc(char *input, t_list **heredoc_lst, t_shell *data)
 {
 	char	*sign;
 	char	*heredoc_input;
+	char	*ret;
 	t_list	*node;
 
 	sign = extract_sign(input);
@@ -58,13 +59,17 @@ void	loop_heredoc(char *input, t_list **heredoc_lst)
 	{
 		write(0, "> ", 2);
 		heredoc_input = get_next_line(0);
+		if (heredoc_input == NULL)
+			return ;//error
 		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)) == 0)
 		{
 			free(heredoc_input);
 			free(sign);
 			break;
 		}
-		node = ft_lstnew(heredoc_input);
+		ret = expand_env(heredoc_input, data, true);
+		free(heredoc_input);
+		node = ft_lstnew(ret);
 		ft_lstadd_back(heredoc_lst, node);
 	}
 	return ;
@@ -78,7 +83,7 @@ void	heredoc(t_shell *data)
 	heredoc_lst = NULL;
 	if (ft_strstr(data->input, "<<") == NULL)
 		return ;
-	loop_heredoc(data->input, &heredoc_lst);
+	loop_heredoc(data->input, &heredoc_lst, data);
 	write_heredoc_file(heredoc_lst);
 	ft_lstclear(&heredoc_lst, free);
 }

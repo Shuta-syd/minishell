@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 15:24:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 15:38:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,13 @@ void	loop_heredoc(char *input, t_list **heredoc_lst)
 
 void	heredoc(t_shell *data)
 {
-	char	*input;
 	char	*sign;
 	t_list	*heredoc_lst;
 
 	heredoc_lst = NULL;
-	input = data->input;
 	if (ft_strstr(data->input, "<<") == NULL)
 		return ;
-	loop_heredoc(input, &heredoc_lst);
+	loop_heredoc(data->input, &heredoc_lst);
 	write_heredoc_file(heredoc_lst);
-	free(input);
 	ft_lstclear(&heredoc_lst, free);
 }

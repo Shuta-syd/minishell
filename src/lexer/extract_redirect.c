@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:49:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 15:27:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 15:38:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	store_redirect_in_out(t_shell *data, char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (ft_strchr("<", input[i]))
-			data->exe->infile = extract_redirect_file(&input[i + 1]);
-		else if (ft_strchr("<", input[i]) && input[i + 1] == '<')
+		if (ft_strchr("<", input[i]) && input[i + 1] == '<')
 		{
 			i++;
 			data->exe->infile = ft_strdup(".heredoc");
 		}
+		else if (ft_strchr("<", input[i]))
+			data->exe->infile = extract_redirect_file(&input[i + 1]);
 		else if (ft_strchr(">", input[i]) && input[i + 1] != '>')
 		{
 			data->exe->outfile = extract_redirect_file(&input[i + 1]);

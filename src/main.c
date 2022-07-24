@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 15:27:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 15:28:50 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ int main(int argc, char *argv[], char **envp)
 			add_history(data.input);
 			heredoc(&data);
 			lexer(&data);
-			executor(&data);
-			reset(&data);
+			print_data_exe(&data);
+			// executor(&data);
+			// reset(&data);
 		} else {
 			free(data.input);
 		}

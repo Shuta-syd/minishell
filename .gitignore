@@ -3,3 +3,5 @@ obj
 minishell
 *.a
 a.out
+old_builtins
+bin

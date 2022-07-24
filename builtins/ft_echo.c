@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:10:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:47 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/24 16:29:51 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/24 16:42:25 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <builtin.h>
+#include "minishell.h"
 
-// void	unset(t_data *data)
-// {
-	
-// }
+int main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	write(1, "echo\n", 5);
+	write(1, "echo\n", 5);
+}

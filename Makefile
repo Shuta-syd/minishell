@@ -24,7 +24,7 @@ SRCS	=	$(shell find $(SRCDIR) -name "*.c" -type f) # fix here
 OBJS	=	$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 INCS	=	$(addprefix -I,$(INCDIR))
 
-all: libft $(NAME) $(OBJDIR)
+all: libft builtins $(NAME) $(OBJDIR)
 
 $(OBJDIR):
 	mkdir $(OBJDIR)
@@ -47,14 +47,29 @@ $(NAME): $(OBJS)
 libft:
 	@make -C $(LIBDIR)
 
+BIN_DIR	=	bin
+ECHO	=	echo
+builtins: $(BIN_DIR) $(BIN_DIR)/$(ECHO)
+
+$(BIN_DIR):
+	mkdir $(BIN_DIR)
+
+$(BIN_DIR)/$(ECHO):
+	$(CC) $(CFLAGS) $(INCS) -o $(BIN_DIR)/$(ECHO) builtins/ft_echo.c
+
 libre:
 	@make re -C $(LIBDIR)
+
+b:
+	$(RM)r bin
+	@make builtins
 
 clean:
 	@echo "$(RED)"
 	$(RM) $(OBJS)
 	@$(RM)r $(OBJDIR)
 	@echo "$(RES)"
+	rm -rf bin
 
 eclean:
 	@echo "$(RED)"

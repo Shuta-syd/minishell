@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:24:20 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 20:55:16 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:04:48 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static bool	do_builtins(char *file, char **argv, t_shell *shell);
 int	ft_execvp(char *file, char *argv[], t_shell *shell)
 {
 	char		**paths;
-	extern char	**environ;//fix => get from envlist
 
 	if (do_builtins(file, argv, shell) == true)
 		return (0);
@@ -28,7 +27,7 @@ int	ft_execvp(char *file, char *argv[], t_shell *shell)
 	if (file == NULL)
 		return (-1);
 	free_dp(paths);
-	execve(file, argv, environ);
+	execve(file, argv, NULL);
 	return (-1);
 }
 

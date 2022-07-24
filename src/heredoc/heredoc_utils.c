@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 21:36:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 12:08:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 15:17:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,4 @@ char	*extract_sign(char *input)
 	if (ret == NULL)
 		return (NULL);
 	return (ret);
-}
-
-size_t	count_input_len(t_list *heredoc, char *input)
-{
-	size_t	i;
-	size_t	total_len;
-
-	i = 0;
-	total_len = ft_strlen(input);
-	input = ft_strstr(input, "<<");
-	while (input[i])
-	{
-		if (input[i] == '|' || input[i] == '\0')
-			break;
-		i++;
-		total_len--;
-	}
-	while (heredoc)
-	{
-		total_len += ft_strlen((char *)heredoc->content);
-		heredoc = heredoc->next;
-	}
-	return (total_len);
 }

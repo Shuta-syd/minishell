@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 20:12:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 21:16:02 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q minishell");
-}
+// __attribute__((destructor))
+// static void	destructor(void)
+// {
+// 	system("leaks -q minishell");
+// }
 
 void	print_data_exe(t_shell *data)
 {

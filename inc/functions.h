@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 16:02:55 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:24:31 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	handle_signal(int signal);
 
 //builtins
 void	exit_(char *msg, int status);
+int		ft_echo(char **argv);
+void	ft_env(t_shell *shell);
+void	ft_pwd(void);
+void	ft_cd(char *dir, t_shell *shell);
 
 //lexer
 void	lexer(t_shell *shell);

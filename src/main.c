@@ -6,17 +6,17 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 16:50:17 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:31:03 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q minishell");
-}
+// __attribute__((destructor))
+// static void	destructor(void)
+// {
+// 	system("leaks -q minishell");
+// }
 
 void	print_data_exe(t_shell *data)
 {
@@ -62,7 +62,6 @@ int main(int argc, char *argv[], char **envp)
 		{
 			add_history(data.input);
 			heredoc(&data);
-			// printf("after input->[%s]\n", data.input);
 			lexer(&data);
 			executor(&data);
 			reset(&data);

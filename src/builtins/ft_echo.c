@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:29:51 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 17:13:42 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:49:05 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static int	check_flag(int argc, char **argv);
 
-int	main(int argc, char **argv)
+int	ft_echo(char **argv)
 {
 	int	i;
 	int	flag;
+	int	argc;
 
-	(void)argv;
+	argc = 1;
+	while (argv[argc])
+		argc++;
 	ft_putendl("=This is builtin echo=");
 	flag = check_flag(argc, argv);
 	i = flag;

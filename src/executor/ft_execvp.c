@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:24:20 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 17:19:53 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:27:18 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 static char	*get_abs_exe(char *file, char **paths);
 static void	free_dp(char **dp);
-static void	do_builtins(char *file, char **argv);
+static bool	do_builtins(char *file, char **argv, t_shell *shell);
 
 int	ft_execvp(char *file, char *argv[], t_shell *shell)
 {
 	char		**paths;
 	extern char	**environ;//fix => get from envlist
 
-	do_builtins(file, argv);
+	if (do_builtins(file, argv, shell) == true)
+		return (0);
 	paths = ft_split(ms_getenv(shell, "PATH"), ':');
 	file = get_abs_exe(file, paths);
 	if (file == NULL)
@@ -64,10 +65,19 @@ static void	free_dp(char **dp)
 	free(dp);
 }
 
-static void	do_builtins(char *file, char **argv)
-{
-	extern char	**environ;//fix
+void	ft_test(void);
 
+static bool	do_builtins(char *file, char **argv, t_shell *shell)
+{
 	if (ft_strcmp(file, "echo") == 0)
-		execve("./bin/echo", argv, environ);
+		ft_echo(argv);
+	else if (ft_strcmp(file, "env") == 0)
+		ft_env(shell);
+	else if (ft_strcmp(file, "pwd") == 0)
+		ft_pwd();
+	else if (ft_strcmp(file, "cd") == 0)
+		ft_cd(argv[1], shell);
+	else
+		return (false);
+	return (true);
 }

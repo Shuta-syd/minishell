@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:24:20 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 18:27:18 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 20:55:16 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static void	free_dp(char **dp)
 	free(dp);
 }
 
-void	ft_test(void);
-
 static bool	do_builtins(char *file, char **argv, t_shell *shell)
 {
 	if (ft_strcmp(file, "echo") == 0)
@@ -75,8 +73,6 @@ static bool	do_builtins(char *file, char **argv, t_shell *shell)
 		ft_env(shell);
 	else if (ft_strcmp(file, "pwd") == 0)
 		ft_pwd();
-	else if (ft_strcmp(file, "cd") == 0)
-		ft_cd(argv[1], shell);
 	else
 		return (false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 21:36:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 21:49:53 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 12:08:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ size_t	count_input_len(t_list *heredoc, char *input)
 	{
 		if (input[i] == '|' || input[i] == '\0')
 			break;
+		i++;
 		total_len--;
 	}
 	while (heredoc)

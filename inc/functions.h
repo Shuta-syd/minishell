@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/23 21:38:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 18:24:31 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	handle_signal(int signal);
 
 //builtins
 void	exit_(char *msg, int status);
+int		ft_echo(char **argv);
+void	ft_env(t_shell *shell);
+void	ft_pwd(void);
+void	ft_cd(char *dir, t_shell *shell);
 
 //lexer
 void	lexer(t_shell *shell);
@@ -50,6 +54,6 @@ void	heredoc(t_shell *data);
 
 // executor
 void	executor(t_shell *shell);
-int		ft_execvp(char *file, char *argv[]);
+int		ft_execvp(char *file, char *argv[], t_shell *shell);
 
 #endif

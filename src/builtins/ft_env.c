@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:10:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:17:05 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/24 18:09:45 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/24 18:13:29 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-void	export(t_data *data)
+void	ft_env(t_shell *shell)
 {
-	
+	t_env *list;
+
+	list = shell->env_lst;
+	while (list)
+	{
+		ft_putstr(list->key);
+		ft_putstr("=");
+		ft_putendl(list->val);
+		list = list->next;
+	}
 }

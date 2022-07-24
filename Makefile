@@ -55,6 +55,7 @@ clean:
 	$(RM) $(OBJS)
 	@$(RM)r $(OBJDIR)
 	@echo "$(RES)"
+	rm -rf bin
 
 eclean:
 	@echo "$(RED)"

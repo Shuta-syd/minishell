@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 21:03:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:40 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/24 18:21:17 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/24 18:38:50 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-void	exit_(int status)
+static void	go_home(t_shell *shell);
+
+void	ft_cd(char *dir, t_shell *shell)
 {
-	printf("exit\n");
-	exit(status);
+	if (dir == NULL || ft_strcmp(dir, "~") == 0)
+		go_home(shell);
+	else if (chdir(dir) != 0)
+		perror(dir);
+}
+
+static void	go_home(t_shell *shell)
+{
+	if (chdir(ms_getenv(shell, "HOME")) != 0)
+		ft_putstr("can't found $HOME\n");
 }

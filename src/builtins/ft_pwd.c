@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:10:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:47 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/24 18:17:49 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/24 18:19:09 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <builtin.h>
+#include "minishell.h"
 
-// void	unset(t_data *data)
-// {
-	
-// }
+void	ft_pwd(void)
+{
+	char cwd[PATH_MAX];
+
+	getcwd(cwd, PATH_MAX);
+	ft_putendl(cwd);
+}

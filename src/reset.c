@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:01:13 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/22 16:08:35 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:22:54 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	reset(t_shell *shell)
 		free_dp(shell->exe->cmds[i].args);
 		i++;
 	}
+	free(shell->exe);
 }
 
 void	free_dp(char **dp)

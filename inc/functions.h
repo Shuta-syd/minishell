@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/23 21:38:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 16:02:55 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	heredoc(t_shell *data);
 
 // executor
 void	executor(t_shell *shell);
-int		ft_execvp(char *file, char *argv[]);
+int		ft_execvp(char *file, char *argv[], t_shell *shell);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/22 15:56:30 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:02:32 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ static void	execution_loop(t_shell *shell, int *tmpout, pid_t *pid)
 		*pid = fork();
 		if (*pid == 0)
 		{
-			ft_execvp(shell->exe->cmds[i].args[0], shell->exe->cmds[i].args);
+			ft_execvp(shell->exe->cmds[i].args[0], shell->exe->cmds[i].args, shell);
 			perror(shell->exe->cmds[i].args[0]);
+			exit(1);
 		}
 		i++;
 	}

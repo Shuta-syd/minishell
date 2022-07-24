@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 12:39:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/24 16:04:04 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int main(int argc, char *argv[], char **envp)
 		{
 			add_history(data.input);
 			heredoc(&data);
-			printf("after input->[%s]\n", data.input);
+			// printf("after input->[%s]\n", data.input);
 			lexer(&data);
-			// executor(&data);
-			// reset(&data);
+			executor(&data);
+			reset(&data);
 		} else {
 			free(data.input);
 		}

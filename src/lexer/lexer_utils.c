@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/22 15:47:37 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:19:32 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	skip_quote(char *input, size_t *i, char quote)
 	while (input[j])
 	{
 		if (input[j] == quote)
-			break;
+			break ;
 		j++;
 	}
 	*i = j;
@@ -81,7 +81,8 @@ size_t	count_cmds(char *input)
 }
 
 /*
-	Split per pipe and extract command line (ignore pipes in double and single quarts)
+	Split per pipe and extract command line
+	 (ignore pipes in double and single quarts)
 */
 char	**split_by_pipe(char *input, size_t cmd_cnt)
 {

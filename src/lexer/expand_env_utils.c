@@ -6,14 +6,15 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:44:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/23 21:34:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:14:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
-	Count the total number of characters by expanding the environment variable name to value
+	Count the total number of characters
+	by expanding the environment variable name to value
 */
 size_t	count_arg_len(char *arg, t_list **val, t_list **key)
 {
@@ -76,12 +77,8 @@ char	*create_expanded_arg(char *arg, t_list **val, size_t len)
 		{
 			i += 1;
 			copy_lst_content(&ret, &j, val);
-			while (arg[i])
-			{
-				if (ft_strchr("<>$\" ", arg[i]))
-					break;
+			while (ft_strchr("<>$\"\n \0", arg[i]))
 				i++;
-			}
 		}
 		else
 			ret[j++] = arg[i++];

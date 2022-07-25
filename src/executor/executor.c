@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 21:21:45 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:37:52 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ static bool	do_builtins(char *file, char **argv, t_shell *shell)
 		ft_cd(argv[1], shell);
 	else if (ft_strcmp(file, "exit") == 0)
 		exit_("exit", EXIT_SUCCESS);
+	else if (ft_strcmp(file, "export") == 0)
+		ft_export(shell, argv[1]);
+	else if (ft_strcmp(file, "unset") == 0)
+		ft_unset(shell, argv[1]);
 	else
 		return (false);
 	return (true);

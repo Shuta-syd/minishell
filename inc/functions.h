@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 20:06:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/25 18:37:38 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ char	*get_next_line(int fd);
 void	reset(t_shell *shell);
 void	copy_lst_content(char **dst, size_t *j, t_list **lst);
 
+//env
+t_env	*env_node_new(char *env);
+void	env_node_add_back(t_env **env_lst, t_env *new_node);
+
 // signal
 void	handle_signal(int signal);
 
@@ -32,6 +36,8 @@ int		ft_echo(char **argv);
 void	ft_env(t_shell *shell);
 void	ft_pwd(void);
 void	ft_cd(char *dir, t_shell *shell);
+int		ft_export(t_shell *shell, char *arg);
+void	ft_unset(t_shell *shell, char *key);
 
 //lexer
 void	lexer(t_shell *shell);

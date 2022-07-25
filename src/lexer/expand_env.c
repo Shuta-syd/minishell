@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 16:15:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:19:02 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,13 @@ char	*extract_env_val(char *arg, t_shell *data)
 	size_t	len;
 
 	len = -1;
-	while (*arg)
-	{
-		if (*arg == '$')
-		{
-			root = arg + 1;
-			while (*arg != ' ' && *arg)
-			{
-				arg++;
-				len++;
-			}
-			break ;
-		}
+	while (*arg != '$')
 		arg++;
+	root = arg + 1;
+	while (*arg != ' ' && *arg)
+	{
+		arg++;
+		len++;
 	}
 	key = ft_substr(root, 0, len);
 	if (key == NULL)

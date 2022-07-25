@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/25 11:19:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:27:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,31 +86,30 @@ size_t	count_cmds(char *input)
 */
 char	**split_by_pipe(char *input, size_t cmd_cnt)
 {
-	size_t	i_ret;
+	size_t	i;
 	size_t	j;
 	char	**ret;
 	char	*start;
 
-	j = 0;
-	i_ret = 0;
+	j = -1;
+	i = 0;
 	start = input;
 	ret = ft_calloc(cmd_cnt + 1, sizeof(char *));
 	if (ret == NULL)
 		exit(1);
-	while (input[j])
+	while (input[++j])
 	{
 		if (input[j] == '\"' || input[j] == '\'')
 			skip_quote(input, &j, input[j]);
 		if (input[j] == '|')
 		{
-			ret[i_ret++] = ft_substr(input, start - input, &input[j] - start);
+			ret[i++] = ft_substr(input, start - input, &input[j] - start);
 			start = input + j + 1;
 		}
 		else if (input[j + 1] == '\0')
-			ret[i_ret++] = ft_substr(input, start - input, &input[j] - start + 1);
-		j++;
+			ret[i++] = ft_substr(input, start - input, &input[j] - start + 1);
 	}
-	ret[i_ret] = NULL;
+	ret[i] = NULL;
 	return (ret);
 }
 

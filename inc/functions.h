@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/25 18:37:38 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 08:55:21 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	exit_(char *msg, int status);
 int		ft_echo(char **argv);
 void	ft_env(t_shell *shell);
 void	ft_pwd(void);
-void	ft_cd(char *dir, t_shell *shell);
+int		ft_cd(char *dir, t_shell *shell);
 int		ft_export(t_shell *shell, char *arg);
 void	ft_unset(t_shell *shell, char *key);
 

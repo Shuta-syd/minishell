@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:33:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 22:52:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,20 @@ void	get_env_val(t_shell *data, t_list **val, t_list **key)
 	t_list	*node;
 	t_list	*key_tmp;
 	char	*content;
+	char	*status;
 
+	status = NULL;
 	key_tmp = *key;
 	while (key_tmp)
 	{
-		content = ms_getenv(data, (char *)key_tmp->content);
+		if (ft_strcmp((char *)key_tmp->content, "?"))
+		{
+			status = ft_itoa(g_status);
+			content = ft_strdup(status);
+			free(status);
+		}
+		else
+			content = ms_getenv(data, (char *)key_tmp->content);
 		node = ft_lstnew(content);
 		ft_lstadd_back(val, node);
 		key_tmp = key_tmp->next;
@@ -61,23 +70,23 @@ void	get_env_val(t_shell *data, t_list **val, t_list **key)
 char	*extract_env_val(char *arg, t_shell *data)
 {
 	char	*key;
-	char	*root;
 	char	*val;
-	size_t	len;
+	size_t	i;
 
-	len = -1;
-	while (*arg != '$')
-		arg++;
-	root = arg + 1;
-	while (*arg != ' ' && *arg)
-	{
-		arg++;
-		len++;
-	}
-	key = ft_substr(root, 0, len);
+	i = 1;
+	while (ft_strchr("<>$\"\n \0", arg[i]) == NULL)
+		i++;
+	key = ft_substr(arg + 1, 0, i - 1);
 	if (key == NULL)
 		exit_session(data, 1, "Memory error\nexit");
-	val = ft_strdup(ms_getenv(data, key));
+	if (ft_strcmp(key, "?") == 0)
+	{
+		free(key);
+		key = ft_itoa(g_status);
+		val = ft_strdup(key);
+	}
+	else
+		val = ft_strdup(ms_getenv(data, key));
 	free(key);
 	return (val);
 }

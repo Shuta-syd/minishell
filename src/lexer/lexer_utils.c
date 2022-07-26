@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:37:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 22:17:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 void	skip_quote(char *input, size_t *i, char quote)
 {
-	size_t j;
+	size_t	j;
 
 	j = *i + 1;
 	while (input[j])

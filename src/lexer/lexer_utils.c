@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:06:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:37:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,37 @@
 */
 void	skip_quote(char *input, size_t *i, char quote)
 {
-	size_t	j;
+	size_t j;
 
 	j = *i + 1;
 	while (input[j])
 	{
 		if (input[j] == quote)
-			break ;
+			break;
 		j++;
 	}
 	*i = j;
+}
+
+bool	arg_is_quoted(t_shell *data)
+{
+	size_t	i;
+	char	*input;
+
+	i = 0;
+	input = data->input;
+	while (input[i])
+	{
+		if (input[i] == '\"' || input[i] == '\'')
+		{
+			skip_quote(&input[i], &i, input[i]);
+			break ;
+		}
+		i++;
+	}
+	if (input[i] == '\0')
+		return (false);
+	return (true);
 }
 
 /*
@@ -71,7 +92,7 @@ char	**split_by_pipe(t_shell *data, char *input, size_t cmd_cnt)
 	start = input;
 	ret = ft_calloc(cmd_cnt + 1, sizeof(char *));
 	if (ret == NULL)
-		exit_session(data, 1);
+		exit_session(data, 1, "Memory error\nexit");
 	while (input[++j])
 	{
 		if (input[j] == '\"' || input[j] == '\'')

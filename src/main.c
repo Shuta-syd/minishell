@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:51:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 22:13:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	main(int argc, char *argv[], char **envp)
 	char	ch;
 
 	motd();
+	shell = (t_shell){};
 	g_status = 0;
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
 	store_env_lst(&shell, envp);
 	while (1)
 	{
-		shell = (t_shell){};
 		shell.input = readline(PROMPT);
 		if (shell.input == NULL)
 			exit_("\b\bexit", EXIT_SUCCESS);
@@ -49,7 +49,6 @@ static void	core(t_shell *shell)
 {
 	add_history(shell->input);
 	heredoc(shell);
-	lexer(shell);
 	if (lexer(shell))
 	{
 		printf("arg is not quoted\n");

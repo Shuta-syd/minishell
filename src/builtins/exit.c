@@ -6,14 +6,19 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:37:39 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/15 14:41:48 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:56:11 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_(char *msg, int status)
+void	exit_(char *msg, char *s)
 {
+	int	status;
+
+	status = 0;
+	if (s != NULL)
+		status = ft_atoi(s);
 	ft_putendl(msg);
 	exit(status);
 }

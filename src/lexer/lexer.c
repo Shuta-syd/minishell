@@ -6,11 +6,18 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/25 11:11:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:03:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	exit_session(t_shell *data, int status)
+{
+	g_status = status;
+	exit_("Memory error\nexit", ft_itoa(g_status));
+}
+
 /*
 	Store each character separated by a delimiter such as space, double quote, etc.
 */
@@ -53,11 +60,11 @@ void	formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 
 	input_trimmed = ft_strtrim(input, " ");
 	if (input_trimmed == NULL)
-		exit(1);
+		exit_session(data, errno);
 	arg_cnt = count_args(input_trimmed);
 	cmds->args = ft_calloc(arg_cnt, sizeof(char *));
 	if (cmds->args == NULL)
-		exit(1);
+		exit_session(data, errno);
 	store_args(data, cmds, input_trimmed);
 	free(input_trimmed);
 }
@@ -70,15 +77,15 @@ void	lexer(t_shell *data)
 	i = 0;
 	data->exe = ft_calloc(1, sizeof(t_exe));
 	if (data->exe == NULL)
-		exit(1);
+		exit_session(data, 1);
 	store_redirect_in_out(data, data->input);
 	data->exe->cmd_cnt = count_cmds(data->input);
-	input = split_by_pipe(data->input, data->exe->cmd_cnt);
+	input = split_by_pipe(data, data->input, data->exe->cmd_cnt);
 	if (input == NULL)
-		exit(1);
+		exit_session(data, 1);
 	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));
 	if (data->exe->cmds == NULL)
-		exit(1);
+		exit_session(data, 1);
 	while (input[i])
 	{
 		formatting_to_exe(data, &data->exe->cmds[i], input[i]);

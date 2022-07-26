@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 09:53:52 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:12:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd);
 void	reset(t_shell *shell);
 void	copy_lst_content(char **dst, size_t *j, t_list **lst);
 
-//env
+// env
 t_env	*env_node_new(char *env);
 void	env_node_add_back(t_env **env_lst, t_env *new_node);
 
@@ -41,17 +41,18 @@ void	ft_unset(t_shell *shell, char *key);
 
 //lexer
 void	lexer(t_shell *shell);
-void	free_t_exe(t_shell *data);
 char	*extract_arg(t_shell *data, char *input, char **start, size_t *i);
 char	*store_quoted_arg(t_shell *data, char *input, size_t *i, char quote);
 char	*expand_env(char *arg, t_shell *data, bool quoted);
-char	*create_expanded_arg(char *arg, t_list **val, size_t len);
-char	**split_by_pipe(char *input, size_t cmd_cnt);
+char	*create_expanded_arg(t_shell *data, char *arg,
+			t_list **val, size_t len);
+char	**split_by_pipe(t_shell *data, char *input, size_t cmd_cnt);
 size_t	count_arg_len(char *arg, t_list **val, t_list **key);
 size_t	count_args(char *input);
 size_t	count_cmds(char *input);
 void	copy_env_val(char **dst, size_t *j, t_list **env_val);
 void	store_redirect_in_out(t_shell *data, char *input);
+void	exit_session(t_shell *data, int status);
 
 // heredoc
 char	*extract_sign(char *input);

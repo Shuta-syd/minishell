@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:39:28 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 20:07:53 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 19:57:01 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ char	*extract_arg(t_shell *data, char *input, char **start, size_t *i)
 	else
 		arg = ft_substr(input, *start - input, &input[*i] - *start);
 	if (arg == NULL)
-		exit(1);
+		exit_session(data, 1);
 	ret = ft_strtrim(arg, " ");
 	free(arg);
 	if (ret == NULL)
-		exit(1);
+		exit_session(data, 1);
 	if (*ret == '$')
 	{
 		arg = expand_env(ret, data, false);

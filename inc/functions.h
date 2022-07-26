@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 20:12:38 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:37:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ size_t	count_args(char *input);
 size_t	count_cmds(char *input);
 void	copy_env_val(char **dst, size_t *j, t_list **env_val);
 void	store_redirect_in_out(t_shell *data, char *input);
-void	exit_session(t_shell *data, int status);
+bool	arg_is_quoted(t_shell *data);
+void	exit_session(t_shell *data, int status, char *msg);
 
 // heredoc
 char	*extract_sign(char *input);

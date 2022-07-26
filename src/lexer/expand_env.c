@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:08:27 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:33:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*extract_env_val(char *arg, t_shell *data)
 	}
 	key = ft_substr(root, 0, len);
 	if (key == NULL)
-		exit_session(data, 1);
+		exit_session(data, 1, "Memory error\nexit");
 	val = ft_strdup(ms_getenv(data, key));
 	free(key);
 	return (val);
@@ -103,6 +103,6 @@ char	*expand_env(char *arg, t_shell *data, bool quoted)
 	ft_lstclear(&env_key, free);
 	ft_lstclear(&env_val, free);
 	if (ret == NULL)
-		exit_session(data, 1);
+		exit_session(data, 1, "Memory error\nexit");
 	return (ret);
 }

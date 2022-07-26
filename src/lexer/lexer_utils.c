@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 22:17:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 23:29:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	skip_quote(char *input, size_t *i, char quote)
 	while (input[j])
 	{
 		if (input[j] == quote)
-			break;
+			break ;
 		j++;
 	}
 	*i = j;

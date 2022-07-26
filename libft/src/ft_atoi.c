@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 20:27:40 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 22:32:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 23:31:43 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ int	ft_atoi(const char *str)
 	while (('\t' <= str[i] && str[i] <= '\r') || str[i] == ' ')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			minus = -1;
-		i++;
-	}
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 0)

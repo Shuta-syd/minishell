@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/25 18:37:52 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 08:58:43 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	executor(t_shell *shell)
 	dup2(tmpout, 1);
 	close(tmpin);
 	close(tmpout);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &g_status, 0);
 }
 
 static void	execution_loop(t_shell *shell, int *tmpout, pid_t *pid)
@@ -85,17 +85,17 @@ static void	execute(t_shell *shell, pid_t *pid, int i)
 static bool	do_builtins(char *file, char **argv, t_shell *shell)
 {
 	if (ft_strcmp(file, "echo") == 0)
-		ft_echo(argv);
+		g_status = ft_echo(argv);
 	else if (ft_strcmp(file, "env") == 0)
 		ft_env(shell);
 	else if (ft_strcmp(file, "pwd") == 0)
 		ft_pwd();
 	else if (ft_strcmp(file, "cd") == 0)
-		ft_cd(argv[1], shell);
+		g_status = ft_cd(argv[1], shell);
 	else if (ft_strcmp(file, "exit") == 0)
 		exit_("exit", EXIT_SUCCESS);
 	else if (ft_strcmp(file, "export") == 0)
-		ft_export(shell, argv[1]);
+		g_status = ft_export(shell, argv[1]);
 	else if (ft_strcmp(file, "unset") == 0)
 		ft_unset(shell, argv[1]);
 	else

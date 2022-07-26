@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:32:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/18 11:40:31 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 08:45:34 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@
 
 #define TRUNC 0
 #define APPEND 1
+
+int	g_status;
 
 #endif

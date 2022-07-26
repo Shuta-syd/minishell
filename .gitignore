@@ -6,3 +6,4 @@ a.out
 old_builtins
 bin
 .heredoc
+minishell_tester

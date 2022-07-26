@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 09:12:52 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:35:43 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	execute(t_shell *shell, pid_t *pid, int i)
 
 	file = shell->exe->cmds[i].args[0];
 	argv = shell->exe->cmds[i].args;
+	if (file == NULL)
+		return ;
 	if (do_builtins(file, argv, shell) == true)
 		return ;
 	else
@@ -93,7 +95,7 @@ static bool	do_builtins(char *file, char **argv, t_shell *shell)
 	else if (ft_strcmp(file, "cd") == 0)
 		g_status = ft_cd(argv[1], shell);
 	else if (ft_strcmp(file, "exit") == 0)
-		exit_("exit", EXIT_SUCCESS);
+		exit_("exit", ft_atoi(argv[1]));
 	else if (ft_strcmp(file, "export") == 0)
 		g_status = ft_export(shell, argv[1]);
 	else if (ft_strcmp(file, "unset") == 0)

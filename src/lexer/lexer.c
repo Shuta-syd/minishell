@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:38:28 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:43:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ void	formatting_to_exe(t_shell *data, t_cmd *cmds, char *input)
 	free(input_trimmed);
 }
 
-void	lexer(t_shell *data)
+int	lexer(t_shell *data)
 {
 	size_t	i;
 	char	**input;
 
 	i = 0;
 	if(arg_is_quoted(data))
-		return ;
+		return (1);
 	data->exe = ft_calloc(1, sizeof(t_exe));
 	if (data->exe == NULL)
 		exit_session(data, 1, "Memory error\nexit");
@@ -95,5 +95,5 @@ void	lexer(t_shell *data)
 		i++;
 	}
 	free(input);
-	return ;
+	return (0);
 }

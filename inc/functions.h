@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 20:37:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:41:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_export(t_shell *shell, char *arg);
 void	ft_unset(t_shell *shell, char *key);
 
 //lexer
-void	lexer(t_shell *shell);
+int		lexer(t_shell *shell);
 char	*extract_arg(t_shell *data, char *input, char **start, size_t *i);
 char	*store_quoted_arg(t_shell *data, char *input, size_t *i, char quote);
 char	*expand_env(char *arg, t_shell *data, bool quoted);

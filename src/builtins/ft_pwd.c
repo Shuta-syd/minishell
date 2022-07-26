@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:17:49 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 18:19:09 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:13:27 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_pwd(void)
 {
-	char cwd[PATH_MAX];
+	char	cwd[PATH_MAX];
 
 	getcwd(cwd, PATH_MAX);
 	ft_putendl(cwd);

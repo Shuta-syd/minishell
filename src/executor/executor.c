@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 08:58:43 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:12:52 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	execution_loop(t_shell *shell, int *tmpout, pid_t *pid);
 static void	operate_outfile(t_shell *shell, int *tmpout);
 static void	execute(t_shell *shell, pid_t *pid, int i);
-static bool	do_builtins(char *file, char **argv, t_shell *shell);;
+static bool	do_builtins(char *file, char **argv, t_shell *shell);
 
 void	executor(t_shell *shell)
 {

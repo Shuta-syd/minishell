@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/15 15:42:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 09:15:42 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	free_env_lst(t_env *env_lst)
 
 t_env	*get_env_last_node(t_env *env_lst)
 {
-	t_env *last_node;
-	t_env *inherit_lst;
+	t_env	*last_node;
+	t_env	*inherit_lst;
 
 	inherit_lst = env_lst;
 	if (env_lst == NULL)
@@ -40,7 +40,7 @@ t_env	*get_env_last_node(t_env *env_lst)
 		last_node = inherit_lst;
 		inherit_lst = inherit_lst->next;
 		if (inherit_lst == NULL)
-			break;
+			break ;
 	}
 	return (last_node);
 }
@@ -50,11 +50,11 @@ void	env_node_add_back(t_env **env_lst, t_env *new_node)
 	t_env	*last_node;
 
 	if (env_lst == NULL || new_node == NULL)
-		return;
+		return ;
 	else if (*env_lst == NULL)
 	{
 		*env_lst = new_node;
-		return;
+		return ;
 	}
 	last_node = get_env_last_node(*env_lst);
 	last_node->next = new_node;
@@ -83,12 +83,12 @@ void	store_env_lst(t_shell *data, char **envp)
 	i = 1;
 	data->env_lst = env_node_new(envp[0]);
 	if (data->env_lst == NULL)
-		return; // error
+		return ; //error
 	while (envp[i])
 	{
 		new_node = env_node_new(envp[i]);
 		if (new_node == NULL)
-			return; // error
+			return ; //error
 		env_node_add_back(&data->env_lst, new_node);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/24 16:15:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 09:15:29 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*extract_sign(char *input)
 void	write_heredoc_file(t_list *heredoc_lst)
 {
 	char	*line;
-	int	fd;
+	int		fd;
 
 	line = NULL;
 	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC | S_IRUSR | S_IWUSR);
@@ -65,7 +65,7 @@ void	loop_heredoc(char *input, t_list **heredoc_lst, t_shell *data)
 		{
 			free(heredoc_input);
 			free(sign);
-			break;
+			break ;
 		}
 		ret = expand_env(heredoc_input, data, true);
 		free(heredoc_input);

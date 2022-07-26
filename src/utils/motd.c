@@ -6,21 +6,20 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:38:08 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/06/30 16:38:10 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:11:25 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <minishell.h>
 
 void	motd(void)
 {
-	printf("  ____   ___   ____   ____  _      _       ____ \n");
-	printf(" /    T /   \\ |    \\ l    j| T    | T     /    T\n");
-	printf("Y   __jY     Y|  D  ) |  T | |    | |    Y  o  |\n");
-	printf("|  T  ||  O  ||    /  |  | | l___ | l___ |     |\n");
-	printf("|  l_ ||     ||    \\  |  | |     T|     T|  _  |\n");
-	printf("|     |l     !|  .  Y j  l |     ||     ||  |  |\n");
-	printf("l___,_j \\___/ l__j\\_j|____jl_____jl_____jl__j__j\n");
-	printf("                                                \n");
+	ft_putstr("  ____   ___   ____   ____  _      _       ____ \n");
+	ft_putstr(" /    T /   \\ |    \\ l    j| T    | T     /    T\n");
+	ft_putstr("Y   __jY     Y|  D  ) |  T | |    | |    Y  o  |\n");
+	ft_putstr("|  T  ||  O  ||    /  |  | | l___ | l___ |     |\n");
+	ft_putstr("|  l_ ||     ||    \\  |  | |     T|     T|  _  |\n");
+	ft_putstr("|     |l     !|  .  Y j  l |     ||     ||  |  |\n");
+	ft_putstr("l___,_j \\___/ l__j\\_j|____jl_____jl_____jl__j__j\n");
+	ft_putstr("                                                \n");
 }

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:25:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/21 12:08:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 09:04:08 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 # include "minishell.h"
 
@@ -23,7 +23,7 @@ typedef struct s_env
 	char			*key;
 	char			*val;
 	struct s_env	*next;
-} t_env;
+}	t_env;
 
 /*
 	structure that holds information on each command
@@ -45,7 +45,7 @@ typedef struct s_exe
 	int				fd[2];
 	int				pipe_fd[2];
 	int				outfile_mode;
-} t_exe;
+}	t_exe;
 
 /*
 	structure that holds all information in this shell

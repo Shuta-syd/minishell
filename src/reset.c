@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:01:13 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 20:13:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 09:09:20 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_dp(char **dp);
 
 void	reset(t_shell *shell)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	free(shell->input);
@@ -33,7 +33,8 @@ void	reset(t_shell *shell)
 
 void	free_dp(char **dp)
 {
-	size_t i;
+	size_t	i;
+
 	i = 0;
 	while (dp[i])
 		free(dp[i++]);

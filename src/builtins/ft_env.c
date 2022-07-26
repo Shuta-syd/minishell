@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:09:45 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/24 18:13:29 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:13:20 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_env(t_shell *shell)
 {
-	t_env *list;
+	t_env	*list;
 
 	list = shell->env_lst;
 	while (list)

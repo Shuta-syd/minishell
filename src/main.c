@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 09:22:00 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:45:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	main(int argc, char *argv[], char **envp)
 
 	motd();
 	g_status = 0;
-	shell = (t_shell){};
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
 	store_env_lst(&shell, envp);
 	while (1)
 	{
+		shell = (t_shell){};
 		shell.input = readline(PROMPT);
 		if (shell.input == NULL)
 			exit_("\b\bexit", EXIT_SUCCESS);

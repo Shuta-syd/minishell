@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 09:53:52 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:36:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd);
 void	reset(t_shell *shell);
 void	copy_lst_content(char **dst, size_t *j, t_list **lst);
 
-//env
+// env
 t_env	*env_node_new(char *env);
 void	env_node_add_back(t_env **env_lst, t_env *new_node);
 

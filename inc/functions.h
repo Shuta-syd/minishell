@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 09:03:37 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:53:52 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	env_node_add_back(t_env **env_lst, t_env *new_node);
 void	handle_signal(int signal);
 
 //builtins
-void	exit_(char *msg, int status);
+void	exit_(char *msg, char *status);
 int		ft_echo(char **argv);
 void	ft_env(t_shell *shell);
 void	ft_pwd(void);

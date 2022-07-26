@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:44:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/25 11:14:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:08:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	copy_lst_content(char **dst, size_t *j, t_list **lst)
 /*
 	Create environment variable expanded argument
 */
-char	*create_expanded_arg(char *arg, t_list **val, size_t len)
+char	*create_expanded_arg(t_shell *data, char *arg, t_list **val, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -70,7 +70,7 @@ char	*create_expanded_arg(char *arg, t_list **val, size_t len)
 	j = 0;
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
-		return (NULL);
+		exit_session(data, 1);
 	while (arg[i] != '\"' && arg[i])
 	{
 		if (arg[i] == '$')

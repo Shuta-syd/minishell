@@ -6,36 +6,11 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/25 11:27:27 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:06:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-/*
-	Free dynamic memory of t_exe
-*/
-void	free_t_exe(t_shell *data)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (data->exe->cmd_cnt--)
-	{
-		j = 0;
-		while (data->exe->cmds[i].args[j])
-		{
-			free(data->exe->cmds[i].args[j]);
-			j++;
-		}
-		free(data->exe->cmds[i].args);
-		i++;
-	}
-	free(data->exe->infile);
-	free(data->exe->outfile);
-	free(data->exe->cmds);
-	free(data->exe);
-}
 
 /*
 	skip single quotes or Double quotes,
@@ -84,7 +59,7 @@ size_t	count_cmds(char *input)
 	Split per pipe and extract command line
 	 (ignore pipes in double and single quarts)
 */
-char	**split_by_pipe(char *input, size_t cmd_cnt)
+char	**split_by_pipe(t_shell *data, char *input, size_t cmd_cnt)
 {
 	size_t	i;
 	size_t	j;
@@ -96,7 +71,7 @@ char	**split_by_pipe(char *input, size_t cmd_cnt)
 	start = input;
 	ret = ft_calloc(cmd_cnt + 1, sizeof(char *));
 	if (ret == NULL)
-		exit(1);
+		exit_session(data, 1);
 	while (input[++j])
 	{
 		if (input[j] == '\"' || input[j] == '\'')

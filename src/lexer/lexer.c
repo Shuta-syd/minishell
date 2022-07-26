@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 19:47:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:03:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	exit_session(t_shell *data, int status)
 {
-	reset(data);
-	g_status = errno;
+	g_status = status;
 	exit_("Memory error\nexit", ft_itoa(g_status));
 }
 
@@ -78,15 +77,15 @@ void	lexer(t_shell *data)
 	i = 0;
 	data->exe = ft_calloc(1, sizeof(t_exe));
 	if (data->exe == NULL)
-		exit_session(data, errno);
+		exit_session(data, 1);
 	store_redirect_in_out(data, data->input);
 	data->exe->cmd_cnt = count_cmds(data->input);
-	input = split_by_pipe(data->input, data->exe->cmd_cnt);
+	input = split_by_pipe(data, data->input, data->exe->cmd_cnt);
 	if (input == NULL)
-		exit_session(data, errno);
+		exit_session(data, 1);
 	data->exe->cmds = ft_calloc(data->exe->cmd_cnt, sizeof(t_cmd));
 	if (data->exe->cmds == NULL)
-		exit_session(data, errno);
+		exit_session(data, 1);
 	while (input[i])
 	{
 		formatting_to_exe(data, &data->exe->cmds[i], input[i]);

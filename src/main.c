@@ -6,17 +6,17 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:43:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:51:40 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// __attribute__((destructor))
-// static void	destructor(void)
-// {
-// 	system("leaks -q minishell");
-// }
+__attribute__((destructor))
+static void	destructor(void)
+{
+	system("leaks -q minishell");
+}
 
 static void	core(t_shell *shell);
 

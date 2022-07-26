@@ -6,14 +6,14 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 08:55:21 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:03:37 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 //utils
 void	motd(void);

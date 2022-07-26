@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 08:57:43 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:08:07 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,38 @@ static void	destructor(void)
 // 	}
 // }
 
+static void	core(t_shell *shell);
 
-int main(int argc, char *argv[], char **envp)
+int	main(int argc, char *argv[], char **envp)
 {
-	t_shell	data;
+	t_shell	shell;
 	char	ch;
 
 	motd();
 	g_status = 0;
-	data = (t_shell){};
+	shell = (t_shell){};
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
-	store_env_lst(&data, envp);
+	store_env_lst(&shell, envp);
 	while (1)
 	{
-		data.input = readline(PROMPT);
-		if (data.input == NULL)
+		shell.input = readline(PROMPT);
+		if (shell.input == NULL)
 			exit_("\b\bexit", EXIT_SUCCESS);
-		if (data.input[0] != '\0')
-		{
-			add_history(data.input);
-			heredoc(&data);
-			lexer(&data);
-			executor(&data);
-			reset(&data);
-		} else {
-			free(data.input);
-		}
+		if (shell.input[0] != '\0')
+			core(&shell);
+		else
+			free(shell.input);
 		printf("status > %d\n", g_status);
 	}
 	return (0);
+}
+
+static void	core(t_shell *shell)
+{
+	add_history(shell->input);
+	heredoc(shell);
+	lexer(shell);
+	executor(shell);
+	reset(shell);
 }

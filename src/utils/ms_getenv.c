@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   ms_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:40:08 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/21 19:20:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 09:12:10 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ms_getenv(t_shell *data, char *name)
 {
-	t_env *env_lst;
+	t_env	*env_lst;
 
 	env_lst = data->env_lst;
 	while (env_lst)

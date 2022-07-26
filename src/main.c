@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 09:08:07 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:22:00 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char *argv[], char **envp)
 			core(&shell);
 		else
 			free(shell.input);
-		printf("status > %d\n", g_status);
+		// printf("status > %d\n", g_status);
 	}
 	return (0);
 }

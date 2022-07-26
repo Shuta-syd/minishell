@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 00:52:00 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 09:15:42 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:13:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-void	free_env_lst(t_env *env_lst)
-{
-	t_env	*tmp;
-
-	while (env_lst)
-	{
-		tmp = env_lst;
-		free(env_lst->key);
-		free(env_lst->val);
-		env_lst = env_lst->next;
-		if (tmp != NULL)
-			free(tmp);
-	}
-}
 
 t_env	*get_env_last_node(t_env *env_lst)
 {
@@ -83,12 +68,12 @@ void	store_env_lst(t_shell *data, char **envp)
 	i = 1;
 	data->env_lst = env_node_new(envp[0]);
 	if (data->env_lst == NULL)
-		return ; //error
+		return ;
 	while (envp[i])
 	{
 		new_node = env_node_new(envp[i]);
 		if (new_node == NULL)
-			return ; //error
+			return ;
 		env_node_add_back(&data->env_lst, new_node);
 		i++;
 	}

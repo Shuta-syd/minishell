@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 20:09:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:12:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	lexer(t_shell *shell);
 char	*extract_arg(t_shell *data, char *input, char **start, size_t *i);
 char	*store_quoted_arg(t_shell *data, char *input, size_t *i, char quote);
 char	*expand_env(char *arg, t_shell *data, bool quoted);
-char	*create_expanded_arg(t_shell *data, char *arg, t_list **val, size_t len);
+char	*create_expanded_arg(t_shell *data, char *arg,
+			t_list **val, size_t len);
 char	**split_by_pipe(t_shell *data, char *input, size_t cmd_cnt);
 size_t	count_arg_len(char *arg, t_list **val, t_list **key);
 size_t	count_args(char *input);
@@ -54,7 +55,7 @@ void	store_redirect_in_out(t_shell *data, char *input);
 void	exit_session(t_shell *data, int status);
 
 // heredoc
-char *extract_sign(char *input);
+char	*extract_sign(char *input);
 size_t	count_input_len(t_list *heredoc, char *input);
 void	heredoc(t_shell *data);
 

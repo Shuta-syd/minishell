@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:44:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 16:28:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:31:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*create_expanded_arg(t_shell *data, char *arg, t_list **val, size_t len)
 		{
 			i += 1;
 			copy_lst_content(&ret, &j, val);
-			while (ft_strchr("<>$\"\n \0", arg[i]))
+			while (ft_strchr("<>$\"\n \0", arg[i]) == NULL)
 				i++;
 		}
 		else

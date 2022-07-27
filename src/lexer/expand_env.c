@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 15:51:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:25:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,14 @@ void	get_env_val(t_shell *data, t_list **val, t_list **key)
 	key_tmp = *key;
 	while (key_tmp)
 	{
-		if (ft_strcmp((char *)key_tmp->content, "?"))
+		if (ft_strcmp((char *)key_tmp->content, "?") == 0)
 		{
 			status = ft_itoa(g_status);
 			content = ft_strdup(status);
 			free(status);
 		}
 		else
-		{
-			printf("c->%s\n", content);
 			content = ms_getenv(data, (char *)key_tmp->content);
-		}
 		node = ft_lstnew(content);
 		ft_lstadd_back(val, node);
 		key_tmp = key_tmp->next;

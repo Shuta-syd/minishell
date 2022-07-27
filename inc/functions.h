@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 20:41:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 19:36:59 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	copy_env_val(char **dst, size_t *j, t_list **env_val);
 void	store_redirect_in_out(t_shell *data, char *input);
 bool	arg_is_quoted(t_shell *data);
 void	exit_session(t_shell *data, int status, char *msg);
+void	skip_quote(char *input, size_t *i, char quote);
 
 // heredoc
 char	*extract_sign(char *input);
@@ -63,5 +64,6 @@ void	heredoc(t_shell *data);
 // executor
 void	executor(t_shell *shell);
 int		ft_execvp(char *file, char *argv[], t_shell *shell);
+void	wait_processes(t_shell *shell);
 
 #endif

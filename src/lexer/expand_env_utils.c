@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:44:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:33:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:31:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	count_arg_len(char *arg, t_list **val, t_list **key)
 	len = ft_strlen(arg);
 	while (key_tmp)
 	{
-		len -= ft_strlen((char *)key_tmp->content);
+		len -= (ft_strlen((char *)key_tmp->content) + 1);
 		key_tmp = key_tmp->next;
 	}
 	while (val_tmp)
@@ -77,7 +77,7 @@ char	*create_expanded_arg(t_shell *data, char *arg, t_list **val, size_t len)
 		{
 			i += 1;
 			copy_lst_content(&ret, &j, val);
-			while (ft_strchr("<>$\"\n \0", arg[i]))
+			while (ft_strchr("<>$\"\n \0", arg[i]) == NULL)
 				i++;
 		}
 		else

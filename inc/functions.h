@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:11:59 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 20:41:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 19:13:17 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	heredoc(t_shell *data);
 // executor
 void	executor(t_shell *shell);
 int		ft_execvp(char *file, char *argv[], t_shell *shell);
+void	wait_processes(t_shell *shell);
 
 #endif

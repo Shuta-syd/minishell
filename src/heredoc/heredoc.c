@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:13:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 14:05:04 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	loop_heredoc(char *input, t_list **heredoc_lst, t_shell *data)
 
 void	heredoc(t_shell *data)
 {
-	char	*sign;
 	t_list	*heredoc_lst;
 
 	heredoc_lst = NULL;

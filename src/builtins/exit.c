@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:37:39 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 09:56:11 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/27 14:23:22 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	exit_(char *msg, char *s)
 	if (s != NULL)
 		status = ft_atoi(s);
 	ft_putendl(msg);
+	g_status = status;
 	exit(status);
 }

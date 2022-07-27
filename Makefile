@@ -11,7 +11,7 @@
 #      \/__/         \/__/         \|__|         \/__/                                   \/__/     \/__/
 
 CC		=	cc
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 LDFLAGS	=	-L$(LIBDIR) -lft -lreadline
 NAME	=	minishell
 SRCDIR	=	src

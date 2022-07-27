@@ -14,6 +14,7 @@
 
 void	exit_session(t_shell *data, int status, char *msg)
 {
+	(void)data;
 	g_status = status;
 	exit_(msg, ft_itoa(g_status));
 }

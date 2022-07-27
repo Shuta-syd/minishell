@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:31:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/25 18:39:43 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/27 14:05:23 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_unset(t_shell *shell, char *key)
 	t_env	*tmp;
 
 	env = shell->env_lst;
+	tmp = NULL;
 	while (env)
 	{
 		if (ft_strcmp(env->next->key, key) == 0)

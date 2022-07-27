@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:49:55 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 20:10:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 18:03:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	store_redirect_in_out(t_shell *data, char *input)
 {
 	size_t	i;
 
-	i = 0;
-	while (input[i])
+	i = -1;
+	while (input[++i])
 	{
 		if (ft_strchr("<", input[i]) && input[i + 1] == '<')
 		{
@@ -60,10 +60,10 @@ void	store_redirect_in_out(t_shell *data, char *input)
 		}
 		else if (ft_strchr(">", input[i]) && input[i + 1] == '>')
 		{
-			i++;
-			data->exe->outfile = extract_redirect_file(&input[i + 1]);
+			data->exe->outfile = extract_redirect_file(&input[++i + 1]);
 			data->exe->outfile_mode = APPEND;
 		}
-		i++;
+		if (ft_strchr("\"'", input[i]))
+			skip_quote(input, &i, input[i]);
 	}
 }

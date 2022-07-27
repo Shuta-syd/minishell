@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:42:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 15:01:48 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:59:50 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	handle_signal(int signal)
 	{
 		ft_putstr("Quit: ");
 		ft_putnbr(SIGQUIT);
+		ft_putchar('\n');
 	}
 }

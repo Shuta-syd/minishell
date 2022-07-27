@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:40:10 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 15:37:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:33:02 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	arg_is_quoted(t_shell *data)
 			skip_quote(input, &i, quote);
 			if (input[i] != quote)
 				return (false);
-			break;
+			break ;
 		}
 		i++;
 	}

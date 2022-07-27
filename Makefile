@@ -12,12 +12,12 @@
 
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
-LDFLAGS	=	-L$(LIBDIR) -lft -L$(shell brew --prefix readline)/lib -lreadline
+LDFLAGS	=	-L$(LIBDIR) -lft -lreadline
 NAME	=	minishell
 SRCDIR	=	src
 OBJDIR	=	obj
 LIBDIR	=	./libft
-INCDIR	=	inc $(LIBDIR)/inc $(shell brew --prefix readline)/include
+INCDIR	=	inc $(LIBDIR)/inc
 
 # find src -name \*.c | sed -e "s/$/\\\/g" | pbcopy <-- copy all src files
 SRCS	=	$(shell find $(SRCDIR) -name "*.c" -type f) # fix here

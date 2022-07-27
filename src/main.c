@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:30:46 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 22:32:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 14:06:39 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void	core(t_shell *shell);
 int	main(int argc, char *argv[], char **envp)
 {
 	t_shell	shell;
-	char	ch;
 
+	(void)argv;
+	(void)argc;
 	motd();
 	shell = (t_shell){};
 	g_status = 0;
@@ -40,7 +41,6 @@ int	main(int argc, char *argv[], char **envp)
 			core(&shell);
 		else
 			free(shell.input);
-		// printf("status->%d\n", g_status);
 	}
 	return (0);
 }

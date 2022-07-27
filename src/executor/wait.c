@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signal.c                                    :+:      :+:    :+:   */
+/*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:42:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 17:59:50 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/27 19:05:30 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/27 19:18:41 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-void	handle_signal(int signal)
+void	wait_processes(t_shell *shell)
 {
-	if (signal == SIGINT)
-	{
-		ft_putstr("\n");
-		rl_on_new_line();
-		rl_redisplay();
-		g_status = 130;
-	}
-	else if (signal == SIGQUIT)
-	{
-		ft_putstr("Quit: ");
-		ft_putnbr(SIGQUIT);
-		ft_putchar('\n');
-	}
+	int		status;
+	size_t	i;
+
+	i = 0;
+	status = 0;
+	while (i++ < shell->exe->cmd_cnt)
+		wait(&status);
+	if (status == SIGINT)
+		g_status = SIGINT + 128;
+	else if (status == SIGQUIT)
+		g_status = SIGQUIT + 128;
+	else
+		g_status = WEXITSTATUS(status);
 }

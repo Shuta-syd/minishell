@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 22:52:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 13:57:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*extract_env_val(char *arg, t_shell *data)
 	size_t	i;
 
 	i = 1;
-	while (ft_strchr("<>$\"\n \0", arg[i]) == NULL)
+	while (arg[i] && ft_strchr("<>$\"\n \0", arg[i]) == NULL)
 		i++;
 	key = ft_substr(arg + 1, 0, i - 1);
 	if (key == NULL)

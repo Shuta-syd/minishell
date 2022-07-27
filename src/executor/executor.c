@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/27 14:35:13 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/27 14:49:24 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	execute(t_shell *shell, pid_t *pid, int i)
 		*pid = fork();
 		if (*pid == 0)
 		{
+			signal(SIGQUIT, &handle_signal);
 			if (ft_execvp(file, argv, shell) != 0)
 				perror(file);
 			exit(127);

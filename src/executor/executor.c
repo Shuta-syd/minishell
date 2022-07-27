@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/27 14:49:24 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:54:20 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ void	executor(t_shell *shell)
 	int			tmpout;
 	int			status;
 	pid_t		pid;
+	size_t		i;
 
 	tmpin = dup(0);
 	tmpout = dup(1);
+	i = 0;
 	if (shell->exe->infile)
 		shell->exe->fd[IN] = open(shell->exe->infile, O_RDONLY);
 	else
@@ -35,7 +37,9 @@ void	executor(t_shell *shell)
 	dup2(tmpout, 1);
 	close(tmpin);
 	close(tmpout);
-	waitpid(pid, &status, 0);
+	while (i++ < shell->exe->cmd_cnt)
+		wait(&status);
+	signal(SIGQUIT, SIG_IGN);
 	g_status = WEXITSTATUS(status);
 }
 
@@ -77,9 +81,10 @@ static void	execute(t_shell *shell, pid_t *pid, int i)
 	else
 	{
 		*pid = fork();
+		signal(SIGQUIT, &handle_signal);
 		if (*pid == 0)
 		{
-			signal(SIGQUIT, &handle_signal);
+			signal(SIGINT, SIG_DFL);
 			if (ft_execvp(file, argv, shell) != 0)
 				perror(file);
 			exit(127);

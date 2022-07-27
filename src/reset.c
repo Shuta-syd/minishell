@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:01:13 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/26 22:14:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 15:05:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	reset(t_shell *shell)
 
 	i = 0;
 	free(shell->input);
-	free(shell->exe->infile);
-	free(shell->exe->outfile);
+	if (shell->exe->infile)
+		free(shell->exe->infile);
+	if (shell->exe->outfile)
+		free(shell->exe->outfile);
 	while (i < shell->exe->cmd_cnt)
 	{
 		free_dp(shell->exe->cmds[i].args);

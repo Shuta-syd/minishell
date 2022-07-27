@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:52:01 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/26 23:33:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/27 15:37:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	lexer(t_shell *data)
 	char	**input;
 
 	i = 0;
-	if (arg_is_quoted(data))
+	if (arg_is_quoted(data) == false)
 		return (1);
 	data->exe = ft_calloc(1, sizeof(t_exe));
 	if (data->exe == NULL)

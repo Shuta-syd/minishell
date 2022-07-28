@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:52:43 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/27 20:19:02 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:14:23 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	executor(t_shell *shell)
 	close(shell->exe->fd[OUT]);
 	wait_processes(shell);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, &handle_signal);
 }
 
 static void	execution_loop(t_shell *shell, int *tmpout, pid_t *pid)
@@ -78,10 +79,11 @@ static void	execute(t_shell *shell, pid_t *pid, int i)
 	{
 		*pid = fork();
 		signal(SIGQUIT, &handle_signal);
+		signal(SIGINT, SIG_IGN);
 		if (*pid == 0)
 		{
-			close(shell->exe->fd[IN]);
 			signal(SIGINT, SIG_DFL);
+			close(shell->exe->fd[IN]);
 			if (ft_execvp(file, argv, shell) != 0)
 				perror(file);
 			exit(127);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:37:50 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 16:28:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/28 13:42:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	get_env_val(t_shell *data, t_list **val, t_list **key)
 			free(status);
 		}
 		else
-			content = ms_getenv(data, (char *)key_tmp->content);
+			content = ft_strdup(ms_getenv(data, (char *)key_tmp->content));
 		node = ft_lstnew(content);
 		ft_lstadd_back(val, node);
 		key_tmp = key_tmp->next;

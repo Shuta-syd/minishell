@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:44:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 16:31:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/28 13:44:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,11 @@ char	*create_expanded_arg(t_shell *data, char *arg, t_list **val, size_t len)
 	size_t	i;
 	size_t	j;
 	char	*ret;
+	t_list	*val_tmp;
 
 	i = 0;
 	j = 0;
+	val_tmp = *val;
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (ret == NULL)
 		exit_session(data, 1, "Memory error\nexit");
@@ -76,7 +78,7 @@ char	*create_expanded_arg(t_shell *data, char *arg, t_list **val, size_t len)
 		if (arg[i] == '$')
 		{
 			i += 1;
-			copy_lst_content(&ret, &j, val);
+			copy_lst_content(&ret, &j, &val_tmp);
 			while (ft_strchr("<>$\"\n \0", arg[i]) == NULL)
 				i++;
 		}

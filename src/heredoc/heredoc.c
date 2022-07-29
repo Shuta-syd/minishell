@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/29 19:32:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/07/29 19:34:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	write_heredoc_file(t_list *heredoc_lst)
 	int		fd;
 
 	line = NULL;
-	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC | S_IRUSR | S_IWUSR, 0644);
+	fd = open(".heredoc", O_WRONLY | O_CREAT
+			| O_TRUNC | S_IRUSR | S_IWUSR, 0644);
 	if (fd < 0)
 		return ;
 	while (heredoc_lst)
@@ -65,7 +66,7 @@ void	loop_heredoc(char *input, t_list **heredoc_lst, t_shell *data)
 		{
 			free(heredoc_input);
 			free(sign);
-			return;
+			return ;
 		}
 		ret = expand_env(heredoc_input, data, true);
 		node = ft_lstnew(ret);

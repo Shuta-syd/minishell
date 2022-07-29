@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:31:03 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 14:05:04 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:32:43 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*extract_sign(char *input)
 	char	*ret;
 
 	sign = ft_strstr(input, "<<") + 2;
-	while (*sign == ' ')
+	while (*sign && *sign == ' ')
 		sign++;
 	start = sign;
-	while (*sign != ' ' && *sign != '\0')
+	while (ft_strchr(" <>\0", *sign) == 0)
 		sign++;
 	ret = ft_substr(start, 0, sign - start);
 	if (ret == NULL)
@@ -36,13 +36,14 @@ void	write_heredoc_file(t_list *heredoc_lst)
 	int		fd;
 
 	line = NULL;
-	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC | S_IRUSR | S_IWUSR);
+	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC | S_IRUSR | S_IWUSR, 0644);
 	if (fd < 0)
 		return ;
 	while (heredoc_lst)
 	{
 		line = (char *)heredoc_lst->content;
 		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
 		heredoc_lst = heredoc_lst->next;
 	}
 }
@@ -57,22 +58,20 @@ void	loop_heredoc(char *input, t_list **heredoc_lst, t_shell *data)
 	sign = extract_sign(input);
 	while (42)
 	{
-		write(0, "> ", 2);
-		heredoc_input = get_next_line(0);
+		heredoc_input = readline("> ");
 		if (heredoc_input == NULL)
 			return ;
-		if (ft_strncmp(sign, heredoc_input, ft_strlen(sign)) == 0)
+		if (ft_strcmp(sign, heredoc_input) == 0)
 		{
 			free(heredoc_input);
 			free(sign);
-			break ;
+			return;
 		}
 		ret = expand_env(heredoc_input, data, true);
-		free(heredoc_input);
 		node = ft_lstnew(ret);
+		free(heredoc_input);
 		ft_lstadd_back(heredoc_lst, node);
 	}
-	return ;
 }
 
 void	heredoc(t_shell *data)

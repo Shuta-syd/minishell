@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:42:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/07/27 17:59:50 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:56:19 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	handle_signal(int signal)
 	{
 		ft_putstr("\n");
 		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 		g_status = 130;
 	}

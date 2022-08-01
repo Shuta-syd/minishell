@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 18:31:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/27 14:05:23 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:22:51 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_unset(t_shell *shell, char *key)
 	tmp = NULL;
 	while (env)
 	{
-		if (ft_strcmp(env->next->key, key) == 0)
+		if (env->next && ft_strcmp(env->next->key, key) == 0)
 		{
 			tmp = env->next;
 			env->next = tmp->next;
@@ -29,7 +29,10 @@ void	ft_unset(t_shell *shell, char *key)
 		}
 		env = env->next;
 	}
-	free(tmp->key);
-	free(tmp->val);
-	free(tmp);
+	if (tmp)
+	{
+		free(tmp->key);
+		free(tmp->val);
+		free(tmp);
+	}
 }
